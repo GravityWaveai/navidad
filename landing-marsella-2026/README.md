@@ -14,3 +14,10 @@ Landing en HTML autocontenida (imágenes y fuentes incrustadas) construida a par
   con `src/tools/` (máscara del material + moteado sintético calibrado con las fotos reales).
 - Enlace de pedido: el formulario Typeform del catálogo (`ORDER_URL` en `build_html.py`).
 - Fecha límite de pedidos de Navidad que figura en la landing: 6 de noviembre (la del catálogo).
+
+## Restricciones de impresión UVI (formación Merch Navidad)
+`docs-formacion-merch-navidad-uvi.pdf` recoge lo que hay que validar en cada logo antes de producir: siempre
+vectorizado (svg/ai o png sin fondo, mín. 300 px / 80 mm), monocolor (negro packaging, blanco pieza), sin
+degradados ni fondos, sin textos ni piezas < 1 mm, elementos con separación suficiente (la UVI añade un contorno
+de 0,05 mm) y diseños simples porque la colocación es manual. Si el logo no es apto, pedir al cliente una versión
+simplificada. Estos puntos aparecen resumidos en la sección Personalización de la landing.

@@ -21,6 +21,7 @@ IMG={
  'star_pack_std':A('star-pack-std.webp'),'star_pack':A('star-pack.webp'),'star_logo':A('star-logo.webp'),
 }
 VIEWIMG={ # view images for product galleries
+ 'star-full':A('star-full.webp'),'phone-full':A('phone-full.webp'),'coaster-ico-std':A('coaster-ico-std.webp'),'coaster-ico-pack':A('coaster-ico-pack.webp'),'phone-ico-1':A('phone-ico-1.webp'),'tree-pack-std':A('tree-pack-std.webp'),'star-pack-std':A('star-pack-std.webp'),
  'coaster-logo':A('coaster-logo.webp'),'coaster-pack':A('coaster-pack.webp'),'coaster-real':A('coaster-real.webp'),
  'phone-real':A('phone-real.webp'),'phone-tag':A('phone-tag.webp'),'phone-ico-2':A('phone-ico-2.webp'),
  'star-real':A('star-real.webp'),'star-logo':A('star-logo.webp'),'star-pack':A('star-pack.webp'),
@@ -34,39 +35,36 @@ PRODUCTS=[
       spec=[('Contenido','Pack de 4 posavasos'),('Peso del pack','240 g'),('Dimensiones del pack','90 × 90 × 20 mm'),('Acabado','Marsella')],
       head_small='(4 uds/pack)',
       tiers=[(80,200,[18.2,19.5,21.5]),(201,500,[13.1,14.0,14.9]),(501,1000,[12.5,13.5,14.4])],
-      views=[('Con tu logo','coaster-logo','Dos posavasos en acabado Marsella con el texto Tu logo aquí impreso en blanco'),
-             ('Packaging','coaster-pack','Pack de cuatro posavasos con su faja de packaging kraft personalizada'),
-             ('Muestra real','coaster-real','Fotografía real de un posavasos en acabado Marsella')]),
+      views={'std':('coaster-ico-std','Pack de posavasos con la faja kraft estándar de Gravity Wave'),'pack':('coaster-ico-pack','Pack de posavasos con la faja kraft personalizada con tu logo'),'full':('coaster-pack','Pack de posavasos con faja kraft personalizada y tu logo impreso en cada posavasos'),'real':('coaster-real','Fotografía real de un posavasos en acabado Marsella')},
+      chooser='coaster-logo'),
  dict(id='portamovil', name='Portamóviles', short='Portamóviles', xmas=False, unit='ud', unitPl='uds', moq=150, logo='30 × 30 mm',
       pitch='Un soporte de sobremesa para el móvil, macizo y estable, que se queda en la mesa de trabajo a la vista todo el año. Con etiqueta kraft y cordel, listo para entregar.',
       spec=[('Contenido','1 portamóvil'),('Peso','300 g'),('Dimensiones','130 × 80 × 18 mm'),('Acabado','Marsella')],
       head_small='',
       tiers=[(150,200,[12.6,13.0,13.6]),(201,500,[10.3,10.6,11.1]),(501,1000,[9.3,9.6,10.0])],
-      views=[('Pieza','phone-real','Portamóvil en acabado Marsella, fotografía real'),
-             ('Con tu logo','phone-tag','Portamóvil con etiqueta kraft personalizada y el texto Tu logo aquí impreso en blanco'),
-             ('Etiqueta kraft','phone-ico-2','Portamóvil con la etiqueta kraft estándar de Gravity Wave')]),
+      views={'std':('phone-ico-2','Portamóvil con la etiqueta kraft estándar de Gravity Wave'),'pack':('phone-ico-1','Portamóvil con la etiqueta kraft personalizada con tu logo'),'full':('phone-full','Portamóvil con etiqueta kraft personalizada y tu logo impreso en la pieza'),'real':('phone-real','Portamóvil en acabado Marsella, fotografía real')},
+      chooser='phone-real'),
  dict(id='estrellas', name='Estrellas de Navidad (Pack 2)', short='Estrellas', xmas=True, unit='pack', unitPl='packs', moq=80, logo='30 × 30 mm',
       pitch='Dos estrellas para colgar, con cordel, en packaging kraft. El adorno que vuelve al árbol cada diciembre, con tu logo en el centro.',
       spec=[('Contenido','Pack de 2 estrellas'),('Peso del pack','150 g'),('Dimensiones del pack','110 × 105 × 10 mm'),('Acabado','Marsella')],
       head_small='(2 uds/pack)',
       tiers=[(80,200,[15.6,17.0,18.5]),(201,500,[14.8,15.5,16.3]),(501,1000,[14.4,14.9,15.9])],
-      views=[('Pieza','star-real','Estrella de Navidad en acabado Marsella, fotografía real'),
-             ('Con tu logo','star-logo','Estrella con el texto Tu logo aquí impreso en blanco'),
-             ('Packaging','star-pack','Pack de estrellas con packaging kraft personalizado')]),
+      views={'std':('star-pack-std','Pack de estrellas con el packaging kraft estándar de Gravity Wave'),'pack':('star-pack','Pack de estrellas con packaging kraft personalizado con tu logo'),'full':('star-full','Pack de estrellas con packaging personalizado y estrella con tu logo impreso en blanco'),'real':('star-real','Estrella de Navidad en acabado Marsella, fotografía real')},
+      chooser='star-logo'),
  dict(id='arbol', name='Árboles de Navidad', short='Árboles', xmas=True, unit='ud', unitPl='uds', moq=80, logo='30 × 30 mm',
       pitch='Un árbol de sobremesa formado por dos piezas que se encajan sin herramientas. Se monta en segundos, se guarda plano y preside la mesa o la recepción cada Navidad.',
       spec=[('Contenido','1 árbol (2 piezas encajables)'),('Peso','500 g'),('Dimensiones','250 × 150 × 10 mm'),('Acabado','Marsella')],
       head_small='',
       tiers=[(80,200,[26.4,27.0,28.0]),(201,500,[22.6,22.9,23.3]),(501,1000,[20.7,21.0,21.4])],
-      views=[('Pieza','tree-real','Árbol de Navidad en acabado Marsella montado, fotografía real'),
-             ('Con tu logo','tree-logo','Árbol con el texto Tu logo aquí impreso en blanco'),
-             ('Packaging','tree-pack','Árbol plano con su faja de packaging kraft personalizada')]),
+      views={'std':('tree-pack-std','Árbol plano con la faja kraft estándar de Gravity Wave'),'pack':('tree-pack','Árbol plano con la faja kraft personalizada con tu logo'),'full':('tree-logo','Árbol con tu logo impreso en blanco en la pieza'),'real':('tree-real','Árbol de Navidad en acabado Marsella montado, fotografía real')},
+      chooser='tree-real'),
  dict(id='bolas', name='Bola de Navidad (Pack 2)', short='Bolas', xmas=True, unit='pack', unitPl='packs', moq=80, logo='30 × 30 mm',
       pitch='Dos bolas planas para colgar, con tu logo en el centro. Ligeras, sencillas y muy visibles: el formato más directo para llevar tu marca al árbol.',
       spec=[('Contenido','Pack de 2 bolas'),('Peso del pack','120 g'),('Dimensiones del pack','110 × 90 × 10 mm'),('Acabado','Marsella')],
       head_small='(2 uds/pack)',
       tiers=[(80,200,[15.6,17.0,18.5]),(201,500,[14.8,15.5,16.3]),(501,1000,[14.4,14.9,15.9])],
-      views=[('Con tu logo','bola-real','Dos bolas de Navidad en acabado Marsella con el texto Tu logo aquí impreso en blanco, fotografía real')]),
+      views={'full':('bola-real','Dos bolas de Navidad en acabado Marsella con el texto Tu logo aquí impreso en blanco, fotografía real')},
+      chooser='bola-real'),
 ]
 
 def price(v):
@@ -79,12 +77,21 @@ ARROW='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="
 def product_html(p, i):
     alt=' alt' if i%2==1 else ''
     ribbon='<div class="ribbon" aria-hidden="true">Edición <b>Navidad</b></div>' if p['xmas'] else ''
-    imgs=[]; thumbs=[]
-    for j,(label,key,alttext) in enumerate(p['views']):
-        src=data_uri(VIEWIMG[key])
-        imgs.append(f'<img data-view="v{j}" src="{src}" alt="{H.escape(alttext)}"{"" if j==0 else " hidden"}>')
-        thumbs.append(f'<button class="thumb" type="button" data-view="v{j}" aria-pressed="{"true" if j==0 else "false"}"><img src="{src}" alt=""><span>{label}</span></button>')
-    thumbs_html=f'<div class="thumbs" role="group" aria-label="Vistas de {H.escape(p["name"])}">{"".join(thumbs)}</div>' if len(thumbs)>1 else ''
+    imgs=[]
+    for k,(key,alttext) in p['views'].items():
+        imgs.append(f'<img data-view="{k}" src="{data_uri(VIEWIMG[key])}" alt="{H.escape(alttext)}"{"" if k=="full" else " hidden"}>')
+    real_btn='<p class="cfg-real">Vistas: packaging kraft y pieza según el nivel elegido. <button type="button">Ver la foto real de la pieza</button></p>' if 'real' in p['views'] else '<p class="cfg-real">Fotografía real de la pieza en Marsella. El packaging kraft es el mismo que en el resto de la colección.</p>'
+    lvls=''.join(f'<button class="lvl" type="button" data-level="{k}" aria-pressed="{"true" if k=="full" else "false"}"><span class="t">{t}</span><span class="d"></span></button>' for k,t in [('std','Estándar'),('pack','Packaging personalizado'),('full','Packaging + producto')])
+    cfg=f'''<div class="cfg">
+            <span class="lbl">Elige nivel de personalización</span>
+            <div class="lvls" role="group" aria-label="Nivel de personalización de {H.escape(p['name'])}">{lvls}</div>
+            <div class="cfg-row">
+              <div class="cfg-qty"><label class="lbl" for="qty-{p['id']}">Unidades ({p['unitPl']})</label><input id="qty-{p['id']}" type="number" min="{p['moq']}" max="1000" step="1" value="{p['moq']}" inputmode="numeric"><small>Mínimo {p['moq']} {p['unitPl']} · hasta 1.000. Más, con presupuesto.</small></div>
+              <div class="cfg-out"><span class="u">—</span><span class="tt">—</span></div>
+            </div>
+            {real_btn}
+          </div>'''
+    thumbs_html=''
     spec=''.join(f'<div><dt>{k}</dt><dd>{v}</dd></div>' for k,v in p['spec'])
     rows=''
     for (lo,hi,pr) in p['tiers']:
@@ -98,13 +105,13 @@ def product_html(p, i):
       <div class="product-grid">
         <div class="gallery rv">
           <div class="stage">{''.join(imgs)}</div>
-          {thumbs_html}
         </div>
         <div class="pinfo rv">
           <div class="h3"><h3 class="h3 cera" data-cera="black">{p['name']}</h3><span class="sub cera-r" data-cera="regular">Personalizables</span></div>
           <p class="pitch">{p['pitch']}</p>
           <dl class="spec">{spec}</dl>
           <div class="perso"><h4>Personalización</h4><p>Impresión del packaging kraft personalizado en <b>tinta negra</b> e impresión <b>UVI con tu logo en blanco</b> en cada pieza, hasta <b>{p['logo']}</b>.</p></div>
+          {cfg}
           <span class="deadline"><span class="dot" aria-hidden="true"></span>Fecha límite para pedidos de Navidad: 6 de noviembre</span>
         </div>
       </div>
@@ -123,6 +130,10 @@ def product_html(p, i):
 
 tpl=open(os.path.join(HERE,'page.html'),encoding='utf-8').read()
 products=''.join(product_html(p,i) for i,p in enumerate(PRODUCTS))
+def chooser_html(p):
+    lo=min(p['tiers'][-1][2]); xm='<span class="xm">Edición Navidad</span>' if p['xmas'] else ''
+    return f'<a class="choice" href="#prod-{p["id"]}" data-choose="{p["id"]}"><span class="pic"><img src="{data_uri(VIEWIMG[p["chooser"]] if p["chooser"] in VIEWIMG else A(p["chooser"]+".webp"))}" alt=""></span><span class="nm">{p["name"]}</span><span class="from">desde <b>{price(lo)} €/{p["unit"]}</b> · mín. {p["moq"]} {p["unitPl"]}</span>{xm}</a>'
+tpl=tpl.replace('__CHOOSER__',''.join(chooser_html(p) for p in PRODUCTS))
 tpl=tpl.replace('__PRODUCTS__',products)
 data=[dict(id=p['id'],short=p['short'],unit=p['unit'],unitPl=p['unitPl'],moq=p['moq'],tiers=[dict(min=lo,max=hi,prices=pr) for lo,hi,pr in p['tiers']]) for p in PRODUCTS]
 tpl=tpl.replace('__DATA__',json.dumps(data,ensure_ascii=False))
