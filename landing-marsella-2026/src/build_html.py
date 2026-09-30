@@ -21,7 +21,7 @@ IMG={
  'star_pack_std':A('star-pack-std.webp'),'star_pack':A('star-pack.webp'),'star_logo':A('star-logo.webp'),
 }
 VIEWIMG={ # view images for product galleries
- 'star-full':A('star-full.webp'),'phone-full':A('phone-full.webp'),'coaster-ico-std':A('coaster-ico-std.webp'),'coaster-ico-pack':A('coaster-ico-pack.webp'),'phone-ico-1':A('phone-ico-1.webp'),'tree-pack-std':A('tree-pack-std.webp'),'star-pack-std':A('star-pack-std.webp'),
+ 'star-full':A('star-full.webp'),'tree-full':A('tree-full.webp'),'phone-logo':A('phone-logo.webp'),'phone-full':A('phone-full.webp'),'coaster-ico-std':A('coaster-ico-std.webp'),'coaster-ico-pack':A('coaster-ico-pack.webp'),'phone-ico-1':A('phone-ico-1.webp'),'tree-pack-std':A('tree-pack-std.webp'),'star-pack-std':A('star-pack-std.webp'),
  'coaster-logo':A('coaster-logo.webp'),'coaster-pack':A('coaster-pack.webp'),'coaster-real':A('coaster-real.webp'),
  'phone-real':A('phone-real.webp'),'phone-tag':A('phone-tag.webp'),'phone-ico-2':A('phone-ico-2.webp'),
  'star-real':A('star-real.webp'),'star-logo':A('star-logo.webp'),'star-pack':A('star-pack.webp'),
@@ -36,7 +36,7 @@ PRODUCTS=[
       head_small='(4 uds/pack)',
       tiers=[(80,200,[18.2,19.5,21.5]),(201,500,[13.1,14.0,14.9]),(501,1000,[12.5,13.5,14.4])],
       views={'std':('coaster-ico-std','Pack de posavasos con la faja kraft estándar de Gravity Wave'),'pack':('coaster-ico-pack','Pack de posavasos con la faja kraft personalizada con tu logo'),'full':('coaster-pack','Pack de posavasos con faja kraft personalizada y tu logo impreso en cada posavasos'),'real':('coaster-real','Fotografía real de un posavasos en acabado Marsella')},
-      chooser='coaster-logo'),
+      chooser='coaster-real'),
  dict(id='portamovil', name='Portamóviles', short='Portamóviles', xmas=False, unit='ud', unitPl='uds', moq=150, logo='30 × 30 mm',
       pitch='Un soporte de sobremesa para el móvil, macizo y estable, que se queda en la mesa de trabajo a la vista todo el año. Con etiqueta kraft y cordel, listo para entregar.',
       spec=[('Contenido','1 portamóvil'),('Peso','300 g'),('Dimensiones','130 × 80 × 18 mm'),('Acabado','Marsella')],
@@ -56,7 +56,7 @@ PRODUCTS=[
       spec=[('Contenido','1 árbol (2 piezas encajables)'),('Peso','500 g'),('Dimensiones','250 × 150 × 10 mm'),('Acabado','Marsella')],
       head_small='',
       tiers=[(80,200,[26.4,27.0,28.0]),(201,500,[22.6,22.9,23.3]),(501,1000,[20.7,21.0,21.4])],
-      views={'std':('tree-pack-std','Árbol plano con la faja kraft estándar de Gravity Wave'),'pack':('tree-pack','Árbol plano con la faja kraft personalizada con tu logo'),'full':('tree-logo','Árbol con tu logo impreso en blanco en la pieza'),'real':('tree-real','Árbol de Navidad en acabado Marsella montado, fotografía real')},
+      views={'std':('tree-pack-std','Árbol plano con la faja kraft estándar de Gravity Wave'),'pack':('tree-pack','Árbol plano con la faja kraft personalizada con tu logo'),'full':('tree-full','Árbol con faja kraft personalizada y tu logo impreso en blanco en la pieza'),'real':('tree-real','Árbol de Navidad en acabado Marsella montado, fotografía real')},
       chooser='tree-real'),
  dict(id='bolas', name='Bola de Navidad (Pack 2)', short='Bolas', xmas=True, unit='pack', unitPl='packs', moq=80, logo='30 × 30 mm',
       pitch='Dos bolas planas para colgar, con tu logo en el centro. Ligeras, sencillas y muy visibles: el formato más directo para llevar tu marca al árbol.',
