@@ -189,3 +189,67 @@ def front_shadow(union, front, up=1.0, offset=(5,6), spread=9, strength=0.5, edg
 
 def ellipse(h,w):
     y,x=np.ogrid[-1:1:complex(0,h),-1:1:complex(0,w)]; return (x*x+y*y)<=1
+
+SWATCH=None
+def real_texture(shape, scale=1.0, seed=0):
+    """tile the real Marsella swatch photo (mirrored tiling, random offset) to cover shape"""
+    global SWATCH
+    if SWATCH is None:
+        sw0=np.asarray(Image.open('./assets/swatch.jpg').convert('RGB')).astype(np.float32)/255
+        # flatten the photo's illumination gradient so tiles join without visible seams
+        bl=ndi.gaussian_filter(lum(sw0),45); sw0=np.clip(sw0*(bl.mean()/np.maximum(bl,1e-3))[...,None],0,1)
+        SWATCH=sw0[20:-20,20:-20]
+    sw=SWATCH
+    if scale!=1.0:
+        sw=np.stack([ndi.zoom(sw[...,c],scale,order=1) for c in range(3)],-1)
+    h,w=sw.shape[:2]
+    H,W=shape; rng=np.random.default_rng(seed)
+    # quilt: randomly flipped/rotated copies placed on a grid with feathered overlaps (no mirror symmetry)
+    ov=int(min(h,w)*0.22)
+    out=np.zeros((H+h,W+w,3),np.float32); wsum=np.zeros((H+h,W+w),np.float32)
+    fy=np.minimum(np.arange(h),np.arange(h)[::-1]); fx=np.minimum(np.arange(w),np.arange(w)[::-1])
+    feather=np.minimum(np.clip(fy/ov,0,1)[:,None],np.clip(fx/ov,0,1)[None,:])+0.02
+    y=-rng.integers(0,h-ov)
+    while y<H:
+        x=-rng.integers(0,w-ov)
+        while x<W:
+            t=sw
+            if rng.random()<0.5: t=t[:,::-1]
+            if rng.random()<0.5: t=t[::-1]
+            if rng.random()<0.5: t=np.rot90(t,2)
+            y0,x0=max(y,0),max(x,0); y1,x1=min(y+h,H+h),min(x+w,W+w)
+            ty,tx=y0-y,x0-x
+            out[y0:y1,x0:x1]+=t[ty:ty+(y1-y0),tx:tx+(x1-x0)]*feather[ty:ty+(y1-y0),tx:tx+(x1-x0),None]
+            wsum[y0:y1,x0:x1]+=feather[ty:ty+(y1-y0),tx:tx+(x1-x0)]
+            x+=w-ov
+        y+=h-ov
+    big=out/np.maximum(wsum,1e-3)[...,None]
+    return big[:H,:W]
+
+def recolor_real(rgba, mat_soft, mat, pr, up=1.0, tex_scale=1.0, seed=0, blur=10.0, shade_lo=0.62, shade_hi=1.02, keep_print=False):
+    """replace the material with the real Marsella swatch texture, modulated by the photo's own shading"""
+    rgb=rgba[...,:3]; L=lum(rgb)
+    W=(mat&~pr).astype(np.float32)
+    num=ndi.gaussian_filter(L*W,blur*up); den=ndi.gaussian_filter(W,blur*up)
+    bl=np.where(den>1e-3,num/np.maximum(den,1e-3),L)
+    sel=mat&~pr
+    lo,hi=np.percentile(bl[sel],3),np.percentile(bl[sel],97)
+    sh=np.clip((bl-lo)/max(hi-lo,1e-3),0,1); shade=shade_lo+(shade_hi-shade_lo)*sh
+    # darkest contiguous regions (edges, overlaps) get extra darkening
+    Ls=ndi.gaussian_filter(L*W,2.5*up)/np.maximum(ndi.gaussian_filter(W,2.5*up),1e-3); Ln=(Ls-lo)/max(hi-lo,1e-3)
+    thr=np.percentile(Ln[sel],6); occ=np.clip(thr-Ln,0,0.6)*sel
+    lab_,n_=ndi.label(occ>0.01)
+    if n_:
+        sz=ndi.sum(np.ones(occ.shape),lab_,range(1,n_+1)); keep=np.zeros(n_+1,bool); keep[1:]=sz>(1200*up*up); occ=occ*keep[lab_]
+    shade=shade*np.clip(1-2.5*ndi.gaussian_filter(occ,2*up),0.5,1)
+    tex=real_texture(L.shape,tex_scale,seed)
+    tl=lum(tex); tex=np.clip(tex/np.maximum(np.percentile(tl,92),0.5)*0.95,0,1)  # normalise swatch brightness
+    new=np.clip(tex*shade[...,None],0,1)
+    if keep_print and pr.any():
+        prf=pr.astype(np.float32)
+        shd=ndi.shift(ndi.gaussian_filter(prf,1.3*up),(1.6*up,1.2*up),order=1,mode='constant'); shd=np.clip(shd*1.4,0,1)*(1-prf)
+        new=new*(1-0.42*shd[...,None]); new=np.where(pr[...,None],np.array([0.985,0.985,0.975])[None,None,:]*np.clip(shade[...,None]*0.3+0.7,0,1),new)
+        mat_soft=np.maximum(mat_soft,prf)
+    m=mat_soft[...,None]
+    out=rgba.copy(); out[...,:3]=np.clip(rgb*(1-m)+new*m,0,1)
+    return out
