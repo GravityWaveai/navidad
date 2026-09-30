@@ -1,0 +1,702 @@
+<title>Gravitec Navidad 2026</title>
+<meta name="description" content="Regalos corporativos personalizados de Gravitec® by Gravity Wave, fabricados con redes de pesca recuperadas del Mediterráneo en el nuevo acabado Marsella.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Sacramento&display=swap">
+<style>
+/* Layout: el catálogo hecho web. Arena, titulares Cera Pro Black en azul marino, acento turquesa
+   con cuentagotas, cinta coral solo para la edición Navidad, fotografía flotando sobre la arena. */
+@font-face{font-family:'Cera Pro';font-weight:900;font-style:normal;font-display:swap;src:url(data:font/woff2;base64,__CERA_BLACK__) format('woff2')}
+@font-face{font-family:'Cera Pro';font-weight:400;font-style:normal;font-display:swap;src:url(data:font/woff2;base64,__CERA_REGULAR__) format('woff2')}
+:root{
+  --sand:#D9D0C6; --sand-2:#E2DBD2; --sand-3:#EDE8E4; --sand-4:#F5F2EE;
+  --navy:#0D2656; --navy-2:#14367A; --ink:#0D2656; --muted:#4E5A78;
+  --teal:#00ACB4; --teal-d:#00929A; --teal-soft:rgba(0,172,180,.12);
+  --coral:#FF5757; --kraft:#966944; --white:#FFFFFF; --deep:#01313D;
+  --line:rgba(13,38,86,.14);
+  --font-display:'Cera Pro','Poppins',system-ui,sans-serif;
+  --font-body:'Poppins',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --font-script:'Sacramento','Poppins',cursive;
+  --radius:10px; --gutter:clamp(16px,4vw,48px); --max:1180px;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--sand);color:var(--ink);font-family:var(--font-body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit}
+h1,h2,h3,h4{margin:0;text-wrap:balance}
+p{margin:0}
+.cera{font-family:var(--font-display);font-weight:900;letter-spacing:-.015em;line-height:1.02}
+.cera-r{font-family:var(--font-display);font-weight:400}
+.wrap{max-width:var(--max);margin-inline:auto;padding-inline:var(--gutter)}
+.eyebrow{font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--teal)}
+.lead{font-size:clamp(17px,1.4vw,20px);line-height:1.6;max-width:62ch}
+.muted{color:var(--muted)}
+.section{padding-block:clamp(64px,9vw,120px)}
+.section-head{display:grid;gap:14px;max-width:820px;margin-bottom:clamp(32px,5vw,56px)}
+.h2{font-size:clamp(34px,4.6vw,58px);color:var(--navy)}
+.h3{font-size:clamp(28px,3.4vw,42px);color:var(--navy)}
+.sub{font-size:clamp(20px,2vw,26px);color:var(--navy);line-height:1.2}
+.btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-body);font-weight:700;font-size:15px;line-height:1;padding:16px 24px;border-radius:9px;border:2px solid transparent;text-decoration:none;cursor:pointer;transition:transform .15s ease,background .15s ease,color .15s ease,border-color .15s ease;white-space:nowrap}
+.btn:hover{transform:translateY(-1px)}
+.btn:focus-visible,a:focus-visible,button:focus-visible{outline:3px solid var(--teal);outline-offset:3px}
+.btn-teal{background:var(--teal);color:var(--white)}
+.btn-teal:hover{background:var(--teal-d)}
+.btn-navy{background:var(--navy);color:var(--white)}
+.btn-navy:hover{background:var(--navy-2)}
+.btn-ghost{background:transparent;color:var(--navy);border-color:var(--navy)}
+.btn-ghost:hover{background:var(--navy);color:var(--white)}
+.btn-sand{background:var(--white);color:var(--navy)}
+.btn svg{width:18px;height:18px;flex:none}
+
+/* ---------- nav ---------- */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:rgba(217,208,198,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid transparent;transition:border-color .2s,background .2s}
+.nav.is-scrolled{border-bottom-color:var(--line);background:rgba(217,208,198,.94)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:72px}
+.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.nav-logo img{height:26px;width:auto}
+.nav-links{display:flex;gap:6px;list-style:none;margin:0;padding:0}
+.nav-links a{display:block;padding:10px 12px;font-size:14px;font-weight:500;color:var(--navy);text-decoration:none;border-radius:8px;transition:background .15s}
+.nav-links a:hover{background:rgba(13,38,86,.07)}
+.nav-links a.is-active{color:var(--teal);font-weight:600}
+.nav-cta{display:flex;align-items:center;gap:10px}
+.nav .btn{padding:12px 18px;font-size:14px}
+.nav-burger{display:none;width:44px;height:44px;border:0;background:transparent;border-radius:8px;cursor:pointer;color:var(--navy);align-items:center;justify-content:center}
+.nav-burger span{display:block;width:22px;height:2px;background:currentColor;position:relative}
+.nav-burger span::before,.nav-burger span::after{content:"";position:absolute;left:0;width:22px;height:2px;background:currentColor}
+.nav-burger span::before{top:-7px}.nav-burger span::after{top:7px}
+@media (max-width:960px){
+  .nav-links{display:none;position:absolute;left:0;right:0;top:100%;background:var(--sand-3);flex-direction:column;padding:12px var(--gutter) 18px;border-bottom:1px solid var(--line);box-shadow:0 20px 40px rgba(13,38,86,.12)}
+  .nav.is-open .nav-links{display:flex}
+  .nav-burger{display:inline-flex}
+  .nav-links a{font-size:16px;padding:12px 8px}
+}
+@media (max-width:520px){.nav .btn-text{display:none}.nav .btn{padding:12px 14px}}
+
+/* ---------- hero ---------- */
+.hero{position:relative;overflow:hidden;padding-block:clamp(40px,6vw,84px) clamp(48px,6vw,80px)}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,5vw,64px);align-items:center}
+.hero-copy{display:grid;gap:22px;max-width:600px}
+.hero h1{font-size:clamp(40px,5.2vw,72px);color:var(--navy)}
+.hero h1 .tl{color:var(--teal)}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:6px}
+.hero-brand{display:flex;align-items:center;gap:18px;padding-bottom:6px}
+.hero-brand img{height:44px;width:auto}
+.hero-brand .sep{width:2px;height:44px;background:var(--white);opacity:.9}
+.hero-brand .tag{display:grid;line-height:1.15;font-size:16px;color:var(--teal)}
+.hero-brand .tag b{font-weight:700}
+.hero-visual{position:relative;min-height:320px;display:flex;align-items:center;justify-content:center}
+.hero-visual img{width:min(100%,640px);filter:drop-shadow(0 30px 40px rgba(13,38,86,.18))}
+.ribbon{position:absolute;right:-70px;bottom:44px;transform:rotate(-38deg);background:var(--coral);color:var(--white);font-weight:700;font-size:13px;letter-spacing:.06em;text-transform:uppercase;padding:10px 84px;box-shadow:0 8px 20px rgba(255,87,87,.28);white-space:nowrap;pointer-events:none}
+.ribbon b{font-weight:800}
+.hero-facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:clamp(40px,5vw,64px);padding-top:28px;border-top:1px solid var(--line)}
+.fact{display:grid;gap:6px;min-width:0}
+.fact .k{font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--teal)}
+.fact .v{font-size:15px;font-weight:600;color:var(--navy);line-height:1.35}
+@media (max-width:900px){.hero-grid{grid-template-columns:1fr}.hero-visual{order:-1;min-height:0;padding-top:24px}.hero-visual img{width:min(100%,460px)}.hero .ribbon{right:-64px;bottom:auto;top:26px;transform:rotate(38deg);padding:8px 70px;font-size:12px}.hero-facts{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:480px){.hero-facts{grid-template-columns:1fr}}
+@media (max-width:600px){.hero-brand img{height:32px}.hero-brand .sep{height:32px}.hero-brand .tag{font-size:13px}}
+
+/* ---------- quote band ---------- */
+.quote{position:relative;isolation:isolate;overflow:hidden;background:var(--sand-2)}
+.quote-bg{position:absolute;inset:0;z-index:-2;background-image:url(__IMG_boat__);background-size:cover;background-position:center;filter:saturate(.7)}
+.quote-veil{position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(217,208,198,.78),rgba(217,208,198,.86))}
+.quote-in{display:grid;justify-items:center;text-align:center;gap:28px;padding-block:clamp(72px,10vw,140px)}
+.quote blockquote{margin:0;max-width:22ch;font-size:clamp(24px,3vw,40px);line-height:1.25;color:var(--navy);font-weight:400}
+.quote blockquote b{font-weight:700}
+.quote img{height:46px;width:auto;opacity:.95}
+
+/* ---------- why ---------- */
+.why-row{display:flex;flex-wrap:wrap;justify-content:center;align-items:flex-end;gap:clamp(14px,4vw,48px);margin:8px auto clamp(36px,5vw,56px);max-width:900px}
+.why-row img{height:clamp(84px,12vw,150px);width:auto;filter:drop-shadow(0 14px 18px rgba(13,38,86,.16));transition:transform .3s ease}
+.why-row img:hover{transform:translateY(-6px)}
+.why-copy{display:grid;gap:14px;max-width:760px;margin-inline:auto;text-align:center}
+.why-copy .big{font-size:clamp(18px,1.6vw,21px);font-weight:700;color:var(--navy)}
+.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:clamp(40px,5vw,64px)}
+.card{background:var(--sand-3);border-radius:14px;padding:28px 26px 30px;display:grid;gap:12px;align-content:start;min-width:0}
+.card .ic{width:44px;height:44px;border-radius:12px;background:var(--teal-soft);display:grid;place-items:center;color:var(--teal)}
+.card .ic svg{width:24px;height:24px}
+.card h3{font-size:20px;font-weight:700;color:var(--navy);line-height:1.25}
+.card p{font-size:15px;color:var(--muted)}
+@media (max-width:820px){.cards{grid-template-columns:1fr}}
+@media (max-width:520px){.why-row img{height:64px}}
+
+/* ---------- process ---------- */
+.process{position:relative;isolation:isolate;overflow:hidden}
+.process-bg{position:absolute;inset:0;z-index:-1;background-image:url(__IMG_net__);background-size:cover;background-position:center;opacity:.28;mix-blend-mode:multiply}
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(20px,3vw,40px);align-items:start}
+.step{display:grid;gap:14px;justify-items:center;text-align:center;position:relative}
+.step .script{font-family:var(--font-script);font-size:clamp(34px,3.6vw,48px);color:var(--white);text-shadow:0 2px 14px rgba(13,38,86,.25);line-height:1;font-weight:400}
+.step .pic{height:clamp(220px,26vw,340px);display:flex;align-items:flex-end;justify-content:center}
+.step .pic img{max-height:100%;width:auto;filter:drop-shadow(0 18px 22px rgba(13,38,86,.18))}
+.step h3{font-size:19px;font-weight:700;color:var(--navy)}
+.step p{font-size:15px;color:var(--muted);max-width:32ch}
+.step-arrow{position:absolute;right:-8%;top:44%;width:16%;height:2px;border-top:2px dashed var(--white);opacity:.9}
+.step-arrow::after{content:"";position:absolute;right:-2px;top:-6px;border:5px solid transparent;border-left:8px solid var(--white)}
+@media (max-width:820px){.steps{grid-template-columns:1fr;gap:48px}.step-arrow{display:none}.step .pic{height:auto}.step .pic img{max-height:300px}}
+
+/* ---------- marsella ---------- */
+.marsella{background:var(--sand-3)}
+.mars-grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(28px,5vw,72px);align-items:center}
+.mars-swatch{position:relative;border-radius:18px;overflow:hidden;aspect-ratio:3/4;max-width:100%;box-shadow:0 30px 60px rgba(13,38,86,.16)}
+.mars-swatch img{width:100%;height:100%;object-fit:cover}
+.mars-swatch .chip{position:absolute;left:18px;bottom:18px;background:rgba(13,38,86,.88);color:var(--white);font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;padding:9px 14px;border-radius:999px;backdrop-filter:blur(6px)}
+.mars-copy{display:grid;gap:18px}
+.mars-copy .h2 span{display:block}
+.mars-copy .h2 .name{color:var(--teal);font-weight:400;font-size:.92em}
+.mars-list{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:12px}
+.mars-list li{display:flex;gap:14px;align-items:flex-start;font-size:15px;color:var(--navy)}
+.mars-list li::before{content:"";flex:none;width:10px;height:10px;margin-top:8px;border-radius:50%;background:var(--teal)}
+.mars-note{font-size:13px;color:var(--muted);border-left:3px solid var(--teal);padding-left:14px}
+.mars-pieces{display:flex;gap:16px;flex-wrap:wrap;margin-top:8px}
+.mars-pieces img{height:76px;width:auto;filter:drop-shadow(0 10px 14px rgba(13,38,86,.16))}
+@media (max-width:860px){.mars-grid{grid-template-columns:1fr}.mars-swatch{aspect-ratio:4/3;max-height:420px}}
+
+/* ---------- products ---------- */
+.products .section-head{max-width:900px}
+.product{position:relative;overflow:hidden;padding-block:clamp(44px,6vw,80px);border-top:1px solid var(--line)}
+.product:first-of-type{border-top:0}
+.product-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(24px,5vw,64px);align-items:center}
+.product.alt .product-grid > .gallery{order:2}
+.gallery{display:grid;gap:14px;min-width:0}
+.stage{position:relative;aspect-ratio:5/4;max-width:100%;border-radius:18px;background:radial-gradient(120% 90% at 50% 100%,var(--sand-3) 0%,var(--sand-2) 55%,transparent 100%);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.stage img{position:absolute;inset:0;margin:auto;max-width:88%;max-height:86%;width:auto;height:auto;object-fit:contain;filter:drop-shadow(0 26px 30px rgba(13,38,86,.2));transition:opacity .35s ease,transform .35s ease}
+.stage img[hidden]{display:none}
+.stage img.fade{opacity:0;transform:scale(.985)}
+.thumbs{display:flex;gap:10px;flex-wrap:wrap}
+.thumb{display:flex;align-items:center;gap:10px;border:2px solid transparent;background:var(--sand-3);border-radius:12px;padding:8px 14px 8px 8px;cursor:pointer;font-family:var(--font-body);font-size:13px;font-weight:600;color:var(--navy);transition:border-color .15s,background .15s}
+.thumb img{width:46px;height:46px;object-fit:contain}
+.thumb:hover{background:var(--sand-4)}
+.thumb[aria-pressed="true"]{border-color:var(--teal);background:var(--sand-4)}
+.pinfo{display:grid;gap:18px;min-width:0}
+.pinfo .h3{display:flex;flex-direction:column;gap:2px}
+.pinfo .h3 .sub{font-size:clamp(18px,1.8vw,24px)}
+.pinfo .pitch{font-size:16px;color:var(--navy)}
+.spec{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 22px;margin:0;padding:18px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.spec div{display:grid;gap:2px;min-width:0}
+.spec dt{font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--teal)}
+.spec dd{margin:0;font-size:15px;font-weight:600;color:var(--navy)}
+.perso{display:grid;gap:10px}
+.perso h4{font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--navy)}
+.perso p{font-size:14.5px;color:var(--muted)}
+.perso p b{color:var(--navy);font-weight:600}
+.deadline{display:inline-flex;align-items:center;gap:10px;background:var(--sand-3);border-radius:999px;padding:8px 14px 8px 10px;font-size:13.5px;font-weight:600;color:var(--navy);width:fit-content;max-width:100%}
+.deadline .dot{width:10px;height:10px;border-radius:50%;background:var(--coral);flex:none}
+.pricing{margin-top:clamp(28px,4vw,44px)}
+.pricing-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 20px;margin-bottom:14px}
+.pricing-head h4{font-size:15px;font-weight:700;color:var(--navy)}
+.pricing-head .moq{font-size:14px;color:var(--muted)}
+.pricing-head .moq b{color:var(--navy);font-weight:700}
+.tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:12px}
+table.prices{width:100%;min-width:560px;border-collapse:separate;border-spacing:3px;font-variant-numeric:tabular-nums}
+table.prices th{background:var(--teal);color:var(--white);font-family:var(--font-body);font-weight:700;font-size:13.5px;line-height:1.3;padding:14px 12px;text-align:center;border-radius:6px}
+table.prices th:first-child{border-top-left-radius:10px}
+table.prices th:last-child{border-top-right-radius:10px}
+table.prices th small{display:block;font-weight:500;font-size:11.5px;opacity:.92}
+table.prices td{background:var(--sand-3);text-align:center;padding:14px 12px;border-radius:6px;font-family:var(--font-display);font-weight:900;font-size:17px;color:var(--navy);letter-spacing:-.01em;transition:background .2s}
+table.prices td:first-child{font-family:var(--font-body);font-weight:600;font-size:14px;color:var(--navy)}
+table.prices td .u{font-size:12px;font-family:var(--font-body);font-weight:500;color:var(--muted);margin-left:2px}
+table.prices tr.is-hot td{background:#D5EFF0}
+table.prices tr.is-hot td:first-child{color:var(--teal-d)}
+.pricing-foot{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center;justify-content:space-between;margin-top:14px}
+.pricing-foot .note{font-size:13px;color:var(--muted)}
+.product .ribbon{right:-64px;top:40px;bottom:auto;transform:rotate(38deg);padding:8px 70px;font-size:12px}
+@media (max-width:900px){.product-grid{grid-template-columns:1fr}.product.alt .product-grid > .gallery{order:0}.stage{aspect-ratio:4/3}.product .ribbon{top:22px;right:-72px;padding:7px 64px;font-size:11px}}
+@media (max-width:520px){.spec{grid-template-columns:1fr 1fr}}
+
+/* ---------- personalization ---------- */
+.perso-section{background:var(--sand-3)}
+.levels{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.level{background:var(--sand);border-radius:16px;padding:22px 22px 26px;display:grid;gap:14px;align-content:start;min-width:0;position:relative}
+.level .n{font-family:var(--font-display);font-weight:900;font-size:40px;line-height:1;color:var(--teal)}
+.level .pics{height:200px;display:flex;align-items:center;justify-content:center;gap:8px}
+.level .pics img{max-height:100%;width:auto;max-width:60%;filter:drop-shadow(0 14px 18px rgba(13,38,86,.16))}
+.level .pics img.solo{max-width:100%}
+.level h3{font-size:19px;font-weight:700;color:var(--navy);line-height:1.25}
+.level p{font-size:14.5px;color:var(--muted)}
+.level .tagline{font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--teal)}
+.perso-details{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(24px,4vw,56px);margin-top:clamp(36px,5vw,56px);align-items:start}
+.perso-details h3{font-size:22px;font-weight:700;color:var(--navy);margin-bottom:14px}
+.logo-sizes{list-style:none;margin:0;padding:0;display:grid;gap:0}
+.logo-sizes li{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid var(--line);font-size:15px;color:var(--navy)}
+.logo-sizes li span:last-child{font-weight:700;white-space:nowrap}
+.how{list-style:none;margin:0;padding:0;display:grid;gap:14px;counter-reset:how}
+.how li{display:grid;grid-template-columns:40px minmax(0,1fr);gap:14px;align-items:start;font-size:15px;color:var(--navy)}
+.how li > div{display:grid;gap:2px;min-width:0}
+.how li::before{counter-increment:how;content:counter(how);width:40px;height:40px;border-radius:50%;background:var(--navy);color:var(--white);display:grid;place-items:center;font-weight:700;font-size:15px}
+.how li b{display:block;font-weight:700}
+.how li span{color:var(--muted);font-size:14.5px}
+.mock{display:flex;align-items:center;gap:22px;background:var(--sand);border-radius:16px;padding:22px;margin-top:18px}
+.mock img{width:120px;height:120px;object-fit:contain}
+.mock p{font-size:14px;color:var(--muted)}
+.mock p b{color:var(--navy)}
+@media (max-width:860px){.levels{grid-template-columns:1fr}.perso-details{grid-template-columns:1fr}}
+
+/* ---------- calculator ---------- */
+.calc{background:var(--navy);color:var(--sand-4)}
+.calc .eyebrow{color:var(--teal)}
+.calc .h2{color:var(--white)}
+.calc .lead{color:rgba(245,242,238,.82)}
+.calc-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(22px,4vw,48px);align-items:start}
+.calc-controls{display:grid;gap:26px}
+.ctl{display:grid;gap:12px}
+.ctl > label,.ctl > .lbl{font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--teal)}
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pill{border:1.5px solid rgba(245,242,238,.28);background:transparent;color:var(--sand-4);border-radius:999px;padding:10px 16px;font-family:var(--font-body);font-size:14px;font-weight:600;cursor:pointer;transition:background .15s,border-color .15s,color .15s}
+.pill:hover{border-color:var(--teal)}
+.pill[aria-pressed="true"]{background:var(--teal);border-color:var(--teal);color:var(--white)}
+.qty{display:grid;grid-template-columns:minmax(0,1fr) 120px;gap:16px;align-items:center}
+.qty input[type=range]{width:100%;accent-color:var(--teal);cursor:pointer}
+.qty input[type=number]{width:100%;font-family:var(--font-body);font-size:18px;font-weight:700;color:var(--navy);background:var(--white);border:0;border-radius:10px;padding:12px 14px;text-align:center}
+.qty-scale{display:flex;justify-content:space-between;font-size:12px;color:rgba(245,242,238,.62);font-variant-numeric:tabular-nums}
+.calc-out{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:18px;padding:26px;display:grid;gap:18px}
+.calc-out .row{display:flex;justify-content:space-between;gap:14px;align-items:baseline;border-bottom:1px solid rgba(255,255,255,.12);padding-bottom:12px}
+.calc-out .total-block{display:grid;gap:2px;padding-top:4px}
+.calc-out .total-block .cap{font-size:13px;color:rgba(245,242,238,.72)}
+.calc-out .k{font-size:13px;color:rgba(245,242,238,.72)}
+.calc-out .v{font-family:var(--font-display);font-weight:900;font-size:22px;color:var(--white);letter-spacing:-.01em;font-variant-numeric:tabular-nums;text-align:right}
+.calc-out .v.total{font-size:clamp(36px,4vw,52px);color:var(--teal);text-align:left;line-height:1.05}
+.calc-out .v small{font-family:var(--font-body);font-weight:500;font-size:13px;color:rgba(245,242,238,.72);margin-left:6px}
+.calc-out .fine{font-size:12.5px;color:rgba(245,242,238,.62);line-height:1.5}
+.calc-out .fine b{color:var(--sand-4);font-weight:600}
+.calc-out .btn{justify-content:center;white-space:normal;text-align:center;line-height:1.25}
+@media (max-width:480px){.calc-out{padding:20px}}
+@media (max-width:860px){.calc-grid{grid-template-columns:1fr}}
+
+/* ---------- order / closing ---------- */
+.order{padding-block:clamp(64px,8vw,104px)}
+.order-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,5vw,72px);align-items:center}
+.date-big{font-size:clamp(40px,5.4vw,72px);color:var(--navy);line-height:1}
+.date-big small{display:block;font-family:var(--font-body);font-weight:600;font-size:14px;letter-spacing:.16em;text-transform:uppercase;color:var(--coral);margin-bottom:14px}
+.contact{display:grid;gap:14px;background:var(--sand-3);border-radius:18px;padding:26px}
+.contact h3{font-size:18px;font-weight:700;color:var(--navy)}
+.contact p{font-size:14.5px;color:var(--muted)}
+.email{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.email code{font-family:var(--font-body);font-size:16px;font-weight:600;color:var(--navy);background:var(--white);padding:10px 14px;border-radius:9px;user-select:all}
+.copy{border:1.5px solid var(--navy);background:transparent;color:var(--navy);border-radius:9px;padding:9px 14px;font-family:var(--font-body);font-size:13px;font-weight:600;cursor:pointer}
+.copy:hover{background:var(--navy);color:var(--white)}
+@media (max-width:820px){.order-grid{grid-template-columns:1fr}}
+.closing{position:relative;isolation:isolate;overflow:hidden;min-height:520px;display:flex;align-items:center}
+.closing-bg{position:absolute;inset:0;z-index:-2;background-image:url(__IMG_scene__);background-size:cover;background-position:center 60%}
+.closing-veil{position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(13,38,86,.80) 0%,rgba(13,38,86,.62) 45%,rgba(13,38,86,.22) 100%)}
+.closing-in{padding-block:clamp(72px,10vw,140px);display:grid;gap:26px;max-width:560px}
+.closing h2{font-size:clamp(34px,4.6vw,60px);color:var(--white);text-shadow:0 4px 30px rgba(13,38,86,.35)}
+.closing p{color:rgba(255,255,255,.92);font-size:17px;max-width:44ch;text-shadow:0 2px 12px rgba(13,38,86,.35)}
+@media (max-width:640px){.closing-veil{background:linear-gradient(180deg,rgba(13,38,86,.78),rgba(13,38,86,.62))}}
+
+/* ---------- footer ---------- */
+.footer{background:var(--deep);color:rgba(255,255,255,.82);padding-block:56px 40px}
+.footer-grid{display:grid;grid-template-columns:auto 1fr auto;gap:32px;align-items:center}
+.footer img.gw{height:96px;width:auto}
+.footer .brand{display:grid;gap:8px;font-size:14px}
+.footer .brand b{color:var(--white);font-weight:700;font-size:15px}
+.footer .links{display:flex;flex-direction:column;gap:6px;font-size:14px;text-align:right}
+.footer .links a{color:var(--white);text-decoration:none}
+.footer .links a:hover{color:var(--teal)}
+.footer .fine{margin-top:34px;padding-top:22px;border-top:1px solid rgba(255,255,255,.14);display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 20px;font-size:12.5px;color:rgba(255,255,255,.6)}
+@media (max-width:760px){.footer-grid{grid-template-columns:1fr;justify-items:start}.footer .links{text-align:left}}
+
+/* ---------- motion ---------- */
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.stage img,.btn,.why-row img{transition:none}}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);background:var(--navy);color:var(--white);padding:12px 18px;border-radius:10px;font-size:14px;font-weight:600;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:60}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+</style>
+
+<header class="nav" id="nav">
+  <div class="wrap nav-in">
+    <a class="nav-logo" href="#top" aria-label="Gravitec by Gravity Wave, inicio"><img src="__IMG_logo_navy__" alt="Gravitec® by Gravity Wave"></a>
+    <nav aria-label="Secciones">
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#porque">Por qué</a></li>
+        <li><a href="#proceso">El proceso</a></li>
+        <li><a href="#marsella">Marsella</a></li>
+        <li><a href="#productos">Productos</a></li>
+        <li><a href="#personalizacion">Personalización</a></li>
+        <li><a href="#calculadora">Calcula tu pedido</a></li>
+      </ul>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-teal" href="__ORDER_URL__" target="_blank" rel="noopener"><span class="btn-text">Hacer pedido</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <button class="nav-burger" id="burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="navLinks"><span></span></button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+<!-- ===================== HERO ===================== -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <div class="hero-brand">
+          <img src="__IMG_logo_white__" alt="Gravitec® by Gravity Wave">
+          <span class="sep" aria-hidden="true"></span>
+          <span class="tag">Regalos Corporativos<b>Personalizados</b></span>
+        </div>
+        <p class="eyebrow">Navidad 2026 · Nuevo acabado Marsella</p>
+        <h1 class="cera" data-cera="black">Esta Navidad, regala un pedacito de mar.</h1>
+        <p class="lead">Cinco piezas fabricadas con redes de pesca recuperadas del Mediterráneo, en el nuevo acabado Marsella y con el logo de tu empresa. Para tus clientes, para tu equipo, para quedar bien de verdad.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-teal" href="__ORDER_URL__" target="_blank" rel="noopener">Hacer pedido <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="btn btn-ghost" href="#productos">Ver la colección</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <img src="__IMG_cover_stars__" alt="Dos estrellas de Navidad de Gravitec en acabado Marsella, blanco arena con motas verdes" width="489" height="412">
+        <div class="ribbon" aria-hidden="true">También edición <b>Navidad</b></div>
+      </div>
+    </div>
+    <div class="hero-facts">
+      <div class="fact"><span class="k">Material</span><span class="v">Redes de pesca recuperadas del Mediterráneo</span></div>
+      <div class="fact"><span class="k">Acabado</span><span class="v">Marsella, la novedad 2026, en toda la colección</span></div>
+      <div class="fact"><span class="k">Personalización</span><span class="v">Tu logo en cada pieza y en el packaging kraft</span></div>
+      <div class="fact"><span class="k">Cierre de pedidos</span><span class="v">6 de noviembre para llegar a Navidad</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== QUOTE ===================== -->
+<section class="quote" aria-label="Nuestra idea">
+  <div class="quote-bg" aria-hidden="true"></div><div class="quote-veil" aria-hidden="true"></div>
+  <div class="wrap quote-in rv">
+    <blockquote>“Convierte tus regalos corporativos en una muestra tangible del <b>compromiso de tu marca con el mar</b>.”</blockquote>
+    <img src="__IMG_logo_navy__" alt="Gravitec® by Gravity Wave">
+  </div>
+</section>
+
+<!-- ===================== WHY ===================== -->
+<section class="section" id="porque">
+  <div class="wrap">
+    <div class="why-row rv" aria-hidden="true">
+      <img src="__IMG_row_star__" alt="">
+      <img src="__IMG_row_tree__" alt="">
+      <img src="__IMG_row_coaster__" alt="">
+      <img src="__IMG_row_phone__" alt="">
+      <img src="__IMG_bola_real__" alt="">
+    </div>
+    <div class="why-copy rv">
+      <h2 class="h2 cera" data-cera="black">¿Por qué regalos corporativos que recuperan el mar?</h2>
+      <p class="big">Porque el océano no se cuida solo en verano.</p>
+      <p class="lead muted" style="margin-inline:auto">Con cada regalo corporativo Gravitec, tu marca cuenta una historia y recupera un pedacito de mar. Fabricamos cada pieza con redes de pesca recuperadas de mares y puertos del Mediterráneo y las transformamos en productos de valor que demuestran tu compromiso de forma tangible. Sorprende a tus clientes y empleados con un impacto real.</p>
+    </div>
+    <div class="cards rv">
+      <article class="card">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12c2-3 4-3 6 0s4 3 6 0 4-3 6 0M3 18c2-3 4-3 6 0s4 3 6 0 4-3 6 0M3 6c2-3 4-3 6 0s4 3 6 0 4-3 6 0"/></svg></div>
+        <h3>Una historia real que contar</h3>
+        <p>Cada pieza nace de redes de pesca que ya no servían y que hoy no están en el mar. Te decimos cuántos kilos de red ha retirado tu pedido, para que lo comuniques dentro y fuera de tu empresa.</p>
+      </article>
+      <article class="card">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 12h8M12 8v8"/></svg></div>
+        <h3>Tu marca en cada pieza</h3>
+        <p>Tu logo impreso en blanco sobre la pieza y en tinta negra sobre el packaging kraft. Un regalo que lleva tu nombre sin gritarlo, con un material que nadie más regala.</p>
+      </article>
+      <article class="card">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l2.6 5.4 5.9.8-4.3 4.1 1 5.9L12 16.4 6.8 19.2l1-5.9L3.5 9.2l5.9-.8z"/></svg></div>
+        <h3>Un regalo que se queda</h3>
+        <p>Posavasos y portamóviles que viven en la mesa de trabajo, adornos que vuelven al árbol cada diciembre. Tu marca, a la vista mucho después de las fiestas.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PROCESS ===================== -->
+<section class="section process" id="proceso">
+  <div class="process-bg" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="section-head rv">
+      <p class="eyebrow">De la red al regalo</p>
+      <h2 class="h2 cera" data-cera="black">El proceso</h2>
+      <p class="sub cera-r" data-cera="regular">Y su historia</p>
+    </div>
+    <div class="steps rv">
+      <div class="step">
+        <span class="script">Recolectamos</span>
+        <div class="pic"><img src="__IMG_proc_net__" alt="Redes de pesca recuperadas, de color verde" width="137" height="414"></div>
+        <h3>Redes que salen del mar</h3>
+        <p>Junto a más de 2.000 pescadores del Mediterráneo recuperamos redes y cabos que ya no sirven, antes de que acaben en el fondo del mar.</p>
+        <span class="step-arrow" aria-hidden="true"></span>
+      </div>
+      <div class="step">
+        <span class="script">Reciclamos</span>
+        <div class="pic"><img src="__IMG_proc_granza__" alt="Granza reciclada obtenida de las redes" width="162" height="366"></div>
+        <h3>De red a Gravitec®</h3>
+        <p>Las limpiamos, las trituramos y las convertimos en Gravitec®, nuestro material reciclado. Conserva el color de las redes: por eso cada pieza es distinta.</p>
+        <span class="step-arrow" aria-hidden="true"></span>
+      </div>
+      <div class="step">
+        <span class="script">Transformamos</span>
+        <div class="pic"><img src="__IMG_tree_real__" alt="Árbol de Navidad de Gravitec en acabado Marsella" width="225" height="398"></div>
+        <h3>Piezas con tu logo</h3>
+        <p>Fabricamos cada pieza con Gravitec® en acabado Marsella y la personalizamos con tu logo y tu packaging. Lista para regalar.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== MARSELLA ===================== -->
+<section class="section marsella" id="marsella">
+  <div class="wrap mars-grid">
+    <div class="mars-swatch rv">
+      <img src="__IMG_swatch__" alt="Muestra real del acabado Marsella: base blanca arena con motas verde oscuro" width="377" height="563">
+      <span class="chip">Muestra real</span>
+    </div>
+    <div class="mars-copy rv">
+      <p class="eyebrow">Novedad 2026</p>
+      <h2 class="h2"><span class="cera" data-cera="black">Acabado</span><span class="name cera-r" data-cera="regular">Marsella</span></h2>
+      <p class="lead">Base blanca arena, salpicada de motas verdes. Luminoso, sobrio y distinto en cada pieza: el moteado nunca se repite, porque nace de redes recuperadas del mar.</p>
+      <ul class="mars-list">
+        <li>Toda la colección de Navidad 2026 se fabrica en Marsella.</li>
+        <li>Fabricado con Gravitec®, el material de Gravity Wave hecho con redes de pesca recuperadas.</li>
+        <li>Se personaliza con impresión UVI en blanco, discreta sobre el fondo claro.</li>
+        <li>Encaja en cualquier oficina, mesa o árbol: no compite con tu marca, la acompaña.</li>
+      </ul>
+      <div class="mars-pieces" aria-hidden="true">
+        <img src="__IMG_star_real__" alt=""><img src="__IMG_phone_real__" alt=""><img src="__IMG_bola_real__" alt=""><img src="__IMG_tree_real__" alt="">
+      </div>
+      <p class="mars-note">Fotos de muestras reales. Al ser un material reciclado, el moteado y el tono pueden variar ligeramente según el lote de redes recuperadas.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PRODUCTS ===================== -->
+<section class="section products" id="productos">
+  <div class="wrap">
+    <div class="section-head rv">
+      <p class="eyebrow">Cinco piezas, un acabado</p>
+      <h2 class="h2 cera" data-cera="black">La colección Navidad 2026</h2>
+      <p class="lead muted">Dos clásicos de mesa para todo el año y tres piezas de edición Navidad. Todas en acabado Marsella, con packaging kraft y tu logo. Precios sin IVA ni gastos de envío.</p>
+    </div>
+
+    __PRODUCTS__
+  </div>
+</section>
+
+<!-- ===================== PERSONALIZATION ===================== -->
+<section class="section perso-section" id="personalizacion">
+  <div class="wrap">
+    <div class="section-head rv">
+      <p class="eyebrow">Tu marca, a tu manera</p>
+      <h2 class="h2 cera" data-cera="black">Personalización</h2>
+      <p class="lead muted">Tres niveles para cada producto. Elige el que encaje con tu presupuesto y con lo que quieras que cuente el regalo.</p>
+    </div>
+    <div class="levels rv">
+      <article class="level">
+        <span class="n" aria-hidden="true">1</span>
+        <div class="pics"><img class="solo" src="__IMG_star_pack_std__" alt="Packaging kraft estándar con la marca Gravity Wave"></div>
+        <span class="tagline">Estándar</span>
+        <h3>La pieza y su packaging kraft</h3>
+        <p>La pieza en acabado Marsella, presentada en packaging kraft con la marca Gravity Wave. Lista para regalar tal cual.</p>
+      </article>
+      <article class="level">
+        <span class="n" aria-hidden="true">2</span>
+        <div class="pics"><img class="solo" src="__IMG_star_pack__" alt="Packaging kraft con el logo del cliente junto al de Gravity Wave"></div>
+        <span class="tagline">Packaging personalizado</span>
+        <h3>Tu logo en el packaging</h3>
+        <p>Tu logo impreso en tinta negra en el packaging kraft, junto al de Gravity Wave. Quien abra el regalo sabe quién lo envía.</p>
+      </article>
+      <article class="level">
+        <span class="n" aria-hidden="true">3</span>
+        <div class="pics"><img src="__IMG_star_pack__" alt="Packaging kraft con el logo del cliente"><img src="__IMG_star_logo__" alt="Estrella en acabado Marsella con el logo impreso en blanco"></div>
+        <span class="tagline">Packaging + producto personalizado</span>
+        <h3>Tu logo también en la pieza</h3>
+        <p>Además del packaging, tu logo impreso en UVI (blanco) sobre cada pieza. La opción más completa: tu marca se queda en el regalo.</p>
+      </article>
+    </div>
+    <div class="perso-details rv">
+      <div>
+        <h3>Tamaño máximo del logo en la pieza</h3>
+        <ul class="logo-sizes">
+          <li><span>Posavasos</span><span>40 × 40 mm</span></li>
+          <li><span>Portamóvil</span><span>30 × 30 mm</span></li>
+          <li><span>Estrella de Navidad</span><span>30 × 30 mm</span></li>
+          <li><span>Árbol de Navidad</span><span>30 × 30 mm</span></li>
+          <li><span>Bola de Navidad</span><span>30 × 30 mm</span></li>
+        </ul>
+        <div class="mock">
+          <img src="__IMG_coaster_real__" alt="Posavasos en acabado Marsella con el texto Tu logo aquí impreso en blanco">
+          <p><b>Impresión UVI en blanco</b> sobre la pieza y <b>tinta negra</b> sobre el packaging kraft. El logo va a una tinta: envíanoslo en vectorial y te confirmamos cómo queda antes de producir.</p>
+        </div>
+      </div>
+      <div>
+        <h3>Cómo hacer tu pedido</h3>
+        <ol class="how">
+          <li><div><b>Elige producto y nivel</b><span>Uno o varios productos, con el nivel de personalización que prefieras.</span></div></li>
+          <li><div><b>Envíanos tu logo y las unidades</b><span>Con el formulario de pedido o por correo. Te preparamos la propuesta cerrada.</span></div></li>
+          <li><div><b>Validamos y producimos</b><span>Confirmamos contigo la personalización y fabricamos tu pedido en acabado Marsella.</span></div></li>
+          <li><div><b>Recibes tu regalo a tiempo</b><span>Cierre de pedidos de Navidad: 6 de noviembre.</span></div></li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CALCULATOR ===================== -->
+<section class="section calc" id="calculadora">
+  <div class="wrap">
+    <div class="section-head rv">
+      <p class="eyebrow">Presupuesto orientativo</p>
+      <h2 class="h2 cera" data-cera="black">Calcula tu pedido</h2>
+      <p class="lead">Elige producto, nivel de personalización y unidades. El precio por unidad baja según el tramo. Sin IVA ni gastos de envío.</p>
+    </div>
+    <div class="calc-grid rv">
+      <div class="calc-controls">
+        <div class="ctl"><span class="lbl" id="lblProd">Producto</span><div class="pills" role="group" aria-labelledby="lblProd" id="calcProd"></div></div>
+        <div class="ctl"><span class="lbl" id="lblLevel">Personalización</span><div class="pills" role="group" aria-labelledby="lblLevel" id="calcLevel"></div></div>
+        <div class="ctl">
+          <label for="qtyNum" id="qtyLabel">Unidades</label>
+          <div class="qty">
+            <input type="range" id="qtyRange" min="80" max="1000" step="1" value="200" aria-labelledby="qtyLabel">
+            <input type="number" id="qtyNum" min="80" max="1000" step="1" value="200" inputmode="numeric" aria-labelledby="qtyLabel">
+          </div>
+          <div class="qty-scale" aria-hidden="true"><span id="qtyMin">80</span><span>1.000</span></div>
+        </div>
+      </div>
+      <div class="calc-out" aria-live="polite">
+        <div class="row"><span class="k">Producto</span><span class="v" id="outProd">—</span></div>
+        <div class="row"><span class="k">Tramo</span><span class="v" id="outTier">—</span></div>
+        <div class="row"><span class="k">Precio por <span id="outUnitLbl">unidad</span></span><span class="v" id="outUnit">—</span></div>
+        <div class="total-block"><span class="k">Total estimado</span><span class="v total" id="outTotal">—</span><span class="cap" id="outCap"></span></div>
+        <p class="fine" id="outNote">Precios del catálogo 2026, sin IVA ni gastos de envío. Para más de 1.000 unidades, pídenos presupuesto.</p>
+        <a class="btn btn-teal" href="__ORDER_URL__" target="_blank" rel="noopener">Hacer pedido con estas cantidades <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ORDER ===================== -->
+<section class="order" id="pedido">
+  <div class="wrap order-grid">
+    <div class="rv">
+      <p class="date-big cera" data-cera="black"><small>Cierre de pedidos Navidad</small>6 de noviembre</p>
+      <p class="lead muted" style="margin-top:18px">Producimos por encargo y con material reciclado, así que las plazas de producción son limitadas. Cuanto antes cerremos tu pedido, antes lo tendrás en la mesa.</p>
+      <div class="hero-ctas" style="margin-top:22px">
+        <a class="btn btn-teal" href="__ORDER_URL__" target="_blank" rel="noopener">Haz tu pedido <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn btn-ghost" href="#calculadora">Volver a la calculadora</a>
+      </div>
+    </div>
+    <div class="contact rv">
+      <h3>¿Prefieres hablarlo?</h3>
+      <p>Escríbenos con el producto, las unidades aproximadas y tu logo. Te respondemos con una propuesta cerrada.</p>
+      <div class="email"><code id="emailTxt">info@thegravitywave.com</code><button class="copy" id="copyBtn" type="button">Copiar</button></div>
+      <p>Gravity Wave · Calpe, Alicante · <a href="https://thegravitywave.com" target="_blank" rel="noopener">thegravitywave.com</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CLOSING ===================== -->
+<section class="closing" aria-label="Cierre">
+  <div class="closing-bg" aria-hidden="true"></div><div class="closing-veil" aria-hidden="true"></div>
+  <div class="wrap"><div class="closing-in rv">
+    <h2 class="cera" data-cera="black">Porque el océano no se cuida solo en verano...</h2>
+    <p>Este año, que tu regalo de empresa saque plástico del mar y lo cuente sin decir una palabra.</p>
+    <div><a class="btn btn-sand" href="__ORDER_URL__" target="_blank" rel="noopener">Haz tu pedido <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+  </div></div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <img class="gw" src="__IMG_logo_gw__" alt="Gravity Wave">
+      <div class="brand">
+        <b>Gravitec® by Gravity Wave</b>
+        <span>Plastic Free Oceans · Calpe, Alicante</span>
+        <span>Regalos corporativos fabricados con redes de pesca recuperadas del Mediterráneo.</span>
+      </div>
+      <div class="links">
+        <a href="https://thegravitywave.com" target="_blank" rel="noopener">thegravitywave.com</a>
+        <a href="https://www.instagram.com/thegravitywave" target="_blank" rel="noopener">@thegravitywave</a>
+        <a href="__ORDER_URL__" target="_blank" rel="noopener">Formulario de pedido</a>
+      </div>
+    </div>
+    <div class="fine">
+      <span>Precios sin IVA ni gastos de envío. Cierre de pedidos de Navidad: 6 de noviembre de 2026.</span>
+      <span>© 2026 Gravity Wave · Un Mediterráneo libre de plástico</span>
+    </div>
+  </div>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function(){
+  document.documentElement.classList.add('js');
+  var ORDER_URL="__ORDER_URL__";
+  var PRODUCTS=__DATA__;
+
+  /* ---- nav ---- */
+  var nav=document.getElementById('nav'), burger=document.getElementById('burger');
+  function onScroll(){ nav.classList.toggle('is-scrolled', window.scrollY>8); }
+  window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+  burger.addEventListener('click', function(){ var open=nav.classList.toggle('is-open'); burger.setAttribute('aria-expanded', open?'true':'false'); });
+  document.querySelectorAll('#navLinks a').forEach(function(a){ a.addEventListener('click', function(){ nav.classList.remove('is-open'); burger.setAttribute('aria-expanded','false'); }); });
+  var links=Array.prototype.slice.call(document.querySelectorAll('#navLinks a'));
+  var secs=links.map(function(a){ return document.querySelector(a.getAttribute('href')); });
+  if('IntersectionObserver' in window){
+    var cur=null;
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ cur=e.target.id; links.forEach(function(a){ a.classList.toggle('is-active', a.getAttribute('href')==='#'+cur); }); } });
+    },{rootMargin:'-40% 0px -55% 0px'});
+    secs.forEach(function(s){ if(s) io.observe(s); });
+  }
+
+  /* ---- product galleries ---- */
+  document.querySelectorAll('.product').forEach(function(p){
+    var imgs=p.querySelectorAll('.stage img'), thumbs=p.querySelectorAll('.thumb');
+    thumbs.forEach(function(t){
+      t.addEventListener('click', function(){
+        var k=t.getAttribute('data-view');
+        thumbs.forEach(function(x){ x.setAttribute('aria-pressed', x===t?'true':'false'); });
+        imgs.forEach(function(im){
+          if(im.getAttribute('data-view')===k){ im.hidden=false; im.classList.add('fade'); requestAnimationFrame(function(){ requestAnimationFrame(function(){ im.classList.remove('fade'); }); }); }
+          else { im.hidden=true; }
+        });
+      });
+    });
+    /* hover on a price row highlights the tier */
+  });
+
+  /* ---- calculator ---- */
+  var LEVELS=[['std','Estándar'],['pack','Packaging personalizado'],['full','Packaging + producto personalizado']];
+  var prodBox=document.getElementById('calcProd'), lvlBox=document.getElementById('calcLevel');
+  var range=document.getElementById('qtyRange'), num=document.getElementById('qtyNum');
+  var curP=PRODUCTS[0], curL='full', qty=200;
+  function fmtInt(n){ var s=String(Math.round(n)); return s.replace(/\B(?=(\d{3})+(?!\d))/g,'.'); }
+  function fmt(n){ var f=Math.round(n*100); var i=Math.floor(f/100), d=f%100; return fmtInt(i)+','+(d<10?'0':'')+d; }
+  var touched=false;
+  function pill(box,label,pressed,onclick){ var b=document.createElement('button'); b.type='button'; b.className='pill'; b.textContent=label; b.setAttribute('aria-pressed',pressed?'true':'false'); b.addEventListener('click',onclick); box.appendChild(b); return b; }
+  PRODUCTS.forEach(function(p){ pill(prodBox,p.short,p===curP,function(){ touched=true; curP=p; syncQty(Math.max(qty,p.moq)); render(); }); });
+  LEVELS.forEach(function(l){ pill(lvlBox,l[1],l[0]===curL,function(){ touched=true; curL=l[0]; render(); }); });
+  function syncQty(q){ q=Math.max(curP.moq,Math.min(1000,Math.round(q||curP.moq))); qty=q; range.min=curP.moq; num.min=curP.moq; range.value=q; num.value=q; document.getElementById('qtyMin').textContent=fmtInt(curP.moq); }
+  range.addEventListener('input',function(){ touched=true; syncQty(+range.value); render(); });
+  num.addEventListener('input',function(){ var v=+num.value; if(v>=curP.moq&&v<=1000){ qty=v; range.value=v; render(); } });
+  num.addEventListener('change',function(){ syncQty(+num.value); render(); });
+  function tierFor(p,q){ for(var i=0;i<p.tiers.length;i++){ var t=p.tiers[i]; if(q>=t.min&&q<=t.max) return t; } return p.tiers[p.tiers.length-1]; }
+  function render(){
+    Array.prototype.forEach.call(prodBox.children,function(b,i){ b.setAttribute('aria-pressed',PRODUCTS[i]===curP?'true':'false'); });
+    Array.prototype.forEach.call(lvlBox.children,function(b,i){ b.setAttribute('aria-pressed',LEVELS[i][0]===curL?'true':'false'); });
+    var t=tierFor(curP,qty), li={std:0,pack:1,full:2}[curL], unit=t.prices[li];
+    document.getElementById('outProd').textContent=curP.short;
+    document.getElementById('outTier').textContent=fmtInt(t.min)+'-'+fmtInt(t.max)+' '+curP.unitPl;
+    document.getElementById('outUnitLbl').textContent=curP.unit;
+    document.getElementById('outUnit').innerHTML=fmt(unit)+' €<small>/'+curP.unit+'</small>';
+    document.getElementById('outTotal').textContent=fmt(unit*qty)+' €';
+    document.getElementById('outCap').textContent=fmtInt(qty)+' '+curP.unitPl+' × '+fmt(unit)+' €, '+LEVELS[li][1].toLowerCase();
+    /* highlight the tier row in that product's table once the visitor has used the calculator */
+    document.querySelectorAll('table.prices tr').forEach(function(tr){ tr.classList.remove('is-hot'); });
+    if(touched){ var tbl=document.querySelector('#prod-'+curP.id+' table.prices'); if(tbl){ var rows=tbl.querySelectorAll('tbody tr'); var idx=curP.tiers.indexOf(t); if(rows[idx]) rows[idx].classList.add('is-hot'); } }
+  }
+  syncQty(200); render();
+  /* deep link from product buttons */
+  document.querySelectorAll('[data-calc]').forEach(function(b){ b.addEventListener('click',function(){ touched=true; var id=b.getAttribute('data-calc'); PRODUCTS.forEach(function(p){ if(p.id===id) curP=p; }); syncQty(curP.moq); render(); }); });
+
+  /* ---- copy email ---- */
+  var toast=document.getElementById('toast'); var tt;
+  function say(m){ toast.textContent=m; toast.classList.add('show'); clearTimeout(tt); tt=setTimeout(function(){ toast.classList.remove('show'); },1800); }
+  document.getElementById('copyBtn').addEventListener('click',function(){
+    var txt=document.getElementById('emailTxt').textContent;
+    function fallback(){ var r=document.createRange(); r.selectNodeContents(document.getElementById('emailTxt')); var s=window.getSelection(); s.removeAllRanges(); s.addRange(r); say('Selecciona y copia el correo'); }
+    if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(txt).then(function(){ say('Correo copiado'); },fallback); } else fallback();
+  });
+})();
+</script>
