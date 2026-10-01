@@ -356,7 +356,6 @@ table.prices tr.is-hot td:first-child{color:var(--teal-d)}
 .copy:hover{background:var(--navy);color:var(--white)}
 @media (max-width:820px){.order-grid{grid-template-columns:1fr}}
 .closing{position:relative;isolation:isolate;overflow:hidden;min-height:520px;display:flex;align-items:center}
-.closing-bg{position:absolute;inset:0;z-index:-2;background-image:url(__IMG_scene__);background-size:cover;background-position:center 60%}
 .closing-veil{position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(13,38,86,.80) 0%,rgba(13,38,86,.62) 45%,rgba(13,38,86,.22) 100%)}
 .closing-in{padding-block:clamp(72px,10vw,140px);display:grid;gap:26px;max-width:560px}
 .closing h2{font-size:clamp(34px,4.6vw,60px);color:var(--white);text-shadow:0 4px 30px rgba(13,38,86,.35)}
@@ -670,38 +669,9 @@ table.prices tr.is-hot td:first-child{color:var(--teal-d)}
   </div>
 </section>
 
-<!-- ===================== CLOSING ===================== -->
-<section class="closing" aria-label="Cierre">
-  <div class="closing-bg" aria-hidden="true"></div><div class="closing-veil" aria-hidden="true"></div>
-  <div class="wrap"><div class="closing-in rv">
-    <h2 class="cera" data-cera="black">Porque el océano no se cuida solo en verano...</h2>
-    <p>Este año, que tu regalo de empresa saque plástico del mar y lo cuente sin decir una palabra.</p>
-    <div><a class="btn btn-sand" href="#calculadora">Preparar mi pedido <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
-  </div></div>
-</section>
 </main>
 
-<footer class="footer">
-  <div class="wrap">
-    <div class="footer-grid">
-      <img class="gw" src="__IMG_logo_gw__" alt="Gravity Wave">
-      <div class="brand">
-        <b>Gravitec® by Gravity Wave</b>
-        <span>Plastic Free Oceans · Calpe, Alicante</span>
-        <span>Regalos corporativos fabricados con redes de pesca recuperadas del Mediterráneo.</span>
-      </div>
-      <div class="links">
-        <a href="https://thegravitywave.com" target="_blank" rel="noopener">thegravitywave.com</a>
-        <a href="https://www.instagram.com/thegravitywave" target="_blank" rel="noopener">@thegravitywave</a>
-        <a href="#calculadora">Preparar mi pedido</a>
-      </div>
-    </div>
-    <div class="fine">
-      <span>Precios sin IVA ni gastos de envío. Cierre de pedidos de Navidad: 6 de noviembre de 2026.</span>
-      <span>© 2026 Gravity Wave · Un Mediterráneo libre de plástico</span>
-    </div>
-  </div>
-</footer>
+
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script>
