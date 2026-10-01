@@ -1,0 +1,235 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:'Poppins';font-weight:400;src:url(fonts/Poppins-400.woff2) format('woff2')}
+@font-face{font-family:'Poppins';font-weight:500;src:url(fonts/Poppins-500.woff2) format('woff2')}
+@font-face{font-family:'Poppins';font-weight:600;src:url(fonts/Poppins-600.woff2) format('woff2')}
+@font-face{font-family:'Poppins';font-weight:700;src:url(fonts/Poppins-700.woff2) format('woff2')}
+@font-face{font-family:'Poppins';font-weight:900;src:url(fonts/Poppins-900.woff2) format('woff2')}
+html,body{margin:0;background:transparent}
+canvas{display:block}
+#warm{position:absolute;left:-9999px;font-family:Poppins}
+</style>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js","three/addons/":"/node_modules/three/examples/jsm/"}}</script>
+</head><body>
+<div id="warm"><span style="font-weight:400">a</span><span style="font-weight:500">a</span><span style="font-weight:600">a</span><span style="font-weight:700">a</span><span style="font-weight:900">a</span></div>
+<script type="module">
+import * as THREE from 'three';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+
+const Q = Object.fromEntries(new URLSearchParams(location.search));
+const W = +Q.w || 2048, H = +Q.h || 2048;
+const SHOT = Q.shot || 'pack_gw';        // pack_gw | pack_co | pack_co_unboxed
+const ELEV = +(Q.elev ?? 66);            // camera elevation (deg)
+const DIST = +(Q.dist ?? 300);
+const FOV  = +(Q.fov ?? 26);
+
+// ---------- dimensions (mm) ----------
+const R = 40, T = 5, LOBE_R = 8.6, LOBE_D = 43, HOLE_R = 3.1, HOLE_Y = 44;
+const BAND_W = 27, BAND_T = 0.75, TAIL = 14;
+
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, preserveDrawingBuffer: true });
+renderer.setSize(W, H, false);
+renderer.setPixelRatio(1);
+renderer.setClearColor(0x000000, 0);
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.VSMShadowMap;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 0.95;
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+document.body.appendChild(renderer.domElement);
+
+const scene = new THREE.Scene();
+const pmrem = new THREE.PMREMGenerator(renderer);
+scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
+scene.environmentIntensity = 0.55;
+
+const camera = new THREE.PerspectiveCamera(FOV, W / H, 10, 2000);
+function placeCamera(target, elevDeg, dist, azimDeg = 0) {
+  const e = THREE.MathUtils.degToRad(elevDeg), a = THREE.MathUtils.degToRad(azimDeg);
+  camera.position.set(target.x + dist * Math.cos(e) * Math.sin(a), target.y + dist * Math.sin(e), target.z + dist * Math.cos(e) * Math.cos(a));
+  camera.lookAt(target);
+  camera.updateProjectionMatrix();
+}
+
+// ---------- lights ----------
+const key = new THREE.DirectionalLight(0xfff4e6, 2.6);
+key.position.set(-140, 260, 120);
+key.castShadow = true;
+key.shadow.mapSize.set(4096, 4096);
+key.shadow.camera.left = -150; key.shadow.camera.right = 150;
+key.shadow.camera.top = 150; key.shadow.camera.bottom = -150;
+key.shadow.camera.near = 50; key.shadow.camera.far = 700;
+key.shadow.radius = 16; key.shadow.blurSamples = 32; key.shadow.bias = -0.0004;
+scene.add(key);
+const fill = new THREE.DirectionalLight(0xe8f0ff, 0.9); fill.position.set(180, 120, 200); scene.add(fill);
+const rim = new THREE.DirectionalLight(0xffffff, 0.6); rim.position.set(60, 140, -220); scene.add(rim);
+scene.add(new THREE.AmbientLight(0xffffff, 0.25));
+
+// floor: catches shadows only (composited over the beige background later)
+const floor = new THREE.Mesh(new THREE.PlaneGeometry(2000, 2000), new THREE.ShadowMaterial({ opacity: 0.27, color: 0x3a2e22 }));
+floor.rotation.x = -Math.PI / 2; floor.receiveShadow = true; scene.add(floor);
+
+// ---------- textures ----------
+const loader = new THREE.TextureLoader();
+const load = (u, srgb = true) => new Promise(res => loader.load(u, t => { if (srgb) t.colorSpace = THREE.SRGBColorSpace; t.wrapS = t.wrapT = THREE.RepeatWrapping; t.anisotropy = 8; res(t); }));
+const [faceTex, bumpTex, roughTex, kraftTex, kraftBump, grainTex] = await Promise.all([
+  load('marsella_face.png'), load('marsella_bump.png', false), load('marsella_rough.png', false), load('kraft.png'), load('kraft_bump.png', false), load('grain.png', false)]);
+for (const t of [faceTex, bumpTex, roughTex]) t.wrapS = t.wrapT = THREE.MirroredRepeatWrapping;
+
+function faceMaps(rotDeg, scaleMM = 74) {
+  const mk = (t) => { const c = t.clone(); c.needsUpdate = true; c.center.set(0.5, 0.5); c.rotation = THREE.MathUtils.degToRad(rotDeg); c.repeat.set(1 / scaleMM, 1 / scaleMM); c.offset.set(0.5, 0.5); return c; };
+  return { map: mk(faceTex), bumpMap: mk(bumpTex), roughnessMap: mk(roughTex) };
+}
+function sideMaps(rotDeg) {
+  const mk = (t) => { const c = t.clone(); c.needsUpdate = true; c.rotation = THREE.MathUtils.degToRad(rotDeg); c.repeat.set(1 / 34, 1 / 34); return c; };
+  return { map: mk(faceTex), bumpMap: mk(bumpTex) };
+}
+
+// ---------- ornament geometry ----------
+function ornamentShape() {
+  const yi = (R * R + LOBE_D * LOBE_D - LOBE_R * LOBE_R) / (2 * LOBE_D);
+  const xi = Math.sqrt(R * R - yi * yi);
+  const aBig = Math.atan2(yi, xi);
+  const aSmR = Math.atan2(yi - LOBE_D, xi);
+  const aSmL = Math.atan2(yi - LOBE_D, -xi);
+  const s = new THREE.Shape();
+  s.absarc(0, 0, R, aBig, Math.PI - aBig, true);
+  s.absarc(0, LOBE_D, LOBE_R, aSmL, aSmR, true);
+  const h = new THREE.Path(); h.absarc(0, HOLE_Y, HOLE_R, 0, Math.PI * 2, false); s.holes.push(h);
+  return s;
+}
+const ornGeo = new THREE.ExtrudeGeometry(ornamentShape(), { depth: T, bevelEnabled: true, bevelThickness: 0.35, bevelSize: 0.35, bevelSegments: 3, curveSegments: 120 });
+ornGeo.translate(0, 0, 0.35); ornGeo.computeVertexNormals();
+const TH = T + 0.7; // real piece height incl. edge bevel
+
+function ornament(rotDeg) {
+  const faceMat = new THREE.MeshPhysicalMaterial({ ...faceMaps(rotDeg), color: 0xeeede8, bumpScale: 0.16, roughness: 1.0, metalness: 0, clearcoat: 0.12, clearcoatRoughness: 0.55, envMapIntensity: 0.8, specularIntensity: 0.5 });
+  const sideMat = new THREE.MeshPhysicalMaterial({ ...sideMaps(rotDeg + 37), bumpScale: 0.2, roughness: 0.92, metalness: 0, color: 0xf2f1ec, envMapIntensity: 0.5 });
+  const m = new THREE.Mesh(ornGeo, [faceMat, sideMat]);
+  m.castShadow = true; m.receiveShadow = true;
+  return m;
+}
+
+// ---------- decal textures (canvas) ----------
+function canvasTex(w, h, draw) {
+  const c = document.createElement('canvas'); c.width = w; c.height = h;
+  const ctx = c.getContext('2d'); draw(ctx, w, h);
+  const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 16; return t;
+}
+function decal(w, h, tex, opts = {}) {
+  const m = new THREE.Mesh(new THREE.PlaneGeometry(w, h), new THREE.MeshStandardMaterial({ map: tex, transparent: true, roughness: opts.rough ?? 0.75, metalness: 0, depthWrite: false, polygonOffset: true, polygonOffsetFactor: -2, polygonOffsetUnits: -2, envMapIntensity: 0.3, opacity: opts.opacity ?? 1 }));
+  m.receiveShadow = false; m.material.alphaTest = 0.02; return m;
+}
+// white "TU LOGO AQUÍ" print on the ornament face
+const tuLogoOrnTex = canvasTex(1024, 1024, (ctx, w, h) => {
+  ctx.clearRect(0, 0, w, h); ctx.fillStyle = '#17302b'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+  ctx.translate(w / 2, h / 2); ctx.rotate(-0.08);
+  ctx.font = '700 150px Poppins'; ctx.letterSpacing = '6px';
+  ctx.fillText('TU', 0, -195); ctx.fillText('LOGO', 0, -35); ctx.fillText('AQUÍ', 0, 125);
+  // swash under the Q (as in the reference)
+  ctx.strokeStyle = '#17302b'; ctx.lineWidth = 16; ctx.lineCap = 'round'; ctx.beginPath(); ctx.moveTo(-60, 215); ctx.quadraticCurveTo(10, 268, 95, 232); ctx.stroke();
+});
+// GW wordmark + optional "TU LOGO AQUÍ" block, dark ink on kraft
+function bandPrint(co) {
+  return canvasTex(2048, 1024, (ctx, w, h) => {
+    ctx.clearRect(0, 0, w, h); ctx.fillStyle = '#1a1a18'; ctx.textBaseline = 'alphabetic';
+    const gw = (cx) => {
+      ctx.textAlign = 'center';
+      ctx.font = '500 92px Poppins'; ctx.letterSpacing = '30px'; ctx.fillText('GRAVITY', cx + 15, h / 2 - 28);
+      ctx.font = '900 215px Poppins'; ctx.letterSpacing = '2px'; ctx.fillText('WAVE', cx, h / 2 + 165);
+    };
+    if (!co) { gw(w / 2); return; }
+    gw(w / 2 + 420);
+    ctx.fillRect(w / 2 - 6, h / 2 - 150, 7, 320);
+    ctx.textAlign = 'center'; ctx.letterSpacing = '4px';
+    ctx.font = '700 130px Poppins'; ctx.fillText('TU LOGO', w / 2 - 420, h / 2 - 5);
+    ctx.font = '700 118px Poppins'; ctx.fillText('AQUÍ', w / 2 - 420, h / 2 + 150);
+  });
+}
+
+// ---------- kraft band (cross) ----------
+function roundedShape(pts, rad) {
+  const s = new THREE.Shape(); const n = pts.length;
+  const v = (i) => new THREE.Vector2(...pts[(i + n) % n]);
+  for (let i = 0; i < n; i++) {
+    const p0 = v(i - 1), p1 = v(i), p2 = v(i + 1);
+    const d0 = p0.clone().sub(p1).normalize(), d2 = p2.clone().sub(p1).normalize();
+    const r = Math.min(rad, p0.distanceTo(p1) / 2.2, p2.distanceTo(p1) / 2.2);
+    const a = p1.clone().add(d0.multiplyScalar(r)), b = p1.clone().add(d2.multiplyScalar(r));
+    if (i === 0) s.moveTo(a.x, a.y); else s.lineTo(a.x, a.y);
+    s.quadraticCurveTo(p1.x, p1.y, b.x, b.y);
+  }
+  s.closePath(); return s;
+}
+function bandMesh(zLift = 0) {
+  const Rb = R + 0.35, t = BAND_T, zt = 2 * TH + 0.12 + zLift, zb = -t - zLift; // front and back inner levels
+  const pts = [
+    [-Rb + TAIL, zb + t], [-Rb, zb + t], [-Rb, zt], [Rb, zt], [Rb, zb + t], [Rb - TAIL, zb + t],
+    [Rb - TAIL, zb], [Rb + t, zb], [Rb + t, zt + t], [-Rb - t, zt + t], [-Rb - t, zb], [-Rb + TAIL, zb]
+  ];
+  const shape = roundedShape(pts, 1.6);
+  const g = new THREE.ExtrudeGeometry(shape, { depth: BAND_W, bevelEnabled: false, curveSegments: 10 });
+  g.translate(0, 0, -BAND_W / 2);
+  // shape plane is (u,z) -> we need u along local Y, z along local Z, width along X:
+  // ExtrudeGeometry puts shape in XY and extrudes along Z. Rotate: shape.x->Y, shape.y->Z, depth->X
+  g.rotateY(Math.PI / 2); g.rotateX(Math.PI / 2); // (x,y,z) -> ... verify by bounds below
+  const kt = kraftTex.clone(); kt.needsUpdate = true; kt.repeat.set(1 / 60, 1 / 60); kt.rotation = zLift ? Math.PI / 2 : 0;
+  const kb = kraftBump.clone(); kb.needsUpdate = true; kb.repeat.set(1 / 60, 1 / 60); kb.rotation = kt.rotation;
+  const wall = new THREE.MeshStandardMaterial({ map: kt, bumpMap: kb, bumpScale: 0.12, roughness: 0.93, metalness: 0, envMapIntensity: 0.35 });
+  const edge = new THREE.MeshStandardMaterial({ color: 0xcfb28f, roughness: 1.0, metalness: 0, envMapIntensity: 0.2 });
+  const m = new THREE.Mesh(g, [edge, wall]);
+  m.castShadow = true; m.receiveShadow = true;
+  return m;
+}
+
+// ---------- assemblies ----------
+const packRoot = new THREE.Group();   // local: XY plane = product face, +Z = towards viewer, +Y = "up" in print
+const TAB_ANGLE = -45;                // tab leans to the upper right, in the gap between top and right arms
+function buildPack(co) {
+  const g = new THREE.Group();
+  const o1 = ornament(12); o1.rotation.z = THREE.MathUtils.degToRad(TAB_ANGLE); o1.position.set(0.3, -0.2, 0); g.add(o1);
+  const o2 = ornament(131); o2.rotation.z = THREE.MathUtils.degToRad(TAB_ANGLE + 1.5); o2.position.set(0, 0, TH + 0.05); g.add(o2);
+  const v = bandMesh(0); g.add(v);                      // vertical arm (along Y)
+  const hb = bandMesh(BAND_T); hb.rotation.z = Math.PI / 2; g.add(hb); // horizontal arm, lying over the vertical
+  const pr = decal(46, 23, bandPrint(co)); pr.position.set(0, 0, 2 * TH + 0.12 + 3 * BAND_T + 0.06); g.add(pr);
+  g.userData.printAnchor = new THREE.Vector3(co ? -9.5 : 0, 0, 2 * TH + 3 * BAND_T);
+  return g;
+}
+function buildLoosePair() {
+  const g = new THREE.Group();
+  const o1 = ornament(80); o1.rotation.z = THREE.MathUtils.degToRad(38); o1.position.set(-6, -4, 0); g.add(o1);
+  const o2 = ornament(200); o2.rotation.z = THREE.MathUtils.degToRad(-30); o2.position.set(12, 8, TH + 0.05); g.add(o2);
+  const d = decal(46, 46, tuLogoOrnTex, { rough: 0.6 }); d.position.set(12, 8, 2 * TH + 0.05 + 0.1); d.rotation.z = THREE.MathUtils.degToRad(-6); g.add(d);
+  g.userData.printAnchor = new THREE.Vector3(12, 8, 2 * TH + 0.15);
+  return g;
+}
+
+// lay the assemblies flat on the floor: local +Z -> world +Y (up), local +Y -> world -Z (away from camera)
+function layFlat(group, x = 0, z = 0) { group.rotation.x = -Math.PI / 2; group.position.set(x, BAND_T * 2, z); }
+
+const anchors = {};
+let target = new THREE.Vector3(0, 6, 0);
+if (SHOT === 'pack_gw' || SHOT === 'pack_co') {
+  const p = buildPack(SHOT === 'pack_co'); layFlat(p, 0, 0); scene.add(p);
+  anchors.print = p.localToWorld(p.userData.printAnchor.clone());
+  target = new THREE.Vector3(0, 6, -2);
+} else {
+  const p = buildPack(true); layFlat(p, 58, 0); scene.add(p);
+  anchors.print = p.localToWorld(p.userData.printAnchor.clone());
+  const l = buildLoosePair(); layFlat(l, -64, 6); scene.add(l);
+  anchors.orn = l.localToWorld(l.userData.printAnchor.clone());
+  target = new THREE.Vector3(-2, 4, 0);
+}
+placeCamera(target, ELEV, DIST, +(Q.azim ?? 0));
+
+await document.fonts.ready;
+// re-draw canvases now that fonts are surely loaded
+tuLogoOrnTex.needsUpdate = true;
+renderer.render(scene, camera);
+renderer.render(scene, camera);
+
+function proj(v) { const p = v.clone().project(camera); return [(p.x + 1) / 2 * W, (1 - p.y) / 2 * H]; }
+window.__anchors = Object.fromEntries(Object.entries(anchors).map(([k, v]) => [k, proj(v)]));
+window.__done = true;
+</script></body></html>
