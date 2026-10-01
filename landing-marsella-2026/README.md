@@ -15,7 +15,8 @@ Landing en HTML autocontenida (imágenes y fuentes incrustadas) construida a par
   y la faja personalizada del árbol se derivan de ellas por retoque.
 - `src/assets/` — imágenes ya recortadas para la landing. Los posavasos y la escena final siguen siendo fotos del catálogo
   con el material pasado a Marsella con `src/tools/` (textura real de la muestra).
-- Enlace de pedido: el formulario Typeform del catálogo (`ORDER_URL` en `build_html.py`).
+- Sin formulario: la landing se envía por correo como catálogo. El bloque «Calcula tu pedido» deja añadir varios
+  productos con nivel y unidades y genera un texto para pegar en la respuesta al correo (botón «Copiar el texto»).
 - Fecha límite de pedidos de Navidad que figura en la landing: 6 de noviembre (la del catálogo).
 
 ## Restricciones de impresión UVI (formación Merch Navidad)

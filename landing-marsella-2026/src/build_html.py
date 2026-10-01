@@ -116,14 +116,15 @@ def product_html(p, i):
         </div>
       </div>
       <div class="pricing rv">
-        <div class="pricing-head"><h4>Precio por {unit_word} según cantidad y nivel de personalización</h4><span class="moq">Pedido mínimo: <b>{p['moq']} {p['unitPl']}</b></span></div>
-        <div class="tablewrap"><table class="prices">
+        <div class="pricing-head"><h4>Precios por {unit_word} según cantidad y nivel</h4><span class="moq">Pedido mínimo: <b>{p['moq']} {p['unitPl']}</b></span></div>
+        <button class="pricing-toggle" type="button" aria-expanded="false" aria-controls="tbl-{p['id']}"><span>Ver toda la tabla de precios</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+        <div class="pricing-body" id="tbl-{p['id']}" hidden><div class="tablewrap"><table class="prices">
           <thead><tr><th scope="col">Nº {p['unitPl']}{small}</th><th scope="col">Estándar</th><th scope="col">Packaging<br>personalizado</th><th scope="col">Packaging + producto<br>personalizado</th></tr></thead>
           <tbody>{rows}</tbody>
-        </table></div>
+        </table></div><span class="note" style="display:block;margin-top:10px;font-size:13px;color:var(--muted)">*Precios sin IVA ni gastos de envío.</span></div>
         <div class="pricing-foot">
-          <span class="note">*Precios sin IVA ni gastos de envío.</span>
-          <div class="hero-ctas"><a class="btn btn-teal" href="{ORDER_URL}" target="_blank" rel="noopener">Hacer pedido {ARROW}</a><a class="btn btn-ghost" href="#calculadora" data-calc="{p['id']}">Calcular mi pedido</a></div>
+          <span class="note">Elige nivel y unidades arriba y añádelo a tu pedido.</span>
+          <div class="hero-ctas"><a class="btn btn-teal" href="#calculadora" data-calc="{p['id']}">Añadir a mi pedido {ARROW}</a></div>
         </div>
       </div>
     </article>'''
@@ -135,7 +136,7 @@ def chooser_html(p):
     return f'<a class="choice" href="#prod-{p["id"]}" data-choose="{p["id"]}"><span class="pic"><img src="{data_uri(VIEWIMG[p["chooser"]] if p["chooser"] in VIEWIMG else A(p["chooser"]+".webp"))}" alt=""></span><span class="nm">{p["name"]}</span><span class="from">desde <b>{price(lo)} €/{p["unit"]}</b> · mín. {p["moq"]} {p["unitPl"]}</span>{xm}</a>'
 tpl=tpl.replace('__CHOOSER__',''.join(chooser_html(p) for p in PRODUCTS))
 tpl=tpl.replace('__PRODUCTS__',products)
-data=[dict(id=p['id'],short=p['short'],unit=p['unit'],unitPl=p['unitPl'],moq=p['moq'],tiers=[dict(min=lo,max=hi,prices=pr) for lo,hi,pr in p['tiers']]) for p in PRODUCTS]
+data=[dict(id=p['id'],name=p['name'],short=p['short'],unit=p['unit'],unitPl=p['unitPl'],moq=p['moq'],img=data_uri(VIEWIMG[p['chooser']] if p['chooser'] in VIEWIMG else A(p['chooser']+'.webp')),tiers=[dict(min=lo,max=hi,prices=pr) for lo,hi,pr in p['tiers']]) for p in PRODUCTS]
 tpl=tpl.replace('__DATA__',json.dumps(data,ensure_ascii=False))
 tpl=tpl.replace('__ORDER_URL__',ORDER_URL)
 FONTS=os.path.join(HERE,'fonts') if os.path.exists(os.path.join(HERE,'fonts','CeraPro-Black.woff2')) else os.path.join(HERE,'fonts','merged')
