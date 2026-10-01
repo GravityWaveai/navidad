@@ -10,8 +10,11 @@ Landing en HTML autocontenida (imágenes y fuentes incrustadas) construida a par
   Para cambiar precios o textos de producto, edita `PRODUCTS` y ejecuta `python3 src/build_html.py .`
   (escribe `index.html` y `artifact.html`). El script comprueba que los titulares en Cera Pro solo usen
   glifos disponibles en el subconjunto incrustado (el que venía en el PDF).
-- `src/assets/` — fotos del catálogo: las reales en Marsella tal cual, y las verdes recoloreadas a Marsella
-  con `src/tools/` (máscara del material + moteado sintético calibrado con las fotos reales).
+- `src/fotos-producto/` — las fotos de producto generadas (estrellas, árbol, bolas, portamóvil) y sus prompts (`PROMPTS.md`).
+  Son la fuente de las piezas del hero, el selector y las fichas. Las variantes «estándar» (sin «TU LOGO AQUÍ» en el kraft)
+  y la faja personalizada del árbol se derivan de ellas por retoque.
+- `src/assets/` — imágenes ya recortadas para la landing. Los posavasos y la escena final siguen siendo fotos del catálogo
+  con el material pasado a Marsella con `src/tools/` (textura real de la muestra).
 - Enlace de pedido: el formulario Typeform del catálogo (`ORDER_URL` en `build_html.py`).
 - Fecha límite de pedidos de Navidad que figura en la landing: 6 de noviembre (la del catálogo).
 

@@ -21,7 +21,7 @@ IMG={
  'star_pack_std':A('star-pack-std.webp'),'star_pack':A('star-pack.webp'),'star_logo':A('star-logo.webp'),
 }
 VIEWIMG={ # view images for product galleries
- 'star-full':A('star-full.webp'),'tree-full':A('tree-full.webp'),'phone-logo':A('phone-logo.webp'),'phone-full':A('phone-full.webp'),'coaster-ico-std':A('coaster-ico-std.webp'),'coaster-ico-pack':A('coaster-ico-pack.webp'),'phone-ico-1':A('phone-ico-1.webp'),'tree-pack-std':A('tree-pack-std.webp'),'star-pack-std':A('star-pack-std.webp'),
+ 'star-full':A('star-full.webp'),'phone-ico-std':A('phone-ico-std.webp'),'tree-pack-logo':A('tree-pack-logo.webp'),'tree-full':A('tree-full.webp'),'phone-logo':A('phone-logo.webp'),'phone-full':A('phone-full.webp'),'coaster-ico-std':A('coaster-ico-std.webp'),'coaster-ico-pack':A('coaster-ico-pack.webp'),'phone-ico-1':A('phone-ico-1.webp'),'tree-pack-std':A('tree-pack-std.webp'),'star-pack-std':A('star-pack-std.webp'),
  'coaster-logo':A('coaster-logo.webp'),'coaster-pack':A('coaster-pack.webp'),'coaster-real':A('coaster-real.webp'),
  'phone-real':A('phone-real.webp'),'phone-tag':A('phone-tag.webp'),'phone-ico-2':A('phone-ico-2.webp'),
  'star-real':A('star-real.webp'),'star-logo':A('star-logo.webp'),'star-pack':A('star-pack.webp'),
@@ -42,8 +42,8 @@ PRODUCTS=[
       spec=[('Contenido','1 portamóvil'),('Peso','300 g'),('Dimensiones','130 × 80 × 18 mm'),('Acabado','Marsella')],
       head_small='',
       tiers=[(150,200,[12.6,13.0,13.6]),(201,500,[10.3,10.6,11.1]),(501,1000,[9.3,9.6,10.0])],
-      views={'std':('phone-ico-2','Portamóvil con la etiqueta kraft estándar de Gravity Wave'),'pack':('phone-ico-1','Portamóvil con la etiqueta kraft personalizada con tu logo'),'full':('phone-full','Portamóvil con etiqueta kraft personalizada y tu logo impreso en la pieza'),'real':('phone-real','Portamóvil en acabado Marsella, fotografía real')},
-      chooser='phone-real'),
+      views={'std':('phone-ico-std','Portamóvil con la etiqueta kraft estándar de Gravity Wave'),'pack':('phone-ico-1','Portamóvil con la etiqueta kraft personalizada con tu logo'),'full':('phone-full','Portamóvil con etiqueta kraft personalizada y tu logo impreso en la pieza'),'real':('phone-real','Portamóvil en acabado Marsella, fotografía real')},
+      chooser='phone-logo'),
  dict(id='estrellas', name='Estrellas de Navidad (Pack 2)', short='Estrellas', xmas=True, unit='pack', unitPl='packs', moq=80, logo='30 × 30 mm',
       pitch='Dos estrellas para colgar, con cordel, en packaging kraft. El adorno que vuelve al árbol cada diciembre, con tu logo en el centro.',
       spec=[('Contenido','Pack de 2 estrellas'),('Peso del pack','150 g'),('Dimensiones del pack','110 × 105 × 10 mm'),('Acabado','Marsella')],
@@ -56,7 +56,7 @@ PRODUCTS=[
       spec=[('Contenido','1 árbol (2 piezas encajables)'),('Peso','500 g'),('Dimensiones','250 × 150 × 10 mm'),('Acabado','Marsella')],
       head_small='',
       tiers=[(80,200,[26.4,27.0,28.0]),(201,500,[22.6,22.9,23.3]),(501,1000,[20.7,21.0,21.4])],
-      views={'std':('tree-pack-std','Árbol plano con la faja kraft estándar de Gravity Wave'),'pack':('tree-pack','Árbol plano con la faja kraft personalizada con tu logo'),'full':('tree-full','Árbol con faja kraft personalizada y tu logo impreso en blanco en la pieza'),'real':('tree-real','Árbol de Navidad en acabado Marsella montado, fotografía real')},
+      views={'std':('tree-pack-std','Árbol plano con la faja kraft estándar de Gravity Wave'),'pack':('tree-pack-logo','Árbol plano con la faja kraft personalizada con tu logo'),'full':('tree-full','Árbol con faja kraft personalizada y tu logo impreso en blanco en la pieza'),'real':('tree-real','Árbol de Navidad en acabado Marsella montado, fotografía real')},
       chooser='tree-real'),
  dict(id='bolas', name='Bola de Navidad (Pack 2)', short='Bolas', xmas=True, unit='pack', unitPl='packs', moq=80, logo='30 × 30 mm',
       pitch='Dos bolas planas para colgar, con tu logo en el centro. Ligeras, sencillas y muy visibles: el formato más directo para llevar tu marca al árbol.',
