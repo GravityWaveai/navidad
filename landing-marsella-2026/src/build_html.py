@@ -18,7 +18,7 @@ IMG={
  'row_star':A('row-star.webp'),'row_tree':A('row-tree.webp'),'row_coaster':A('row-coaster.webp'),'row_phone':A('row-phone.webp'),
  'proc_net':A('proc-net.webp'),'proc_granza':A('proc-granza.webp'),
  'star_real':A('star-real.webp'),'phone_real':A('phone-real.webp'),'bola_real':A('bola-real.webp'),'tree_real':A('tree-real.webp'),'coaster_real':A('coaster-real.webp'),
- 'star_pack_std':A('star-pack-std.webp'),'star_pack':A('star-pack.webp'),'star_logo':A('star-logo.webp'),
+ 'star_pack_std':A('star-pack-std.webp'),'star_pack':A('star-pack.webp'),'star_logo':A('star-logo.webp'),'star_full':A('star-full.webp'),
 }
 VIEWIMG={ # view images for product galleries
  'star-full':A('star-full.webp'),'phone-ico-std':A('phone-ico-std.webp'),'tree-pack-logo':A('tree-pack-logo.webp'),'tree-full':A('tree-full.webp'),'phone-logo':A('phone-logo.webp'),'phone-full':A('phone-full.webp'),'coaster-ico-std':A('coaster-ico-std.webp'),'coaster-ico-pack':A('coaster-ico-pack.webp'),'phone-ico-1':A('phone-ico-1.webp'),'tree-pack-std':A('tree-pack-std.webp'),'star-pack-std':A('star-pack-std.webp'),
@@ -81,7 +81,7 @@ def product_html(p, i):
     for k,(key,alttext) in p['views'].items():
         imgs.append(f'<img data-view="{k}" src="{data_uri(VIEWIMG[key])}" alt="{H.escape(alttext)}"{"" if k=="full" else " hidden"}>')
     real_btn='<p class="cfg-real">Vistas: packaging kraft y pieza según el nivel elegido. <button type="button">Ver la foto real de la pieza</button></p>' if 'real' in p['views'] else '<p class="cfg-real">Fotografía real de la pieza en Marsella. El packaging kraft es el mismo que en el resto de la colección.</p>'
-    lvls=''.join(f'<button class="lvl" type="button" data-level="{k}" aria-pressed="{"true" if k=="full" else "false"}"><span class="t">{t}</span><span class="d"></span></button>' for k,t in [('std','Estándar'),('pack','Packaging personalizado'),('full','Packaging + producto')])
+    lvls=''.join(f'<button class="lvl" type="button" data-level="{k}" aria-pressed="{"true" if k=="full" else "false"}"><img src="{data_uri(VIEWIMG[p["views"].get(k,p["views"]["full"])[0]])}" alt=""><span class="t">{t}</span></button>' for k,t in [('std','Estándar'),('pack','Packaging personalizado'),('full','Packaging + producto')])
     cfg=f'''<div class="cfg">
             <span class="lbl">Elige nivel de personalización</span>
             <div class="lvls" role="group" aria-label="Nivel de personalización de {H.escape(p['name'])}">{lvls}</div>

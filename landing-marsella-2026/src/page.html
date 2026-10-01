@@ -176,8 +176,8 @@ p{margin:0}
 .product-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(24px,5vw,64px);align-items:center}
 .product.alt .product-grid > .gallery{order:2}
 .gallery{display:grid;gap:14px;min-width:0}
-.stage{position:relative;aspect-ratio:5/4;max-width:100%;border-radius:18px;background:radial-gradient(120% 90% at 50% 100%,var(--sand-3) 0%,var(--sand-2) 55%,transparent 100%);display:flex;align-items:center;justify-content:center;overflow:hidden}
-.stage img{position:absolute;inset:0;margin:auto;max-width:88%;max-height:86%;width:auto;height:auto;object-fit:contain;filter:drop-shadow(0 30px 28px rgba(13,38,86,.30)) drop-shadow(0 5px 6px rgba(13,38,86,.18));transition:opacity .35s ease,transform .35s ease}
+.stage{position:relative;aspect-ratio:5/4;max-width:100%;display:flex;align-items:center;justify-content:center}
+.stage img{position:absolute;inset:0;margin:auto;max-width:96%;max-height:94%;width:auto;height:auto;object-fit:contain;filter:drop-shadow(0 30px 28px rgba(13,38,86,.30)) drop-shadow(0 5px 6px rgba(13,38,86,.18));transition:opacity .35s ease,transform .35s ease}
 .stage img[hidden]{display:none}
 .stage img.fade{opacity:0;transform:scale(.985)}
 .thumbs{display:flex;gap:10px;flex-wrap:wrap}
@@ -202,13 +202,12 @@ p{margin:0}
 /* per-product configurator */
 .cfg{display:grid;gap:14px;background:var(--sand-3);border-radius:16px;padding:18px}
 .cfg .lbl{font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--teal)}
-.lvls{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
-.lvl{display:grid;gap:4px;text-align:left;background:var(--white);border:2px solid transparent;border-radius:12px;padding:10px 12px;cursor:pointer;font-family:var(--font-body);color:var(--navy);transition:border-color .15s,background .15s;min-width:0}
+.lvls{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.lvl{display:grid;grid-template-rows:96px auto;gap:8px;justify-items:center;text-align:center;background:var(--white);border:2px solid transparent;border-radius:12px;padding:10px 8px 12px;cursor:pointer;font-family:var(--font-body);color:var(--navy);transition:border-color .15s,background .15s;min-width:0}
+.lvl img{max-height:96px;max-width:100%;width:auto;object-fit:contain;filter:drop-shadow(0 8px 8px rgba(13,38,86,.18))}
 .lvl:hover{border-color:rgba(0,172,180,.45)}
 .lvl[aria-pressed="true"]{border-color:var(--teal);background:#EAF7F7}
 .lvl .t{font-size:12.5px;font-weight:700;line-height:1.2}
-.lvl .d{font-size:12px;color:var(--muted);line-height:1.2}
-.lvl .d.up{color:var(--teal-d);font-weight:600}
 .cfg-row{display:grid;grid-template-columns:170px minmax(0,1fr);gap:18px;align-items:end}
 .cfg-qty{display:grid;gap:6px}
 .cfg-qty input{width:100%;font-family:var(--font-body);font-size:18px;font-weight:700;color:var(--navy);background:var(--white);border:2px solid transparent;border-radius:10px;padding:10px 12px}
@@ -221,7 +220,7 @@ p{margin:0}
 .cfg-out .tt b{color:var(--teal-d);font-weight:700}
 .cfg-real{font-size:12.5px;color:var(--muted)}
 .cfg-real button{border:0;background:transparent;color:var(--teal-d);font-weight:600;font-family:var(--font-body);font-size:12.5px;cursor:pointer;text-decoration:underline;padding:0}
-@media (max-width:520px){.lvls{grid-template-columns:1fr}.cfg-row{grid-template-columns:1fr}.cfg-out{text-align:left}}
+@media (max-width:520px){.lvl{grid-template-rows:72px auto}.lvl img{max-height:72px}.cfg-row{grid-template-columns:1fr}.cfg-out{text-align:left}}
 .pricing{margin-top:clamp(28px,4vw,44px)}
 .pricing-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 20px;margin-bottom:14px}
 .pricing-head h4{font-size:15px;font-weight:700;color:var(--navy)}
@@ -548,7 +547,7 @@ table.prices tr.is-hot td:first-child{color:var(--teal-d)}
       </article>
       <article class="level">
         <span class="n" aria-hidden="true">3</span>
-        <div class="pics"><img src="__IMG_star_pack__" alt="Packaging kraft con el logo del cliente"><img src="__IMG_star_logo__" alt="Estrella en acabado Marsella con el logo impreso en blanco"></div>
+        <div class="pics"><img class="solo" src="__IMG_star_full__" alt="Packaging kraft personalizado y estrella con el logo impreso en blanco"></div>
         <span class="tagline">Packaging + producto personalizado</span>
         <h3>Tu logo también en la pieza</h3>
         <p>Además del packaging, tu logo impreso en UVI (blanco) sobre cada pieza. La opción más completa: tu marca se queda en el regalo.</p>
@@ -713,9 +712,10 @@ table.prices tr.is-hot td:first-child{color:var(--teal-d)}
     var cur='full', q=P.moq, view='full';
     function render(){
       var t=tierFor(P,q), li={std:0,pack:1,full:2}[cur], unit=t.prices[li], base=t.prices[0];
-      lvlBtns.forEach(function(b){ var k=b.getAttribute('data-level'); b.setAttribute('aria-pressed',k===cur?'true':'false'); var d=b.querySelector('.d'); var pr=t.prices[{std:0,pack:1,full:2}[k]]; d.textContent=(k==='std'?fmt(pr)+' €/'+P.unit:'+'+fmt(pr-base)+' €/'+P.unit+' · '+fmt(pr)+' €'); d.classList.toggle('up',k!=='std'); });
-      outU.innerHTML=fmt(unit)+' €<small> /'+P.unit+' · tramo '+fmtInt(t.min)+'-'+fmtInt(t.max)+'</small>';
-      outT.innerHTML='Total <b>'+fmt(unit*q)+' €</b> por '+fmtInt(q)+' '+P.unitPl+(cur==='std'?'':' · +'+fmt((unit-base)*q)+' € frente a estándar')+' · sin IVA ni envío';
+      lvlBtns.forEach(function(b){ b.setAttribute('aria-pressed',b.getAttribute('data-level')===cur?'true':'false'); });
+      var lname={std:'Estándar',pack:'Packaging personalizado',full:'Packaging + producto personalizado'}[cur];
+      outU.innerHTML=fmt(unit)+' €<small> /'+P.unit+' · '+lname+'</small>';
+      outT.innerHTML='Total <b>'+fmt(unit*q)+' €</b> por '+fmtInt(q)+' '+P.unitPl+' · tramo '+fmtInt(t.min)+'-'+fmtInt(t.max)+(cur==='std'?'':' · +'+fmt(unit-base)+' €/'+P.unit+' frente a estándar')+' · sin IVA ni envío';
       p.querySelectorAll('table.prices tbody tr').forEach(function(tr,i){ tr.classList.toggle('is-hot',P.tiers[i]===t); });
       p.querySelectorAll('table.prices th, table.prices td').forEach(function(c){ c.classList.toggle('is-col',c.cellIndex===li+1); });
       showView(p,view);
