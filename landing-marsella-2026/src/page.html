@@ -323,6 +323,7 @@ table.prices tr.is-hot td:first-child{color:var(--teal-d)}
 .reply-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:14px 24px}
 .reply-head h3{font-size:clamp(22px,2.4vw,30px);color:var(--white)}
 .reply-note{font-size:13.5px;color:rgba(245,242,238,.72);max-width:70ch}
+.reply-note b{color:var(--teal);font-weight:700}
 .reply textarea{width:100%;min-width:0;font-family:var(--font-body);font-size:14.5px;line-height:1.55;color:var(--navy);background:var(--sand-4);border:0;border-radius:12px;padding:16px;resize:vertical}
 .reply textarea:focus{outline:3px solid var(--teal)}
 @media (max-width:520px){.cart-item{grid-template-columns:56px minmax(0,1fr)}.cart-item .ci-pic,.cart-item .ci-pic img{width:56px;max-width:56px;max-height:56px;height:auto}}
@@ -348,6 +349,7 @@ table.prices tr.is-hot td:first-child{color:var(--teal-d)}
 .contact{display:grid;gap:14px;background:var(--sand-3);border-radius:18px;padding:26px}
 .contact h3{font-size:18px;font-weight:700;color:var(--navy)}
 .contact p{font-size:14.5px;color:var(--muted)}
+.contact .contact-lead b{display:block;color:var(--navy);font-weight:700;font-size:16px;margin-bottom:6px;padding-left:12px;border-left:3px solid var(--teal)}
 .email{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .email code{font-family:var(--font-body);font-size:16px;font-weight:600;color:var(--navy);background:var(--white);padding:10px 14px;border-radius:9px;user-select:all}
 .copy{border:1.5px solid var(--navy);background:transparent;color:var(--navy);border-radius:9px;padding:9px 14px;font-family:var(--font-body);font-size:13px;font-weight:600;cursor:pointer}
@@ -643,7 +645,7 @@ table.prices tr.is-hot td:first-child{color:var(--teal-d)}
         <div><p class="eyebrow">Para responder al correo</p><h3 class="cera" data-cera="black">Copia esto en tu respuesta al correo</h3></div>
         <button class="btn btn-teal" type="button" id="copyReply">Copiar el texto <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
       </div>
-      <p class="reply-note">Responde al correo de quien te ha enviado este catálogo con este texto. Te devolvemos una propuesta cerrada con tu logo. Puedes editarlo antes de copiarlo.</p>
+      <p class="reply-note"><b>Responde al correo de quien te ha enviado este catálogo</b> con este texto. Te devolvemos una propuesta cerrada con tu logo. Puedes editarlo antes de copiarlo.</p>
       <textarea id="replyText" rows="9" spellcheck="false" aria-label="Texto para responder al correo"></textarea>
     </div>
   </div>
@@ -661,7 +663,7 @@ table.prices tr.is-hot td:first-child{color:var(--teal-d)}
     </div>
     <div class="contact rv">
       <h3>¿Prefieres hablarlo?</h3>
-      <p>Responde al correo con el que has recibido este catálogo, o escríbenos con el producto, las unidades aproximadas y tu logo. Te respondemos con una propuesta cerrada.</p>
+      <p class="contact-lead"><b>Responde al correo con el que has recibido este catálogo.</b> Si prefieres, escríbenos con el producto, las unidades aproximadas y tu logo. Te respondemos con una propuesta cerrada.</p>
       <div class="email"><code id="emailTxt">info@thegravitywave.com</code><button class="copy" id="copyBtn" type="button">Copiar</button></div>
       <p>Gravity Wave · Calpe, Alicante · <a href="https://thegravitywave.com" target="_blank" rel="noopener">thegravitywave.com</a></p>
     </div>
