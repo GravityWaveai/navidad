@@ -15,7 +15,7 @@ import numpy as np
 ap = argparse.ArgumentParser()
 ap.add_argument("codex"); ap.add_argument("textura"); ap.add_argument("salida")
 ap.add_argument("--escala", type=float, default=0.75)
-ap.add_argument("--offset", default="16,-14")
+ap.add_argument("--offset", default="0,0")
 ap.add_argument("--sin-trasera", action="store_true")
 ap.add_argument("--semilla", type=int, default=7)
 A = ap.parse_args()
@@ -43,7 +43,7 @@ speck = (np.array(Image.fromarray((speck * 255).astype(np.uint8)).filter(ImageFi
 base = np.percentile(lum[panel & ~speck], 60)
 lf = lum.astype(np.float32).copy(); lf[speck] = base
 Lm = np.array(Image.fromarray(lf.clip(0, 255).astype(np.uint8)).filter(ImageFilter.MedianFilter(15))).astype(np.float32)
-shade = np.clip(Lm / base, 0.5, 1.06)
+shade = np.clip(Lm / base, 0.93, 1.03)
 # Textura real, parches aleatorios fundidos (sin costuras)
 tex = Image.open(A.textura).convert("RGB")
 tex = tex.resize((int(tex.width * A.escala), int(tex.height * A.escala)), Image.LANCZOS)
