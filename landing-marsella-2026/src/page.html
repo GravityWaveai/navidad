@@ -704,7 +704,7 @@ table.prices tr.is-hot td:first-child{color:var(--teal-d)}
   PRODUCTS.forEach(function(P){
     var p=document.getElementById('prod-'+P.id); if(!p) return;
     var lvlBtns=p.querySelectorAll('.lvl'), qty=p.querySelector('.cfg-qty input'), outU=p.querySelector('.cfg-out .u'), outT=p.querySelector('.cfg-out .tt'), realBtn=p.querySelector('.cfg-real button');
-    var cur='full', q=P.moq, view='full';
+    var cur='full', q=P.moq, view=(P.id==='portamovil' && p.querySelector('.stage img[data-view=real]'))?'real':'full';
     function render(){
       var t=tierFor(P,q), li={std:0,pack:1,full:2}[cur], unit=t.prices[li], base=t.prices[0];
       lvlBtns.forEach(function(b){ b.setAttribute('aria-pressed',b.getAttribute('data-level')===cur?'true':'false'); });
@@ -716,7 +716,7 @@ table.prices tr.is-hot td:first-child{color:var(--teal-d)}
       showView(p,view);
     }
     lvlBtns.forEach(function(b){ b.addEventListener('click',function(){ cur=b.getAttribute('data-level'); view=cur; render(); }); });
-    if(realBtn) realBtn.addEventListener('click',function(){ view=(view==='real')?cur:'real'; realBtn.textContent=(view==='real')?'Volver a la vista del nivel':'Ver la foto real de la pieza'; showView(p,view); });
+    if(realBtn){ if(view==='real') realBtn.textContent='Ver el pack del nivel elegido'; realBtn.addEventListener('click',function(){ view=(view==='real')?cur:'real'; realBtn.textContent=(view==='real')?'Ver el pack del nivel elegido':'Ver la pieza sola'; showView(p,view); }); }
     qty.addEventListener('input',function(){ var v=parseInt(qty.value,10); if(v>=P.moq&&v<=1000){ q=v; render(); } });
     qty.addEventListener('change',function(){ var v=parseInt(qty.value,10)||P.moq; q=Math.max(P.moq,Math.min(1000,v)); qty.value=q; render(); });
     P._set=function(level){ cur=level; view=level; render(); };

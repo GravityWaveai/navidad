@@ -56,7 +56,7 @@ PRODUCTS=[
       spec=[('Contenido','1 portamóvil'),('Peso','300 g'),('Dimensiones','130 × 80 × 18 mm'),('Acabado','Marsella')],
       head_small='',
       tiers=[(150,200,[12.6,13.0,13.6]),(201,500,[10.3,10.6,11.1]),(501,1000,[9.3,9.6,10.0])],
-      views={'std':('phone-ico-std','Portamóvil con la etiqueta kraft estándar de Gravity Wave'),'pack':('phone-ico-1','Portamóvil con la etiqueta kraft personalizada con tu logo'),'full':('phone-full','Portamóvil con etiqueta kraft personalizada y tu logo impreso en la pieza'),'real':('phone-real','Portamóvil en acabado Marsella, fotografía real')},
+      views={'std':('phone-ico-std','Portamóvil con la etiqueta kraft estándar de Gravity Wave'),'pack':('phone-ico-1','Portamóvil con la etiqueta kraft personalizada con tu logo'),'full':('phone-full','Portamóvil con etiqueta kraft personalizada y tu logo impreso en la pieza'),'real':('phone-real','Portamóvil en acabado Marsella, render 3D')},
       chooser='phone-plain'),
  dict(id='posavasos', name='Posavasos (Pack 4)', short='Posavasos', xmas=False, unit='pack', unitPl='packs', moq=80, logo='40 × 40 mm',
       pitch='Cuatro posavasos de Gravitec® en acabado Marsella, presentados en packaging kraft. El clásico de mesa que se usa cada día, en casa y en la oficina, y que recuerda quién lo regaló.',
@@ -78,8 +78,9 @@ def product_html(p, i):
     alt=' alt' if i%2==1 else ''
     ribbon='<div class="ribbon" aria-hidden="true">Edición <b>Navidad</b></div>' if p['xmas'] else ''
     imgs=[]
+    first='real' if p['id']=='portamovil' else 'full'
     for k,(key,alttext) in p['views'].items():
-        imgs.append(f'<img data-view="{k}" src="{data_uri(VIEWIMG[key])}" alt="{H.escape(alttext)}"{"" if k=="full" else " hidden"}>')
+        imgs.append(f'<img data-view="{k}" src="{data_uri(VIEWIMG[key])}" alt="{H.escape(alttext)}"{"" if k==first else " hidden"}>')
     real_btn='<p class="cfg-real">Vistas: packaging kraft y pieza según el nivel elegido. <button type="button">Ver la foto real de la pieza</button></p>' if 'real' in p['views'] else '<p class="cfg-real">Fotografía real de la pieza en Marsella. El packaging kraft es el mismo que en el resto de la colección.</p>'
     lvls=''.join(f'<button class="lvl" type="button" data-level="{k}" aria-pressed="{"true" if k=="full" else "false"}"><img src="{data_uri(VIEWIMG[p["views"].get(k,p["views"]["full"])[0]])}" alt=""><span class="t">{t}</span></button>' for k,t in [('std','Estándar'),('pack','Packaging personalizado'),('full','Packaging + producto')])
     cfg=f'''<div class="cfg">
