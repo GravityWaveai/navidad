@@ -1,0 +1,597 @@
+<title>Correos Navidad Gravity</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Manrope:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: barra petróleo con las tres personas como pestañas; debajo, lista de contactos a la izquierda y el correo listo para copiar a la derecha. */
+:root{
+  --bg:#F3F7F6; --surface:#FFFFFF; --surface2:#E8F0EF; --fg:#0B2A31; --muted:#557479;
+  --line:#D3E2E0; --petrol:#0B3A44; --brand:#1E6778; --aqua:#2FA899; --aqua-soft:#D6F1ED;
+  --on-petrol:#EAF6F4; --on-petrol-muted:#93C2C0; --warn:#9A5B00; --warn-soft:#FFF1DA;
+  --danger:#A3322A; --ok:#1C7A5A; --ok-soft:#DDF3EA;
+  --f-display:"Sora",ui-sans-serif,system-ui,sans-serif;
+  --f-body:"Manrope",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --r:10px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#061F26; --surface:#0B2E36; --surface2:#0F3A43; --fg:#EAF6F4; --muted:#8FB4B4;
+  --line:#1A4A53; --petrol:#04181D; --brand:#5FC9BD; --aqua:#5FC9BD; --aqua-soft:#12434A;
+  --on-petrol:#EAF6F4; --on-petrol-muted:#8FB4B4; --warn:#F0C27A; --warn-soft:#3A2F17;
+  --danger:#F08A80; --ok:#7FD9B5; --ok-soft:#12402F; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#061F26; --surface:#0B2E36; --surface2:#0F3A43; --fg:#EAF6F4; --muted:#8FB4B4;
+  --line:#1A4A53; --petrol:#04181D; --brand:#5FC9BD; --aqua:#5FC9BD; --aqua-soft:#12434A;
+  --on-petrol:#EAF6F4; --on-petrol-muted:#8FB4B4; --warn:#F0C27A; --warn-soft:#3A2F17;
+  --danger:#F08A80; --ok:#7FD9B5; --ok-soft:#12402F; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:15px;line-height:1.5}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--aqua);outline-offset:2px}
+
+.top{background:var(--petrol);color:var(--on-petrol);padding:18px 16px 0}
+.top-inner,.wrap{max-width:1180px;margin:0 auto}
+.brandline{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:6px 16px}
+.brandline h1{font-family:var(--f-display);font-weight:800;font-size:22px;letter-spacing:-.01em;margin:0;text-wrap:balance}
+.brandline h1 span{color:var(--on-petrol-muted);font-weight:600}
+.deadline{font-size:13px;color:var(--on-petrol-muted)}
+.deadline b{color:var(--on-petrol);font-weight:700}
+.people{display:flex;gap:4px;margin-top:16px;overflow-x:auto}
+.person-tab{background:transparent;border:0;border-radius:10px 10px 0 0;padding:10px 18px 12px;color:var(--on-petrol-muted);font-family:var(--f-display);font-weight:700;font-size:16px;cursor:pointer;display:flex;align-items:center;gap:8px;white-space:nowrap}
+.person-tab:hover{color:var(--on-petrol)}
+.person-tab[aria-selected="true"]{background:var(--bg);color:var(--fg)}
+.person-tab small{font-family:var(--f-mono);font-weight:500;font-size:12px;opacity:.8}
+
+.wrap{padding:18px 16px 48px}
+.subnav{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px}
+.seg{display:inline-flex;background:var(--surface2);border-radius:999px;padding:3px}
+.seg button{border:0;background:transparent;padding:7px 16px;border-radius:999px;font-weight:600;cursor:pointer;color:var(--muted)}
+.seg button[aria-selected="true"]{background:var(--surface);color:var(--fg);box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.status{font-size:12.5px;color:var(--muted);display:flex;align-items:center;gap:6px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--muted)}
+.dot.on{background:var(--ok)} .dot.local{background:var(--warn)}
+
+.grid{display:grid;grid-template-columns:minmax(0,380px) minmax(0,1fr);gap:18px;align-items:start}
+@media (max-width:860px){.grid{grid-template-columns:minmax(0,1fr)}}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);min-width:0}
+.panel-h{padding:14px 16px;border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between}
+.panel-h h2{font-family:var(--f-display);font-size:15px;font-weight:700;margin:0}
+.panel-b{padding:16px}
+.eyebrow{font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700}
+
+.btn{border:1px solid var(--line);background:var(--surface);border-radius:8px;padding:7px 12px;font-weight:600;font-size:13.5px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:var(--fg)}
+.btn:hover{border-color:var(--brand)}
+.btn.primary{background:var(--brand);border-color:var(--brand);color:var(--surface)}
+:root[data-theme="dark"] .btn.primary{color:#04181D}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .btn.primary{color:#04181D}}
+.btn.ghost{border-color:transparent;background:transparent;color:var(--muted)}
+.btn.ghost:hover{color:var(--fg)}
+.btn.danger{color:var(--danger)}
+.btn.small{padding:4px 9px;font-size:12.5px}
+.btn.done{background:var(--ok-soft);border-color:var(--ok);color:var(--ok)}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+
+.progress{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.bar{flex:1;height:6px;background:var(--surface2);border-radius:99px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--aqua);border-radius:99px;transition:width .3s}
+
+.tools{display:flex;flex-wrap:wrap;gap:8px;padding:12px 16px;border-bottom:1px solid var(--line)}
+.tools input[type=search]{flex:1 1 160px;min-width:0;border:1px solid var(--line);border-radius:8px;padding:7px 10px;background:var(--bg)}
+.chips{display:flex;gap:4px}
+.chip{border:1px solid var(--line);background:transparent;border-radius:999px;padding:4px 10px;font-size:12.5px;font-weight:600;cursor:pointer;color:var(--muted)}
+.chip[aria-pressed="true"]{background:var(--aqua-soft);border-color:var(--aqua);color:var(--fg)}
+
+.list{max-height:62vh;overflow:auto}
+.row{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:10px;align-items:center;padding:10px 16px;border-bottom:1px solid var(--line);cursor:pointer;width:100%;text-align:left;background:transparent;border-left:3px solid transparent;border-top:0;border-right:0}
+.row:hover{background:var(--surface2)}
+.row[aria-current="true"]{background:var(--aqua-soft);border-left-color:var(--aqua)}
+.row .who{min-width:0}
+.row .co{font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.row .pp{font-size:12.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tag{font-size:11px;font-weight:700;padding:2px 8px;border-radius:99px;background:var(--surface2);color:var(--muted);white-space:nowrap;max-width:120px;overflow:hidden;text-overflow:ellipsis}
+.check{width:20px;height:20px;border-radius:50%;border:2px solid var(--line);display:grid;place-items:center;font-size:12px;color:transparent;flex:none}
+.row.sent .check{background:var(--ok);border-color:var(--ok);color:var(--surface)}
+.row.sent .co{color:var(--muted);text-decoration:line-through;text-decoration-thickness:1px}
+
+.empty{padding:28px 20px;text-align:center;color:var(--muted)}
+.empty h3{font-family:var(--f-display);color:var(--fg);font-size:16px;margin:0 0 6px}
+.empty p{margin:0 auto 14px;max-width:44ch}
+
+.field{display:flex;flex-direction:column;gap:5px;min-width:0}
+.field label{font-size:12.5px;font-weight:700;color:var(--muted)}
+.field input,.field select,.field textarea{border:1px solid var(--line);border-radius:8px;padding:8px 10px;background:var(--bg);width:100%;min-width:0}
+.field textarea{resize:vertical;line-height:1.55}
+.fields{display:grid;gap:12px}
+.fields.two{grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}
+
+.mail{display:grid;gap:12px}
+.mail-line{display:grid;grid-template-columns:64px minmax(0,1fr) auto;gap:10px;align-items:center;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--bg)}
+.mail-line .k{font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.mail-line .v{min-width:0;overflow-wrap:anywhere;font-weight:600}
+.body{border:1px solid var(--line);border-radius:8px;background:var(--bg);padding:16px 18px;white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.65;max-width:72ch}
+.body mark{background:var(--warn-soft);color:var(--warn);border-radius:3px;padding:0 2px}
+.actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.note{font-size:13px;color:var(--muted);display:flex;gap:8px;align-items:flex-start}
+.note.warn{color:var(--warn);background:var(--warn-soft);padding:8px 12px;border-radius:8px}
+.example-flag{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;background:var(--warn-soft);color:var(--warn);padding:2px 8px;border-radius:99px}
+
+.vars{display:flex;flex-wrap:wrap;gap:6px}
+.var{font-family:var(--f-mono);font-size:12.5px;border:1px dashed var(--brand);color:var(--brand);background:transparent;border-radius:6px;padding:3px 8px;cursor:pointer}
+.tpl-list .row{grid-template-columns:minmax(0,1fr) auto}
+
+.import{display:grid;gap:14px}
+.drop{border:2px dashed var(--line);border-radius:var(--r);padding:22px;text-align:center;color:var(--muted);cursor:pointer}
+.drop.over{border-color:var(--aqua);background:var(--aqua-soft)}
+.drop b{color:var(--fg)}
+.tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:8px}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th,td{text-align:left;padding:6px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
+th{background:var(--surface2);font-size:12px;color:var(--muted)}
+
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%) translateY(20px);background:var(--petrol);color:var(--on-petrol);padding:10px 16px;border-radius:8px;font-weight:600;font-size:14px;opacity:0;pointer-events:none;transition:.2s;max-width:calc(100vw - 32px)}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.confirm{display:inline-flex;gap:6px;align-items:center;font-size:13px}
+.howto{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-bottom:16px}
+.howto div{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px;font-size:13.5px;color:var(--muted)}
+.howto b{display:block;color:var(--fg);font-family:var(--f-display);font-size:14px;margin-bottom:2px}
+@media (prefers-reduced-motion: reduce){*{transition:none!important}}
+</style>
+
+<header class="top">
+  <div class="top-inner">
+    <div class="brandline">
+      <h1>Gravity Wave <span>· Correos de Navidad</span></h1>
+      <div class="deadline">Personalizados con acabado Marsella: pedido antes del <b>6 de noviembre</b></div>
+    </div>
+    <nav class="people" role="tablist" id="people"></nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="subnav">
+    <div class="seg" role="tablist" id="views">
+      <button data-view="contactos" role="tab">Mis contactos</button>
+      <button data-view="importar" role="tab">Subir lista</button>
+      <button data-view="plantillas" role="tab">Mis plantillas</button>
+      <button data-view="ajustes" role="tab">Ajustes</button>
+    </div>
+    <div class="status" id="status"><span class="dot"></span><span>Conectando…</span></div>
+  </div>
+
+  <!-- CONTACTOS -->
+  <section id="v-contactos">
+    <div class="howto" id="howto">
+      <div><b>1 · Sube tu lista</b>Tu Excel o pega las filas. Se queda guardada en tu pestaña.</div>
+      <div><b>2 · Elige a quién escribes</b>Cada contacto lleva su plantilla según el tipo de cliente.</div>
+      <div><b>3 · Copia y pega</b>Asunto y texto ya personalizados. Adjunta el catálogo y envía desde tu correo.</div>
+    </div>
+    <div class="grid">
+      <div class="panel">
+        <div class="panel-h">
+          <h2 id="list-title">Contactos</h2>
+          <div class="progress" style="flex:1 1 160px;max-width:220px"><div class="bar"><i id="bar"></i></div><span id="count">0/0</span></div>
+        </div>
+        <div class="tools">
+          <input type="search" id="q" placeholder="Buscar empresa o persona" aria-label="Buscar contactos">
+          <div class="chips" role="group" aria-label="Filtro">
+            <button class="chip" data-f="pendientes">Pendientes</button>
+            <button class="chip" data-f="enviados">Enviados</button>
+            <button class="chip" data-f="todos">Todos</button>
+          </div>
+        </div>
+        <div class="list" id="list"></div>
+      </div>
+      <div class="panel" id="preview"></div>
+    </div>
+  </section>
+
+  <!-- IMPORTAR -->
+  <section id="v-importar" hidden>
+    <div class="panel">
+      <div class="panel-h"><h2 id="imp-title">Subir lista de contactos</h2></div>
+      <div class="panel-b import">
+        <label class="drop" id="drop" for="file">
+          <b>Arrastra aquí tu Excel o CSV</b><br>o haz clic para elegir el archivo (.xlsx, .xls, .csv)
+          <input type="file" id="file" accept=".xlsx,.xls,.csv,.tsv,.txt" hidden>
+        </label>
+        <div class="field">
+          <label for="paste">O pega las filas directamente desde Excel (con la fila de títulos)</label>
+          <textarea id="paste" rows="4" placeholder="Empresa	Nombre	Email	Tipo&#10;Hotel Mar Azul	Laura	laura@marazul.com	Cliente habitual"></textarea>
+        </div>
+        <div><button class="btn" id="paste-go">Leer filas pegadas</button></div>
+        <div id="mapping"></div>
+        <details>
+          <summary class="eyebrow" style="cursor:pointer">Añadir un contacto a mano</summary>
+          <form id="manual" class="fields two" style="margin-top:12px">
+            <div class="field"><label for="m-empresa">Empresa</label><input id="m-empresa" required></div>
+            <div class="field"><label for="m-nombre">Nombre</label><input id="m-nombre"></div>
+            <div class="field"><label for="m-email">Email</label><input id="m-email" type="email"></div>
+            <div class="field"><label for="m-tipo">Plantilla</label><select id="m-tipo"></select></div>
+            <div><button class="btn primary" type="submit">Añadir contacto</button></div>
+          </form>
+        </details>
+        <div class="note" id="danger-zone"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLANTILLAS -->
+  <section id="v-plantillas" hidden>
+    <div class="grid">
+      <div class="panel">
+        <div class="panel-h"><h2 id="tpl-title">Plantillas</h2><button class="btn small" id="tpl-new">+ Nueva</button></div>
+        <div class="list tpl-list" id="tpl-list"></div>
+      </div>
+      <div class="panel" id="tpl-editor"></div>
+    </div>
+  </section>
+
+  <!-- AJUSTES -->
+  <section id="v-ajustes" hidden>
+    <div class="panel">
+      <div class="panel-h"><h2>Ajustes</h2></div>
+      <div class="panel-b fields">
+        <div class="field">
+          <label for="s-web">Enlace a la web de Navidad (común para los tres)</label>
+          <input id="s-web" type="url" placeholder="https://…">
+        </div>
+        <div class="field">
+          <label for="s-firma" id="s-firma-l">Tu firma</label>
+          <textarea id="s-firma" rows="4" placeholder="Nombre&#10;Gravity Wave&#10;Teléfono"></textarea>
+        </div>
+        <p class="note">Se guarda solo. La web sale donde pongas <code>{web}</code> y la firma donde pongas <code>{firma}</code>.</p>
+      </div>
+    </div>
+  </section>
+</main>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<textarea id="clip" aria-hidden="true" tabindex="-1" style="position:fixed;left:-9999px;top:0;opacity:0"></textarea>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script>
+(function(){
+const PEOPLE=[{id:'amaia',name:'Amaia'},{id:'julen',name:'Julen'},{id:'alvaro',name:'Álvaro'}];
+const VARS=[['{nombre}','Nombre del contacto'],['{empresa}','Empresa'],['{web}','Enlace web'],['{firma}','Tu firma'],['{mi_nombre}','Tu nombre']];
+const EXAMPLE={id:'_ejemplo',empresa:'Hotel Mar Azul',nombre:'Laura',email:'laura@hotelmarazul.com',tipo:''};
+
+function defaults(){
+  const cuerpo=(intro,cierre)=>`${intro}
+
+Te escribo porque quería que fueras de los primeros en enterarte: estamos lanzando la campaña de Navidad de Gravity Wave. Hemos preparado una colección de regalos para empresas (estrellas, árbol, posavasos, portamóvil y llaveros a medida), todo hecho con redes de pesca recuperadas del Mediterráneo y personalizado con el logo de {empresa}.
+
+Te adjunto el catálogo, y aquí puedes verlo todo con calma: {web}
+
+La gran novedad de este año es el acabado Marsella. Si os apetece hacer algo personalizado con este acabado, es importante que nos hagáis el pedido antes del 6 de noviembre, para que nos dé tiempo a fabricarlo y llegue perfecto a Navidad.
+
+Si te encaja, dime más o menos cuántas unidades tenéis en mente y te preparo una propuesta. Y para cualquier duda, aquí me tienes.
+
+${cierre}
+{firma}`;
+  return [
+    {nombre:'Cliente habitual',asunto:'Ya estamos con la Navidad en Gravity',cuerpo:cuerpo('Hola {nombre}:\n\n¿Qué tal? Espero que este mensaje te encuentre muy bien.','¡Un abrazo!')},
+    {nombre:'Contacto más formal',asunto:'Navidad en Gravity Wave: novedades para {empresa}',cuerpo:cuerpo('Hola {nombre}:\n\nEspero que este mensaje te encuentre muy bien. Soy {mi_nombre}, de Gravity Wave.','Un saludo,')},
+    {nombre:'Recordatorio (a la semana)',asunto:'Re: Ya estamos con la Navidad en Gravity',cuerpo:`Hola {nombre}:
+
+Te lo subo por si se quedó enterrado entre correos. Solo quería recordarte que, si queréis algo personalizado con el nuevo acabado Marsella, necesitamos el pedido antes del 6 de noviembre.
+
+Aquí tienes otra vez la web: {web}
+
+Si este año no toca, sin problema, ¡dímelo y no te insisto!
+
+Un abrazo,
+{firma}`},
+    {nombre:'WhatsApp / mensaje corto',asunto:'',cuerpo:`¡Hola {nombre}! ¿Qué tal todo? Quería que fueras de los primeros en saberlo: estamos lanzando la campaña de Navidad de Gravity, con regalos para empresas hechos con redes del Mediterráneo y personalizados con vuestro logo. Aquí lo tienes todo: {web}
+
+La novedad de este año es el acabado Marsella. Si queréis algo personalizado con él, hay que pedirlo antes del 6 de noviembre 🎄`}
+  ];
+}
+
+/* ---------- state ---------- */
+const S={settings:{web:''},templates:{},people:{},mode:'connecting',readonly:false};
+PEOPLE.forEach(p=>S.people[p.id]={firma:'',contactos:[]});
+const ui={active:'amaia',view:'contactos',filter:'pendientes',q:'',sel:{},tplSel:{},confirm:null,mapping:null};
+try{const saved=JSON.parse(localStorage.getItem('gw-nav-ui')||'{}');Object.assign(ui,{active:saved.active||ui.active,view:saved.view||ui.view,filter:saved.filter||ui.filter,sel:saved.sel||{},tplSel:saved.tplSel||{}});}catch(e){}
+const h=location.hash.replace('#','');if(PEOPLE.some(p=>p.id===h))ui.active=h;
+function saveUi(){try{localStorage.setItem('gw-nav-ui',JSON.stringify({active:ui.active,view:ui.view,filter:ui.filter,sel:ui.sel,tplSel:ui.tplSel}))}catch(e){}}
+
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const uid=()=>Math.random().toString(36).slice(2,10)+Date.now().toString(36).slice(-4);
+const P=()=>S.people[ui.active];
+const pname=id=>(PEOPLE.find(p=>p.id===id)||{}).name||id;
+const myTemplates=(pid=ui.active)=>Object.entries(S.templates).filter(([,t])=>t.persona===pid).map(([id,t])=>({id,...t})).sort((a,b)=>(a.orden??0)-(b.orden??0)||String(a.nombre).localeCompare(b.nombre));
+
+/* ---------- backend (db compartida o, si no hay, este navegador) ---------- */
+let db=null;const writers={};
+function queueWrite(key,fn){const w=writers[key]||(writers[key]={busy:false,pending:null});w.pending=fn;if(!w.busy)runW(w);}
+async function runW(w){w.busy=true;while(w.pending){const f=w.pending;w.pending=null;try{await f()}catch(e){writeError(e)}}w.busy=false;}
+const busy=key=>writers[key]&&(writers[key].busy||writers[key].pending);
+function writeError(e){
+  if(e&&e.code==='invalid_argument'){S.readonly=true;toast('No tienes permiso para guardar cambios aquí');renderStatus();}
+  else if(e&&e.code==='quota_exceeded')toast('Se ha llenado el espacio: borra contactos antiguos');
+  else toast('No se ha podido guardar. Vuelve a intentarlo');
+}
+function persistLocal(){if(S.mode!=='local')return;try{localStorage.setItem('gw-nav-data',JSON.stringify({settings:S.settings,templates:S.templates,people:S.people}))}catch(e){}}
+function savePerson(pid){
+  const data=JSON.parse(JSON.stringify(S.people[pid]));
+  if(S.mode==='db')queueWrite('p:'+pid,()=>db.doc('personas/'+pid).set(data));else persistLocal();
+}
+function saveTemplate(id){
+  const t=S.templates[id];
+  if(S.mode==='db')queueWrite('t:'+id,()=>t?db.collection('plantillas').doc(id).set({...t}):db.collection('plantillas').doc(id).delete());else persistLocal();
+}
+function saveSettings(){if(S.mode==='db')queueWrite('s',()=>db.doc('ajustes/general').set({...S.settings}));else persistLocal();}
+
+async function connect(){
+  let d=null;try{d=window.claude&&window.claude.use?await window.claude.use('db'):null}catch(e){d=null}
+  if(!d){
+    S.mode='local';
+    try{const x=JSON.parse(localStorage.getItem('gw-nav-data')||'null');if(x){S.settings=x.settings||S.settings;S.templates=x.templates||{};Object.assign(S.people,x.people||{});}}catch(e){}
+    renderAll();return;
+  }
+  db=d;S.mode='db';renderStatus();
+  db.doc('ajustes/general').onSnapshot(s=>{if(busy('s'))return;S.settings=Object.assign({web:''},s.exists?s.data():{});renderAll();},onSubErr);
+  db.collection('plantillas').onSnapshot(snap=>{
+    const next={};snap.docs.forEach(d=>{next[d.id]=busy('t:'+d.id)&&S.templates[d.id]?S.templates[d.id]:{...d.data()}});
+    Object.keys(S.templates).forEach(id=>{if(busy('t:'+id)&&S.templates[id]&&!next[id])next[id]=S.templates[id]});
+    S.templates=next;renderAll();
+  },onSubErr);
+  db.collection('personas').onSnapshot(snap=>{
+    snap.docs.forEach(d=>{if(busy('p:'+d.id))return;const v=d.data()||{};S.people[d.id]={firma:v.firma||'',contactos:Array.isArray(v.contactos)?v.contactos:[]};});
+    renderAll();
+  },onSubErr);
+}
+function onSubErr(e){S.mode='error';renderStatus();}
+
+/* ---------- texto ---------- */
+function vars(c,pid=ui.active){
+  const p=S.people[pid]||{};
+  return {nombre:(c.nombre||'').trim(),empresa:(c.empresa||'').trim(),web:(S.settings.web||'').trim(),firma:(p.firma||'').trim()||pname(pid),mi_nombre:pname(pid)};
+}
+const MISSING={empresa:'[EMPRESA]',web:'[ENLACE WEB]'};
+function fill(str,c,pid){
+  const v=vars(c,pid);
+  let s=String(str||'').replace(/\{(\w+)\}/g,(m,k)=>k in v?(v[k]||MISSING[k]||''):m);
+  return s.replace(/(¡?Hola)\s+([:,!])/g,'$1$2');
+}
+function missing(t,c){const v=vars(c),need=[];const all=(t.asunto||'')+(t.cuerpo||'');
+  if(all.includes('{empresa}')&&!v.empresa)need.push('el nombre de la empresa');
+  if(all.includes('{web}')&&!v.web)need.push('el enlace a la web (en Ajustes)');
+  if(all.includes('{nombre}')&&!v.nombre)need.push('el nombre de la persona');return need;}
+const mark=s=>esc(s).replace(/\[(EMPRESA|ENLACE WEB)\]/g,'<mark>[$1]</mark>');
+
+/* ---------- copiar ---------- */
+function copy(text,label){
+  const done=()=>toast(label+' copiado');
+  const fallback=()=>{const t=$('#clip');t.value=text;t.select();try{document.execCommand('copy');done()}catch(e){toast('Selecciona el texto y cópialo a mano')}};
+  try{navigator.clipboard.writeText(text).then(done,fallback)}catch(e){fallback()}
+}
+let tt;function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('show'),1800);}
+
+/* ---------- render ---------- */
+function renderStatus(){
+  const el=$('#status');
+  const map={connecting:['','Conectando…'],db:['on','Guardado y compartido con el equipo'],local:['local','Guardado solo en este navegador'],error:['local','Sin conexión: los cambios pueden no guardarse']};
+  let [cls,txt]=map[S.mode]||map.connecting;if(S.readonly){cls='local';txt='Solo lectura'}
+  el.innerHTML=`<span class="dot ${cls}"></span><span>${txt}</span>`;
+}
+function renderPeople(){
+  $('#people').innerHTML=PEOPLE.map(p=>{const cs=S.people[p.id].contactos;const sent=cs.filter(c=>c.enviado).length;
+    return `<button class="person-tab" role="tab" data-p="${p.id}" aria-selected="${p.id===ui.active}">${p.name}<small>${cs.length?sent+'/'+cs.length:''}</small></button>`}).join('');
+}
+function renderViews(){
+  document.querySelectorAll('#views button').forEach(b=>b.setAttribute('aria-selected',b.dataset.view===ui.view));
+  ['contactos','importar','plantillas','ajustes'].forEach(v=>$('#v-'+v).hidden=v!==ui.view);
+}
+function tplFor(c){const ts=myTemplates();return ts.find(t=>t.id===c.tipo)||ts[0]||null;}
+function filtered(){
+  const q=ui.q.trim().toLowerCase();
+  return P().contactos.filter(c=>(ui.filter==='todos'||(ui.filter==='enviados')===!!c.enviado)&&(!q||[c.empresa,c.nombre,c.email].join(' ').toLowerCase().includes(q)));
+}
+function renderList(){
+  const name=pname(ui.active),cs=P().contactos,sent=cs.filter(c=>c.enviado).length;
+  $('#list-title').textContent='Contactos de '+name;
+  $('#count').textContent=sent+'/'+cs.length;$('#bar').style.width=(cs.length?sent/cs.length*100:0)+'%';
+  document.querySelectorAll('.chip').forEach(c=>c.setAttribute('aria-pressed',c.dataset.f===ui.filter));
+  $('#howto').hidden=cs.length>0;
+  const list=$('#list');
+  if(!cs.length){list.innerHTML=`<div class="empty"><h3>Aún no hay contactos de ${esc(name)}</h3><p>Sube tu Excel o pega las filas. A la derecha tienes un ejemplo de cómo quedará el correo.</p><button class="btn primary" data-go="importar">Subir mi lista</button></div>`;return;}
+  const rows=filtered();
+  if(!rows.length){list.innerHTML=`<div class="empty"><p>${ui.filter==='pendientes'?'¡No te queda ninguno pendiente!':'Nada coincide con la búsqueda.'}</p></div>`;return;}
+  const ts=myTemplates();
+  list.innerHTML=rows.map(c=>{const t=ts.find(x=>x.id===c.tipo)||ts[0];
+    return `<button class="row ${c.enviado?'sent':''}" data-c="${c.id}" aria-current="${ui.sel[ui.active]===c.id}"><span class="check">✓</span><span class="who"><div class="co">${esc(c.empresa||c.nombre||c.email||'Sin nombre')}</div><div class="pp">${esc([c.nombre,c.email].filter(Boolean).join(' · ')||'—')}</div></span><span class="tag">${esc(t?t.nombre:'')}</span></button>`}).join('');
+}
+function currentContact(){const cs=P().contactos;return cs.find(c=>c.id===ui.sel[ui.active])||null;}
+function renderPreview(){
+  const box=$('#preview'),ts=myTemplates();
+  let c=currentContact();const isEx=!c;if(isEx)c=EXAMPLE;
+  if(!ts.length){box.innerHTML=`<div class="empty"><h3>${esc(pname(ui.active))} todavía no tiene plantillas</h3><p>Carga las plantillas base y adáptalas a tu manera de escribir.</p><button class="btn primary" data-act="load-defaults">Cargar plantillas base</button></div>`;return;}
+  const t=tplFor(c);const subj=fill(t.asunto,c),body=fill(t.cuerpo,c),need=missing(t,c);
+  const gmail=c.email&&subj?`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(c.email)}&su=${encodeURIComponent(subj)}&body=${encodeURIComponent(body)}`:'';
+  box.innerHTML=`
+  <div class="panel-h"><h2>${isEx?'<span class="example-flag">Ejemplo</span> ':''}${esc(c.empresa||c.nombre||'Contacto')}</h2>
+    <div class="field" style="flex-direction:row;align-items:center;gap:8px"><label for="pv-tpl">Plantilla</label>
+    <select id="pv-tpl" ${isEx?'disabled':''} style="width:auto">${ts.map(x=>`<option value="${x.id}" ${x.id===t.id?'selected':''}>${esc(x.nombre)}</option>`).join('')}</select></div></div>
+  <div class="panel-b mail">
+    ${isEx?`<p class="note warn">Así quedará el correo. Elige un contacto de tu lista para tener el tuyo.</p>`:''}
+    ${need.length&&!isEx?`<p class="note warn">Falta ${need.join(', ')}. Revisa lo marcado en amarillo antes de enviar.</p>`:''}
+    ${c.email?`<div class="mail-line"><span class="k">Para</span><span class="v">${esc(c.email)}</span><button class="btn small" data-copy="to">Copiar</button></div>`:''}
+    ${t.asunto?`<div class="mail-line"><span class="k">Asunto</span><span class="v">${mark(subj)}</span><button class="btn small" data-copy="subj">Copiar</button></div>`:''}
+    <div class="body">${mark(body)}</div>
+    <div class="actions">
+      <button class="btn primary" data-copy="body">Copiar texto</button>
+      ${gmail&&!isEx?`<a class="btn" href="${esc(gmail)}" target="_blank" rel="noopener">Abrir en Gmail</a>`:''}
+      ${isEx?'':`<button class="btn ${c.enviado?'done':''}" data-act="toggle-sent">${c.enviado?'✓ Enviado':'Marcar enviado y siguiente'}</button>`}
+    </div>
+    ${t.asunto?`<p class="note">📎 Acuérdate de adjuntar el catálogo PDF antes de enviar.</p>`:''}
+  </div>`;
+  box._data={subj,body,to:c.email||''};
+}
+function renderTemplates(){
+  const ts=myTemplates(),name=pname(ui.active);
+  $('#tpl-title').textContent='Plantillas de '+name;
+  if(!ui.tplSel[ui.active]||!S.templates[ui.tplSel[ui.active]])ui.tplSel[ui.active]=ts[0]?ts[0].id:null;
+  $('#tpl-list').innerHTML=ts.length?ts.map(t=>`<button class="row" data-t="${t.id}" aria-current="${t.id===ui.tplSel[ui.active]}"><span class="who"><div class="co">${esc(t.nombre||'Sin nombre')}</div><div class="pp">${esc(t.asunto||'Sin asunto (mensaje corto)')}</div></span><span class="tag">${P().contactos.filter(c=>(c.tipo||ts[0].id)===t.id).length} contactos</span></button>`).join('')
+    :`<div class="empty"><p>Sin plantillas todavía.</p><button class="btn primary" data-act="load-defaults">Cargar plantillas base</button></div>`;
+  renderEditor();
+}
+function renderEditor(force){
+  const ed=$('#tpl-editor'),id=ui.tplSel[ui.active],t=id&&S.templates[id];
+  if(!force&&ed.contains(document.activeElement)&&ed.dataset.id===id){renderEditorPreview();return;}
+  ed.dataset.id=id||'';
+  if(!t){ed.innerHTML=`<div class="empty"><h3>Elige o crea una plantilla</h3><p>Cada plantilla es un tipo de cliente. Escríbela a tu manera: los datos de cada contacto se rellenan solos.</p></div>`;return;}
+  const others=PEOPLE.filter(p=>p.id!==ui.active);
+  ed.innerHTML=`
+  <div class="panel-h"><h2>Editar plantilla</h2><div class="actions">
+    <button class="btn small" data-act="dup">Duplicar</button>
+    ${others.map(p=>`<button class="btn small" data-act="copy-to" data-to="${p.id}">Copiar a ${p.name}</button>`).join('')}
+    ${ui.confirm==='del:'+id?`<span class="confirm">¿Borrar? <button class="btn small danger" data-act="del-yes">Sí, borrar</button><button class="btn small ghost" data-act="cancel">No</button></span>`:`<button class="btn small ghost danger" data-act="del">Borrar</button>`}
+  </div></div>
+  <div class="panel-b fields">
+    <div class="field"><label for="e-nombre">Tipo de cliente (nombre de la plantilla)</label><input id="e-nombre" value="${esc(t.nombre)}"></div>
+    <div class="field"><label for="e-asunto">Asunto <span style="font-weight:500">(déjalo vacío para WhatsApp o LinkedIn)</span></label><input id="e-asunto" value="${esc(t.asunto)}"></div>
+    <div class="field"><label for="e-cuerpo">Texto</label><textarea id="e-cuerpo" rows="16">${esc(t.cuerpo)}</textarea></div>
+    <div class="field"><label>Inserta un dato (se rellena solo con cada contacto)</label><div class="vars">${VARS.map(([v,l])=>`<button class="var" data-var="${v}" title="${l}">${v}</button>`).join('')}</div></div>
+    <div><div class="eyebrow" style="margin-bottom:6px">Vista previa con un ejemplo</div><div class="body" id="e-prev"></div></div>
+  </div>`;
+  renderEditorPreview();
+}
+function renderEditorPreview(){const id=ui.tplSel[ui.active],t=S.templates[id],el=$('#e-prev');if(!t||!el)return;
+  el.innerHTML=(t.asunto?'<b>'+mark(fill(t.asunto,EXAMPLE))+'</b>\n\n':'')+mark(fill(t.cuerpo,EXAMPLE));}
+function renderImport(){
+  $('#imp-title').textContent='Subir lista de contactos de '+pname(ui.active);
+  const ts=myTemplates();$('#m-tipo').innerHTML=ts.map(t=>`<option value="${t.id}">${esc(t.nombre)}</option>`).join('');
+  renderMapping();
+  const n=P().contactos.length;
+  $('#danger-zone').innerHTML=n?(ui.confirm==='clear'?`<span class="confirm">¿Borrar los ${n} contactos de ${esc(pname(ui.active))}? <button class="btn small danger" data-act="clear-yes">Sí, vaciar</button><button class="btn small ghost" data-act="cancel">No</button></span>`:`Tienes ${n} contactos guardados. <button class="btn small ghost danger" data-act="clear">Vaciar mi lista</button>`):'';
+}
+function renderSettings(){
+  const w=$('#s-web'),f=$('#s-firma');
+  if(document.activeElement!==w)w.value=S.settings.web||'';
+  if(document.activeElement!==f)f.value=P().firma||'';
+  f.placeholder=pname(ui.active)+'\nGravity Wave\nTeléfono';
+  $('#s-firma-l').textContent='Firma de '+pname(ui.active);
+}
+function renderAll(){renderStatus();renderPeople();renderViews();
+  if(ui.view==='contactos'){renderList();renderPreview();}
+  if(ui.view==='plantillas')renderTemplates();
+  if(ui.view==='importar')renderImport();
+  if(ui.view==='ajustes')renderSettings();
+}
+
+/* ---------- acciones ---------- */
+function loadDefaults(pid=ui.active){
+  const have=myTemplates(pid).map(t=>t.nombre);
+  defaults().forEach((d,i)=>{if(have.includes(d.nombre))return;const id=pid+'-'+uid();S.templates[id]={...d,persona:pid,orden:i};saveTemplate(id);});
+  renderAll();toast('Plantillas base cargadas');
+}
+function selectNextPending(){
+  const cs=P().contactos,i=cs.findIndex(c=>c.id===ui.sel[ui.active]);
+  const next=cs.slice(i+1).find(c=>!c.enviado)||cs.find(c=>!c.enviado);
+  ui.sel[ui.active]=next?next.id:ui.sel[ui.active];
+}
+document.addEventListener('click',e=>{
+  const b=e.target.closest('button,[data-go]');if(!b)return;
+  if(b.dataset.p){ui.active=b.dataset.p;ui.confirm=null;ui.mapping=null;history.replaceState(null,'','#'+ui.active);saveUi();renderAll();return;}
+  if(b.dataset.view){ui.view=b.dataset.view;ui.confirm=null;saveUi();renderAll();return;}
+  if(b.dataset.go){ui.view=b.dataset.go;saveUi();renderAll();return;}
+  if(b.dataset.f){ui.filter=b.dataset.f;saveUi();renderList();return;}
+  if(b.dataset.c){ui.sel[ui.active]=b.dataset.c;saveUi();renderList();renderPreview();if(innerWidth<860)$('#preview').scrollIntoView({behavior:'smooth',block:'start'});return;}
+  if(b.dataset.t){ui.tplSel[ui.active]=b.dataset.t;ui.confirm=null;saveUi();renderTemplates();renderEditor(true);return;}
+  if(b.dataset.copy){const d=$('#preview')._data||{};
+    if(b.dataset.copy==='to')copy(d.to,'Email');if(b.dataset.copy==='subj')copy(d.subj,'Asunto');if(b.dataset.copy==='body')copy(d.body,'Texto');return;}
+  if(b.dataset.var){const ta=$('#e-cuerpo');if(!ta)return;const s=ta.selectionStart??ta.value.length,en=ta.selectionEnd??s;
+    ta.value=ta.value.slice(0,s)+b.dataset.var+ta.value.slice(en);ta.focus();ta.selectionStart=ta.selectionEnd=s+b.dataset.var.length;ta.dispatchEvent(new Event('input',{bubbles:true}));return;}
+  const act=b.dataset.act;if(!act)return;
+  const id=ui.tplSel[ui.active];
+  switch(act){
+    case 'load-defaults':loadDefaults();break;
+    case 'toggle-sent':{const c=currentContact();if(!c)break;c.enviado=!c.enviado;c.enviadoEn=c.enviado?new Date().toISOString():null;savePerson(ui.active);if(c.enviado){selectNextPending();toast('Marcado como enviado');}saveUi();renderPeople();renderList();renderPreview();break;}
+    case 'dup':{const t=S.templates[id];const nid=ui.active+'-'+uid();S.templates[nid]={...t,nombre:t.nombre+' (copia)',orden:(t.orden||0)+.5};saveTemplate(nid);ui.tplSel[ui.active]=nid;renderTemplates();renderEditor(true);toast('Plantilla duplicada');break;}
+    case 'copy-to':{const t=S.templates[id],to=b.dataset.to;const nid=to+'-'+uid();S.templates[nid]={...t,persona:to,orden:myTemplates(to).length};saveTemplate(nid);toast('Copiada a '+pname(to));break;}
+    case 'del':ui.confirm='del:'+id;renderEditor(true);break;
+    case 'del-yes':delete S.templates[id];saveTemplate(id);ui.confirm=null;ui.tplSel[ui.active]=null;renderTemplates();renderEditor(true);toast('Plantilla borrada');break;
+    case 'clear':ui.confirm='clear';renderImport();break;
+    case 'clear-yes':P().contactos=[];savePerson(ui.active);ui.confirm=null;renderAll();toast('Lista vaciada');break;
+    case 'cancel':ui.confirm=null;renderAll();renderEditor(true);break;
+    case 'import-add':case 'import-replace':doImport(act==='import-replace');break;
+    case 'import-cancel':ui.mapping=null;renderMapping();break;
+  }
+});
+$('#tpl-new').addEventListener('click',()=>{const nid=ui.active+'-'+uid();S.templates[nid]={persona:ui.active,nombre:'Nuevo tipo de cliente',asunto:'',cuerpo:'Hola {nombre}:\n\n\n\nUn abrazo,\n{firma}',orden:myTemplates().length};saveTemplate(nid);ui.tplSel[ui.active]=nid;renderTemplates();renderEditor(true);$('#e-nombre').select();});
+document.addEventListener('change',e=>{
+  if(e.target.id==='pv-tpl'){const c=currentContact();if(c){c.tipo=e.target.value;savePerson(ui.active);renderList();renderPreview();}}
+  if(e.target.dataset.map){ui.mapping.map[e.target.dataset.map]=e.target.value===''?-1:+e.target.value;renderMapping();}
+});
+let edT;
+document.addEventListener('input',e=>{
+  const t=e.target;
+  if(t.id==='q'){ui.q=t.value;renderList();return;}
+  if(['e-nombre','e-asunto','e-cuerpo'].includes(t.id)){const id=ui.tplSel[ui.active];const tp=S.templates[id];if(!tp)return;
+    tp[t.id.slice(2)]=t.value;renderEditorPreview();clearTimeout(edT);edT=setTimeout(()=>{saveTemplate(id);renderTemplates();},600);return;}
+  if(t.id==='s-web'){S.settings.web=t.value;clearTimeout(edT);edT=setTimeout(saveSettings,600);return;}
+  if(t.id==='s-firma'){P().firma=t.value;const pid=ui.active;clearTimeout(edT);edT=setTimeout(()=>savePerson(pid),600);return;}
+});
+
+/* ---------- importar ---------- */
+const GUESS={empresa:/empresa|compa|cuenta|cliente|raz[oó]n|organiza|company/i,nombre:/^(nombre|contacto|persona|name|first)|nombre/i,email:/mail|correo/i,tipo:/tipo|segment|categor|plantilla|naturaleza|proyecto/i};
+const LABELS={empresa:'Empresa',nombre:'Nombre de la persona',email:'Email',tipo:'Tipo de cliente (opcional)'};
+function startMapping(rows){
+  rows=rows.filter(r=>r&&r.some(x=>String(x??'').trim()!==''));
+  if(rows.length<2){toast('No encuentro filas: incluye la fila de títulos y al menos un contacto');return;}
+  const head=rows[0].map(x=>String(x??'').trim());const map={};
+  Object.keys(GUESS).forEach(k=>{map[k]=head.findIndex((hd,i)=>GUESS[k].test(hd)&&!Object.values(map).includes(i));});
+  if(map.email<0){const body=rows.slice(1,6);const i=head.findIndex((_,j)=>body.some(r=>/@/.test(String(r[j]??''))));map.email=i;}
+  ui.mapping={head,rows:rows.slice(1),map};renderMapping();
+}
+function renderMapping(){
+  const box=$('#mapping'),m=ui.mapping;if(!m){box.innerHTML='';return;}
+  const opt=k=>`<option value="">— ninguna —</option>`+m.head.map((hd,i)=>`<option value="${i}" ${m.map[k]===i?'selected':''}>${esc(hd||'Columna '+(i+1))}</option>`).join('');
+  const get=(r,k)=>m.map[k]>=0?String(r[m.map[k]]??'').trim():'';
+  const prev=m.rows.slice(0,4);
+  box.innerHTML=`<div class="panel" style="background:var(--bg)"><div class="panel-b fields">
+    <div class="eyebrow">${m.rows.length} filas encontradas · revisa qué columna es cada dato</div>
+    <div class="fields two">${Object.keys(LABELS).map(k=>`<div class="field"><label for="map-${k}">${LABELS[k]}</label><select id="map-${k}" data-map="${k}">${opt(k)}</select></div>`).join('')}</div>
+    <div class="tbl-wrap"><table><thead><tr>${Object.values(LABELS).map(l=>`<th>${esc(l.replace(' (opcional)',''))}</th>`).join('')}</tr></thead><tbody>${prev.map(r=>`<tr>${Object.keys(LABELS).map(k=>`<td>${esc(get(r,k))}</td>`).join('')}</tr>`).join('')}</tbody></table></div>
+    <p class="note">Si en tu Excel hay una columna de tipo de cliente y coincide con el nombre de una de tus plantillas, se le asigna sola. Si no, se usa la primera plantilla y la puedes cambiar contacto a contacto.</p>
+    <div class="actions"><button class="btn primary" data-act="import-add">Añadir a mi lista</button><button class="btn" data-act="import-replace">Sustituir mi lista</button><button class="btn ghost" data-act="import-cancel">Cancelar</button></div>
+  </div></div>`;
+}
+function matchTpl(v){v=String(v||'').toLowerCase().trim();if(!v)return '';const ts=myTemplates();
+  const t=ts.find(t=>t.nombre.toLowerCase()===v)||ts.find(t=>t.nombre.toLowerCase().includes(v)||v.includes(t.nombre.toLowerCase().split(' (')[0]));return t?t.id:'';}
+function doImport(replace){
+  const m=ui.mapping;if(!m)return;const get=(r,k)=>m.map[k]>=0?String(r[m.map[k]]??'').trim():'';
+  const incoming=m.rows.map(r=>({id:uid(),empresa:get(r,'empresa'),nombre:get(r,'nombre'),email:get(r,'email'),tipo:matchTpl(get(r,'tipo')),enviado:false})).filter(c=>c.empresa||c.nombre||c.email);
+  let list=replace?[]:P().contactos.slice();const seen=new Set(list.map(c=>c.email.toLowerCase()).filter(Boolean));let skipped=0;
+  incoming.forEach(c=>{const k=c.email.toLowerCase();if(k&&seen.has(k)){skipped++;return}if(k)seen.add(k);list.push(c);});
+  P().contactos=list;savePerson(ui.active);ui.mapping=null;$('#paste').value='';ui.view='contactos';ui.filter='pendientes';
+  ui.sel[ui.active]=(list.find(c=>!c.enviado)||{}).id;saveUi();renderAll();
+  toast(`${incoming.length-skipped} contactos añadidos`+(skipped?` (${skipped} repetidos)`:''));
+}
+function readFile(f){
+  if(!f)return;const r=new FileReader();
+  r.onload=()=>{try{
+    if(!window.XLSX){if(/\.(csv|tsv|txt)$/i.test(f.name)){startMapping(parseText(new TextDecoder().decode(r.result)));return}toast('No se pudo leer el Excel: pega las filas en el cuadro');return;}
+    const wb=XLSX.read(new Uint8Array(r.result),{type:'array'});const ws=wb.Sheets[wb.SheetNames[0]];
+    startMapping(XLSX.utils.sheet_to_json(ws,{header:1,defval:'',raw:false}));
+  }catch(e){toast('No se pudo leer ese archivo')}};
+  r.readAsArrayBuffer(f);
+}
+function parseText(t){const lines=t.replace(/\r/g,'').split('\n').filter(l=>l.trim());if(!lines.length)return[];
+  const sep=lines[0].includes('\t')?'\t':(lines[0].split(';').length>lines[0].split(',').length?';':',');
+  return lines.map(l=>l.split(sep).map(x=>x.replace(/^"|"$/g,'').trim()));}
+$('#file').addEventListener('change',e=>{readFile(e.target.files[0]);e.target.value='';});
+const drop=$('#drop');
+['dragenter','dragover'].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.add('over')}));
+['dragleave','drop'].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.remove('over')}));
+drop.addEventListener('drop',e=>readFile(e.dataTransfer.files[0]));
+$('#paste-go').addEventListener('click',()=>startMapping(parseText($('#paste').value)));
+$('#manual').addEventListener('submit',e=>{e.preventDefault();
+  const c={id:uid(),empresa:$('#m-empresa').value.trim(),nombre:$('#m-nombre').value.trim(),email:$('#m-email').value.trim(),tipo:$('#m-tipo').value,enviado:false};
+  P().contactos.push(c);savePerson(ui.active);e.target.reset();ui.sel[ui.active]=c.id;saveUi();renderPeople();toast('Contacto añadido');});
+
+renderAll();connect();
+})();
+</script>
