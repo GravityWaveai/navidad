@@ -76,7 +76,7 @@ ARROW='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="
 
 def product_html(p, i):
     alt=' alt' if i%2==1 else ''
-    ribbon='<div class="ribbon" aria-hidden="true">Edición <b>Navidad</b></div>' if p['xmas'] else ''
+    ribbon='<div class="ribbon-clip" aria-hidden="true"><div class="ribbon">Edición <b>Navidad</b></div></div>' if p['xmas'] else ''
     imgs=[]
     first='real' if p['id']=='portamovil' else 'full'
     for k,(key,alttext) in p['views'].items():
