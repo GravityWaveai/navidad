@@ -138,37 +138,36 @@ th{background:var(--surface2);font-size:12px;color:var(--muted)}
 .howto b{display:block;color:var(--fg);font-family:var(--f-display);font-size:14px;margin-bottom:2px}
 @media (prefers-reduced-motion: reduce){*{transition:none!important}}
 
-/* v2 */
-.pill{font-size:11px;font-weight:800;padding:2px 8px;border-radius:99px;white-space:nowrap;letter-spacing:.02em}
-.pill.pendiente{background:var(--surface2);color:var(--muted)}
-.pill.enviado{background:var(--aqua-soft);color:var(--brand)}
-.pill.toca{background:var(--warn-soft);color:var(--warn)}
-.pill.recordado{background:var(--aqua-soft);color:var(--brand)}
-.pill.respondido{background:var(--ok-soft);color:var(--ok)}
-.pill.descartado{background:var(--surface2);color:var(--muted);text-decoration:line-through}
-.row-meta{display:flex;flex-direction:column;align-items:flex-end;gap:4px}
-.row.done .co{color:var(--muted)}
-.row.done .check{background:var(--ok);border-color:var(--ok);color:var(--surface)}
-.row.half .check{border-color:var(--aqua);color:var(--aqua)}
-.chips{flex-wrap:wrap}
-.chip .n{font-family:var(--f-mono);font-weight:500;opacity:.75;margin-left:3px}
-.status-actions{display:flex;flex-wrap:wrap;gap:6px;padding-top:12px;border-top:1px solid var(--line)}
-.edit-box{border:1px solid var(--line);border-radius:8px;padding:12px;background:var(--bg)}
-.files{display:grid;gap:16px}
-.folder{border:1px solid var(--line);border-radius:var(--r);background:var(--surface);min-width:0}
-.folder-h{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid var(--line)}
-.folder-h h3{margin:0;font-family:var(--f-display);font-size:14.5px;display:flex;align-items:center;gap:8px}
-.folder-h h3 .ic{width:18px;height:14px;border-radius:2px 4px 3px 3px;background:var(--aqua);display:inline-block;position:relative}
-.folder-h h3 .ic::before{content:"";position:absolute;left:0;top:-3px;width:8px;height:4px;border-radius:2px 2px 0 0;background:var(--aqua)}
-.file{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:10px;align-items:center;padding:9px 16px;border-bottom:1px solid var(--line)}
-.file:last-child{border-bottom:0}
-.ext{font-family:var(--f-mono);font-size:11px;font-weight:500;background:var(--surface2);color:var(--brand);border-radius:5px;padding:3px 6px;min-width:42px;text-align:center;text-transform:uppercase}
-.file .fn{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:600}
-.file .fm{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
-.star{color:var(--warn);font-size:12px;font-weight:700;margin-left:6px}
-.meter{display:flex;gap:10px;align-items:center;font-size:12.5px;color:var(--muted);font-variant-numeric:tabular-nums}
-.meter .bar{width:140px;flex:none}
-.saved{color:var(--ok)}
+/* v3 sencilla */
+.side{display:grid;gap:18px;min-width:0;align-content:start}
+.toggle{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer;white-space:nowrap}
+.list{max-height:70vh}
+.tier-h{position:sticky;top:0;z-index:1;display:flex;align-items:center;gap:8px;padding:10px 16px;background:var(--surface2);font-family:var(--f-display);font-weight:700;font-size:13.5px;border-bottom:1px solid var(--line)}
+.tier-badge{width:22px;height:22px;border-radius:6px;display:grid;place-items:center;font-size:12px;font-weight:800;color:var(--surface);background:var(--muted)}
+.tier-badge.tA{background:var(--brand)} .tier-badge.tB{background:var(--aqua)} .tier-badge.tC{background:var(--muted)} .tier-badge.tM{background:var(--warn)}
+.tier-n{margin-left:auto;font-family:var(--f-mono);font-weight:500;font-size:12px;color:var(--muted)}
+.co-h{padding:8px 16px 2px;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;font-weight:800;color:var(--muted)}
+.crow{display:grid;grid-template-columns:auto minmax(0,1fr) auto auto;gap:10px;align-items:center;padding:6px 16px;border-left:3px solid transparent}
+.crow:hover{background:var(--surface2)}
+.crow[aria-current="true"]{background:var(--aqua-soft);border-left-color:var(--aqua)}
+.crow.sent .nm{color:var(--muted);text-decoration:line-through;text-decoration-thickness:1px}
+.sent-cb{width:18px;height:18px;accent-color:var(--ok);cursor:pointer;margin:0}
+.pick{border:0;background:transparent;text-align:left;padding:4px 0;cursor:pointer;min-width:0;display:flex;flex-direction:column}
+.pick .nm{font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pick .cg{font-size:12.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.flag{font-size:10.5px;font-weight:800;padding:2px 7px;border-radius:99px;white-space:nowrap}
+.flag.n25{background:var(--ok-soft);color:var(--ok)}
+.flag.ver{background:var(--warn-soft);color:var(--warn)}
+.manual{border-top:1px solid var(--line)}
+.manual summary{padding:12px 16px;cursor:pointer;font-weight:700;color:var(--brand)}
+.manual form{padding:0 16px 16px}
+.muted{color:var(--muted);font-weight:600}
+.sent-big{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:13.5px;padding:7px 12px;border:1px solid var(--line);border-radius:8px;cursor:pointer;background:var(--surface)}
+.sent-big input{width:18px;height:18px;accent-color:var(--ok);margin:0}
+.sent-big.on{background:var(--ok-soft);border-color:var(--ok);color:var(--ok)}
+.edit-mail summary{padding:14px 16px;cursor:pointer;font-family:var(--f-display);font-weight:700;display:flex;gap:8px;align-items:baseline}
+.edit-mail summary small{font-family:var(--f-body);font-weight:600;color:var(--muted)}
+.edit-mail[open] summary{border-bottom:1px solid var(--line)}
 </style>
 
 <header class="top">
@@ -183,136 +182,52 @@ th{background:var(--surface2);font-size:12px;color:var(--muted)}
 
 <main class="wrap">
   <div class="subnav">
-    <div class="seg" role="tablist" id="views">
-      <button data-view="contactos" role="tab">Mis contactos</button>
-      <button data-view="importar" role="tab">Subir lista</button>
-      <button data-view="plantillas" role="tab">Mis plantillas</button>
-      <button data-view="archivos" role="tab">Archivos</button>
-      <button data-view="ajustes" role="tab">Ajustes</button>
-    </div>
+    <div class="progress" style="flex:1 1 240px;max-width:420px"><div class="bar"><i id="bar"></i></div><span id="count">0 de 0 enviados</span></div>
     <div class="status" id="status"><span class="dot"></span><span>Conectando…</span></div>
   </div>
 
-  <!-- CONTACTOS -->
-  <section id="v-contactos">
-    <div class="howto" id="howto">
-      <div><b>1 · Sube tu lista</b>Tu Excel o pega las filas. Se queda guardada en tu pestaña.</div>
-      <div><b>2 · Elige a quién escribes</b>Cada contacto lleva su plantilla según el tipo de cliente.</div>
-      <div><b>3 · Copia, pega y marca</b>Envía desde tu correo y márcalo. A los 7 días te avisa de que toca recordatorio.</div>
-    </div>
-    <div class="grid">
-      <div class="panel">
-        <div class="panel-h">
-          <h2 id="list-title">Contactos</h2>
-          <div class="progress" style="flex:1 1 160px;max-width:220px"><div class="bar"><i id="bar"></i></div><span id="count">0/0</span></div>
-        </div>
-        <div class="tools">
-          <input type="search" id="q" placeholder="Buscar empresa, persona o email" aria-label="Buscar contactos">
-          <div class="chips" role="group" aria-label="Filtro" id="chips"></div>
-        </div>
-        <div class="list" id="list"></div>
+  <div class="grid">
+    <div class="panel">
+      <div class="tools">
+        <input type="search" id="q" placeholder="Buscar…" aria-label="Buscar contactos">
+        <label class="toggle"><input type="checkbox" id="hide-sent"> Ocultar enviados</label>
       </div>
+      <div class="list" id="list"></div>
+      <details class="manual" id="manual-box">
+        <summary>+ Añadir un contacto a mano</summary>
+        <form id="manual" class="fields">
+          <div class="field"><label for="m-nombre">Nombre</label><input id="m-nombre" required autocomplete="off"></div>
+          <div class="field"><label for="m-empresa">Empresa</label><input id="m-empresa" required autocomplete="off"></div>
+          <div class="field"><label for="m-email">Correo</label><input id="m-email" type="email" required autocomplete="off"></div>
+          <div><button class="btn primary" type="submit">Añadir</button></div>
+        </form>
+      </details>
+    </div>
+    <div class="side">
       <div class="panel" id="preview"></div>
-    </div>
-  </section>
-
-  <!-- IMPORTAR -->
-  <section id="v-importar" hidden>
-    <div class="panel">
-      <div class="panel-h"><h2 id="imp-title">Subir lista de contactos</h2><button class="btn small" data-act="export">Descargar mi lista (Excel)</button></div>
-      <div class="panel-b import">
-        <label class="drop" id="drop" for="file">
-          <b>Arrastra aquí tu Excel o CSV</b><br>o haz clic para elegir el archivo (.xlsx, .xls, .csv)
-          <input type="file" id="file" accept=".xlsx,.xls,.csv,.tsv,.txt" hidden>
-        </label>
-        <div class="field">
-          <label for="paste">O pega las filas directamente desde Excel (con la fila de títulos)</label>
-          <textarea id="paste" rows="4" placeholder="Empresa	Nombre	Email	Teléfono	Tipo&#10;Hotel Mar Azul	Laura	laura@marazul.com	600000000	Cliente habitual"></textarea>
+      <details class="panel edit-mail" id="edit-box">
+        <summary><span>Editar mi correo</span><small id="edit-who"></small></summary>
+        <div class="panel-b fields">
+          <div class="field"><label for="e-asunto">Asunto</label><input id="e-asunto"></div>
+          <div class="field"><label for="e-cuerpo">Texto. <code>{nombre}</code> y <code>{empresa}</code> se rellenan solos con cada contacto</label><textarea id="e-cuerpo" rows="14"></textarea></div>
+          <div class="field"><label for="e-firma">Firma (sale donde pone <code>{firma}</code>)</label><textarea id="e-firma" rows="3"></textarea></div>
+          <div class="field"><label for="s-web">Enlace a la web de Navidad (común para los tres, sale donde pone <code>{web}</code>)</label><input id="s-web" type="url" placeholder="https://…"></div>
+          <div class="actions"><button class="btn small ghost" data-act="restore">Volver al texto base</button><span class="note">Se guarda solo.</span></div>
         </div>
-        <div><button class="btn" id="paste-go">Leer filas pegadas</button></div>
-        <div id="mapping"></div>
-        <details>
-          <summary class="eyebrow" style="cursor:pointer">Añadir un contacto a mano</summary>
-          <form id="manual" class="fields two" style="margin-top:12px">
-            <div class="field"><label for="m-empresa">Empresa</label><input id="m-empresa" required></div>
-            <div class="field"><label for="m-nombre">Nombre</label><input id="m-nombre"></div>
-            <div class="field"><label for="m-email">Email</label><input id="m-email" type="email"></div>
-            <div class="field"><label for="m-tel">Teléfono (para WhatsApp)</label><input id="m-tel" type="tel"></div>
-            <div class="field"><label for="m-tipo">Plantilla</label><select id="m-tipo"></select></div>
-            <div style="align-self:end"><button class="btn primary" type="submit">Añadir contacto</button></div>
-          </form>
-        </details>
-        <p class="note">Al subir un Excel, guardamos una copia de la lista en <b>Archivos</b>, en tu carpeta. Si vuelves a subir otra, la copia se sustituye: nunca se acumulan versiones.</p>
-        <div class="note" id="danger-zone"></div>
-      </div>
+      </details>
     </div>
-  </section>
-
-  <!-- PLANTILLAS -->
-  <section id="v-plantillas" hidden>
-    <div class="grid">
-      <div class="panel">
-        <div class="panel-h"><h2 id="tpl-title">Plantillas</h2><button class="btn small" id="tpl-new">+ Nueva</button></div>
-        <div class="list tpl-list" id="tpl-list"></div>
-      </div>
-      <div class="panel" id="tpl-editor"></div>
-    </div>
-  </section>
-
-  <!-- ARCHIVOS -->
-  <section id="v-archivos" hidden>
-    <div class="subnav" style="margin-bottom:12px">
-      <p class="note" style="margin:0;max-width:70ch">Una carpeta común para el catálogo y el material, y una por persona. Si subes un archivo con el mismo nombre en la misma carpeta, se sustituye el anterior.</p>
-      <div class="meter" id="meter"></div>
-    </div>
-    <div class="panel" style="margin-bottom:16px">
-      <div class="panel-b">
-        <div class="fields two" style="align-items:end">
-          <div class="field"><label for="up-folder">Carpeta</label><select id="up-folder"></select></div>
-          <div class="field"><label for="up-file">Archivo (PDF, imagen, CSV, texto · máx. 20 MB)</label><input id="up-file" type="file" accept=".pdf,.png,.jpg,.jpeg,.webp,.gif,.svg,.csv,.txt,.md,.json,.mp4"></div>
-        </div>
-        <p class="note" id="up-note" style="margin-top:10px"></p>
-      </div>
-    </div>
-    <div class="files" id="files"></div>
-  </section>
-
-  <!-- AJUSTES -->
-  <section id="v-ajustes" hidden>
-    <div class="panel">
-      <div class="panel-h"><h2>Ajustes</h2></div>
-      <div class="panel-b fields">
-        <div class="field">
-          <label for="s-web">Enlace a la web de Navidad (común para los tres)</label>
-          <input id="s-web" type="url" placeholder="https://…">
-        </div>
-        <div class="field">
-          <label for="s-firma" id="s-firma-l">Tu firma</label>
-          <textarea id="s-firma" rows="4" placeholder="Nombre&#10;Gravity Wave&#10;Teléfono"></textarea>
-        </div>
-        <div class="field">
-          <label for="s-dias">Días hasta el recordatorio</label>
-          <input id="s-dias" type="number" min="1" max="30" style="max-width:120px">
-        </div>
-        <p class="note">Se guarda solo. La web sale donde pongas <code>{web}</code> y la firma donde pongas <code>{firma}</code>.</p>
-      </div>
-    </div>
-  </section>
+  </div>
 </main>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <textarea id="clip" aria-hidden="true" tabindex="-1" style="position:fixed;left:-9999px;top:0;opacity:0"></textarea>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script>
 (function(){
 const PEOPLE=[{id:'amaia',name:'Amaia'},{id:'julen',name:'Julen'},{id:'alvaro',name:'Álvaro'}];
-const VARS=[['{nombre}','Nombre del contacto'],['{empresa}','Empresa'],['{web}','Enlace web'],['{firma}','Tu firma'],['{mi_nombre}','Tu nombre']];
-const EXAMPLE={id:'_ejemplo',empresa:'Hotel Mar Azul',nombre:'Laura',email:'laura@hotelmarazul.com',tel:'',tipo:'',estado:'pendiente'};
-const ESTADOS={pendiente:'Pendiente',enviado:'Enviado',recordado:'Recordatorio enviado',respondido:'Ha respondido',descartado:'No le interesa'};
-const DAY=864e5;
+const TIERS=[['A','Tier A'],['B','Tier B'],['C','Tier C'],['M','Añadidos a mano']];
+const BASE={asunto:'Ya estamos con la Navidad en Gravity',cuerpo:`Hola {nombre}:
 
-function defaults(){
-  const cuerpo=(intro,cierre)=>`${intro}
+¿Qué tal? Espero que este mensaje te encuentre muy bien.
 
 Te escribo porque quería que fueras de los primeros en enterarte: estamos lanzando la campaña de Navidad de Gravity Wave. Hemos preparado una colección de regalos para empresas (estrellas, árbol, posavasos, portamóvil y llaveros a medida), todo hecho con redes de pesca recuperadas del Mediterráneo y personalizado con el logo de {empresa}.
 
@@ -322,67 +237,37 @@ La gran novedad de este año es el acabado Marsella. Si os apetece hacer algo pe
 
 Si te encaja, dime más o menos cuántas unidades tenéis en mente y te preparo una propuesta. Y para cualquier duda, aquí me tienes.
 
-${cierre}
-{firma}`;
-  return [
-    {nombre:'Cliente habitual',asunto:'Ya estamos con la Navidad en Gravity',cuerpo:cuerpo('Hola {nombre}:\n\n¿Qué tal? Espero que este mensaje te encuentre muy bien.','¡Un abrazo!')},
-    {nombre:'Contacto más formal',asunto:'Navidad en Gravity Wave: novedades para {empresa}',cuerpo:cuerpo('Hola {nombre}:\n\nEspero que este mensaje te encuentre muy bien. Soy {mi_nombre}, de Gravity Wave.','Un saludo,')},
-    {nombre:'Recordatorio (a la semana)',asunto:'Re: Ya estamos con la Navidad en Gravity',cuerpo:`Hola {nombre}:
-
-Te lo subo por si se quedó enterrado entre correos. Solo quería recordarte que, si queréis algo personalizado con el nuevo acabado Marsella, necesitamos el pedido antes del 6 de noviembre.
-
-Aquí tienes otra vez la web: {web}
-
-Si este año no toca, sin problema, ¡dímelo y no te insisto!
-
-Un abrazo,
-{firma}`},
-    {nombre:'WhatsApp / mensaje corto',asunto:'',cuerpo:`¡Hola {nombre}! ¿Qué tal todo? Quería que fueras de los primeros en saberlo: estamos lanzando la campaña de Navidad de Gravity, con regalos para empresas hechos con redes del Mediterráneo y personalizados con vuestro logo. Aquí lo tienes todo: {web}
-
-La novedad de este año es el acabado Marsella. Si queréis algo personalizado con él, hay que pedirlo antes del 6 de noviembre 🎄`}
-  ];
-}
+¡Un abrazo!
+{firma}`};
 
 /* ---------- estado ---------- */
-const S={settings:{web:'',dias:7,catalogo:''},templates:{},people:{},files:{},mode:'connecting',readonly:false,saving:false,savedAt:0};
+const S={web:'',tpl:{},people:{},mode:'connecting',readonly:false,savedAt:0};
 PEOPLE.forEach(p=>S.people[p.id]={firma:'',contactos:{}});
-const ui={active:'amaia',view:'contactos',filter:'pendientes',q:'',sel:{},tplSel:{},confirm:null,mapping:null,editing:false};
-try{const sv=JSON.parse(localStorage.getItem('gw-nav-ui')||'{}');['active','view','filter','sel','tplSel'].forEach(k=>{if(sv[k])ui[k]=sv[k]});}catch(e){}
+const ui={active:'amaia',sel:{},q:'',hideSent:false};
+try{const sv=JSON.parse(localStorage.getItem('gw-nav-ui2')||'{}');if(sv.active)ui.active=sv.active;if(sv.sel)ui.sel=sv.sel;ui.hideSent=!!sv.hideSent;}catch(e){}
 const h0=location.hash.replace('#','');if(PEOPLE.some(p=>p.id===h0))ui.active=h0;
-function saveUi(){try{localStorage.setItem('gw-nav-ui',JSON.stringify({active:ui.active,view:ui.view,filter:ui.filter,sel:ui.sel,tplSel:ui.tplSel}))}catch(e){}}
+function saveUi(){try{localStorage.setItem('gw-nav-ui2',JSON.stringify({active:ui.active,sel:ui.sel,hideSent:ui.hideSent}))}catch(e){}}
 
 const $=s=>document.querySelector(s);
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const uid=()=>Math.random().toString(36).slice(2,10)+Date.now().toString(36).slice(-4);
-const P=()=>S.people[ui.active];
+const uid=()=>Math.random().toString(36).slice(2,8)+Date.now().toString(36).slice(-4);
 const pname=id=>(PEOPLE.find(p=>p.id===id)||{}).name||id;
 const isObj=v=>v&&typeof v==='object'&&!Array.isArray(v);
 function deepMerge(a,b){for(const k in b){if(isObj(b[k])){if(!isObj(a[k]))a[k]={};deepMerge(a[k],b[k]);}else a[k]=b[k];}return a;}
 const clone=o=>JSON.parse(JSON.stringify(o));
-function contacts(pid=ui.active){return Object.entries(S.people[pid].contactos||{}).filter(([,c])=>c&&!c.borrado).map(([id,c])=>({...c,id})).sort((a,b)=>(a.orden||0)-(b.orden||0));}
-const myTemplates=(pid=ui.active)=>Object.entries(S.templates).filter(([,t])=>t.persona===pid).map(([id,t])=>({id,...t})).sort((a,b)=>(a.orden??0)-(b.orden??0)||String(a.nombre).localeCompare(b.nombre));
-function normPerson(v){v=v||{};let cs=v.contactos||{};if(Array.isArray(cs)){const m={};cs.forEach((c,i)=>{const id=c.id||uid();m[id]={...c,orden:i};delete m[id].id;});cs=m;}
-  Object.values(cs).forEach(c=>{if(c&&!c.estado)c.estado=c.enviado?'enviado':'pendiente';});return {firma:v.firma||'',contactos:cs};}
+const cap=s=>String(s||'').trim().toLowerCase().replace(/(^|[\s\-'])(\p{L})/gu,(m,a,b)=>a+b.toUpperCase());
+function contacts(pid=ui.active){return Object.entries(S.people[pid].contactos||{}).filter(([,c])=>c&&!c.borrado).map(([id,c])=>({...c,id}))
+  .sort((a,b)=>(TIERS.findIndex(t=>t[0]===a.tier)-TIERS.findIndex(t=>t[0]===b.tier))||(a.orden||0)-(b.orden||0));}
+const tplOf=(pid=ui.active)=>Object.assign({},BASE,S.tpl[pid]||{});
 
-/* recordatorio */
-const dias=()=>Math.max(1,+S.settings.dias||7);
-const tocaRecordatorio=c=>c.estado==='enviado'&&c.enviadoEn&&(Date.now()-Date.parse(c.enviadoEn))>=dias()*DAY;
-function pillOf(c){if(tocaRecordatorio(c))return ['toca','Toca recordatorio'];return [c.estado,ESTADOS[c.estado]||c.estado];}
-const FILTERS=[['pendientes','Pendientes',c=>c.estado==='pendiente'],['recordatorio','Toca recordatorio',tocaRecordatorio],['enviados','Enviados',c=>c.estado==='enviado'||c.estado==='recordado'],['cerrados','Respondidos',c=>c.estado==='respondido'||c.estado==='descartado'],['todos','Todos',()=>true]];
-
-/* ---------- guardado (db compartida o, si no hay, este navegador) ---------- */
-let db=null,assets=null,downloads=null;const writers={},acc={},exists={};
-function queueWrite(key,fn){const w=writers[key]||(writers[key]={busy:false,pending:null});w.pending=fn;if(!w.busy)runW(w);renderSaving();}
-async function runW(w){w.busy=true;renderSaving();while(w.pending){const f=w.pending;w.pending=null;try{await f()}catch(e){writeError(e)}}w.busy=false;S.savedAt=Date.now();renderSaving();}
-const busy=key=>writers[key]&&(writers[key].busy||writers[key].pending);
+/* ---------- guardado ---------- */
+let db=null;const writers={},acc={},exists={};
+function queueWrite(key,fn){const w=writers[key]||(writers[key]={busy:false,pending:null});w.pending=fn;if(!w.busy)runW(w);renderStatus();}
+async function runW(w){w.busy=true;while(w.pending){const f=w.pending;w.pending=null;try{await f()}catch(e){writeError(e)}}w.busy=false;S.savedAt=Date.now();renderStatus();setTimeout(renderStatus,4200);}
+const busy=k=>writers[k]&&(writers[k].busy||writers[k].pending);
 const anyBusy=()=>Object.values(writers).some(w=>w.busy||w.pending);
-function writeError(e){
-  if(e&&e.code==='invalid_argument'){S.readonly=true;toast('No tienes permiso para guardar cambios aquí');renderStatus();}
-  else if(e&&e.code==='quota_exceeded')toast('Se ha llenado el espacio: vacía listas antiguas');
-  else toast('No se ha podido guardar. Revisa la conexión y vuelve a intentarlo');
-}
-function persistLocal(){if(S.mode!=='local')return;try{localStorage.setItem('gw-nav-data',JSON.stringify({settings:S.settings,templates:S.templates,people:S.people}))}catch(e){}S.savedAt=Date.now();renderSaving();}
-/* cambios parciales: cada contacto se guarda por separado, así dos dispositivos no se pisan */
+function writeError(e){if(e&&e.code==='invalid_argument'){S.readonly=true;toast('No tienes permiso para guardar cambios. Pide acceso de Colaborador');}else toast('No se ha podido guardar. Revisa la conexión');renderStatus();}
+function persistLocal(){if(S.mode!=='local')return;try{localStorage.setItem('gw-nav-data2',JSON.stringify({web:S.web,tpl:S.tpl,people:S.people}))}catch(e){}S.savedAt=Date.now();renderStatus();}
 function patchPerson(pid,patch){
   deepMerge(S.people[pid],clone(patch));
   if(S.mode!=='db'){persistLocal();return;}
@@ -390,388 +275,130 @@ function patchPerson(pid,patch){
   queueWrite('p:'+pid,async()=>{const p=acc[pid];acc[pid]=null;if(!p)return;const ref=db.doc('personas/'+pid);
     if(exists[pid])await ref.update(p);else{await ref.set(clone(S.people[pid]));exists[pid]=true;}});
 }
-function replacePerson(pid){
-  if(S.mode!=='db'){persistLocal();return;}
-  acc[pid]=null;const data=clone(S.people[pid]);
-  queueWrite('p:'+pid,async()=>{await db.doc('personas/'+pid).set(data);exists[pid]=true;});
-}
-const patchContact=(id,fields,pid=ui.active)=>patchPerson(pid,{contactos:{[id]:fields}});
-function saveTemplate(id){const t=S.templates[id];
-  if(S.mode==='db')queueWrite('t:'+id,()=>t?db.collection('plantillas').doc(id).set({...t}):db.collection('plantillas').doc(id).delete());else persistLocal();}
-function saveSettings(){if(S.mode==='db'){const d={...S.settings};queueWrite('s',()=>db.doc('ajustes/general').set(d));}else persistLocal();}
+function saveTpl(pid){if(S.mode!=='db'){persistLocal();return;}const d={...tplOf(pid)};queueWrite('t:'+pid,()=>db.doc('plantillas/'+pid).set(d));}
+function saveWeb(){if(S.mode!=='db'){persistLocal();return;}const w=S.web;queueWrite('s',()=>db.doc('ajustes/general').set({web:w}));}
 
 async function connect(){
-  const use=n=>{try{return window.claude&&window.claude.use?window.claude.use(n):Promise.resolve(null)}catch(e){return Promise.resolve(null)}};
-  let d=null;try{d=await use('db')}catch(e){}
-  use('downloads').then(x=>{downloads=x;renderAll()}).catch(()=>{});
-  if(!d){
-    S.mode='local';
-    try{const x=JSON.parse(localStorage.getItem('gw-nav-data')||'null');if(x){S.settings=Object.assign(S.settings,x.settings||{});S.templates=x.templates||{};Object.entries(x.people||{}).forEach(([k,v])=>S.people[k]=normPerson(v));}}catch(e){}
-    renderAll();return;
-  }
+  let d=null;try{d=window.claude&&window.claude.use?await window.claude.use('db'):null}catch(e){}
+  if(!d){S.mode='local';
+    try{const x=JSON.parse(localStorage.getItem('gw-nav-data2')||'null');if(x){S.web=x.web||'';S.tpl=x.tpl||{};Object.assign(S.people,x.people||{});}}catch(e){}
+    renderAll();return;}
   db=d;S.mode='db';renderStatus();
-  use('assets').then(x=>{assets=x;renderAll();refreshMeter();}).catch(()=>{});
-  db.doc('ajustes/general').onSnapshot(s=>{if(busy('s'))return;S.settings=Object.assign({web:'',dias:7,catalogo:''},s.exists?s.data():{});renderAll();},onSubErr);
-  db.collection('plantillas').onSnapshot(snap=>{
-    const next={};snap.docs.forEach(d=>{next[d.id]=busy('t:'+d.id)&&S.templates[d.id]?S.templates[d.id]:{...d.data()}});
-    Object.keys(S.templates).forEach(id=>{if(busy('t:'+id)&&S.templates[id]&&!next[id])next[id]=S.templates[id]});
-    S.templates=next;renderAll();
-  },onSubErr);
-  db.collection('personas').onSnapshot(snap=>{
-    snap.docs.forEach(d=>{exists[d.id]=true;if(busy('p:'+d.id))return;S.people[d.id]=normPerson(clone(d.data()||{}));});
-    renderAll();
-  },onSubErr);
-  db.collection('archivos').onSnapshot(snap=>{const n={};snap.docs.forEach(d=>n[d.id]={...d.data()});S.files=n;renderAll();},onSubErr);
+  db.doc('ajustes/general').onSnapshot(s=>{if(busy('s'))return;S.web=(s.exists&&s.data().web)||'';renderAll();},onErr);
+  PEOPLE.forEach(p=>db.doc('plantillas/'+p.id).onSnapshot(s=>{if(busy('t:'+p.id))return;if(s.exists)S.tpl[p.id]={...s.data()};else delete S.tpl[p.id];renderAll();},onErr));
+  db.collection('personas').onSnapshot(snap=>{snap.docs.forEach(d=>{exists[d.id]=true;if(busy('p:'+d.id)||acc[d.id])return;const v=clone(d.data()||{});S.people[d.id]={firma:v.firma||'',contactos:isObj(v.contactos)?v.contactos:{}};});renderAll();},onErr);
 }
-function onSubErr(){S.mode='error';renderStatus();}
+function onErr(){S.mode='error';renderStatus();}
 
 /* ---------- texto ---------- */
-function vars(c,pid=ui.active){const p=S.people[pid]||{};
-  return {nombre:(c.nombre||'').trim(),empresa:(c.empresa||'').trim(),web:(S.settings.web||'').trim(),firma:(p.firma||'').trim()||pname(pid),mi_nombre:pname(pid)};}
-const MISSING={empresa:'[EMPRESA]',web:'[ENLACE WEB]'};
-function fill(str,c,pid){const v=vars(c,pid);
-  return String(str||'').replace(/\{(\w+)\}/g,(m,k)=>k in v?(v[k]||MISSING[k]||''):m).replace(/(¡?Hola)\s+([:,!])/g,'$1$2');}
-function missing(t,c){const v=vars(c),need=[],all=(t.asunto||'')+(t.cuerpo||'');
-  if(all.includes('{empresa}')&&!v.empresa)need.push('el nombre de la empresa');
-  if(all.includes('{web}')&&!v.web)need.push('el enlace a la web (en Ajustes)');
-  if(all.includes('{nombre}')&&!v.nombre)need.push('el nombre de la persona');return need;}
+function fill(str,c,pid=ui.active){
+  const p=S.people[pid];const v={nombre:cap(c.nombre),empresa:(c.empresa||'').trim()||'[EMPRESA]',web:(S.web||'').trim()||'[ENLACE WEB]',firma:(p.firma||'').trim()||pname(pid),mi_nombre:pname(pid)};
+  return String(str||'').replace(/\{(\w+)\}/g,(m,k)=>k in v?v[k]:m).replace(/(¡?Hola)\s+([:,!])/g,'$1$2');
+}
 const mark=s=>esc(s).replace(/\[(EMPRESA|ENLACE WEB)\]/g,'<mark>[$1]</mark>');
-const reminderTpl=()=>myTemplates().find(t=>/recordatorio/i.test(t.nombre));
-function tplFor(c){const ts=myTemplates();const own=ts.find(t=>t.id===c.tipo);
-  if(tocaRecordatorio(c)&&reminderTpl())return reminderTpl();return own||ts[0]||null;}
 
-/* ---------- copiar / toast ---------- */
 function copy(text,label){
   const done=()=>toast(label+' copiado');
-  const fallback=()=>{const t=$('#clip');t.value=text;t.select();try{document.execCommand('copy');done()}catch(e){toast('Selecciona el texto y cópialo a mano')}};
-  try{navigator.clipboard.writeText(text).then(done,fallback)}catch(e){fallback()}
+  const fb=()=>{const t=$('#clip');t.value=text;t.select();try{document.execCommand('copy');done()}catch(e){toast('Selecciona el texto y cópialo a mano')}};
+  try{navigator.clipboard.writeText(text).then(done,fb)}catch(e){fb()}
 }
 let tt;function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('show'),2000);}
-const fmtDate=iso=>{if(!iso)return '';const d=new Date(iso);return d.toLocaleDateString('es-ES',{day:'numeric',month:'short'});};
-const fmtSize=b=>b>1048576?(b/1048576).toFixed(1).replace('.',',')+' MB':Math.max(1,Math.round(b/1024))+' KB';
 
 /* ---------- render ---------- */
 function renderStatus(){
   const map={connecting:['','Conectando…'],db:['on','Guardado y compartido con el equipo'],local:['local','Guardado solo en este navegador'],error:['local','Sin conexión: los cambios pueden no guardarse']};
-  let [cls,txt]=map[S.mode]||map.connecting;if(S.readonly){cls='local';txt='Solo lectura'}
-  if(S.mode==='db'&&!S.readonly){if(anyBusy())txt='Guardando…';else if(S.savedAt&&Date.now()-S.savedAt<4000)txt='Cambios guardados ✓';}
+  let [cls,txt]=map[S.mode]||map.connecting;if(S.readonly){cls='local';txt='Solo lectura: pide acceso de Colaborador'}
+  else if(S.mode==='db'){if(anyBusy())txt='Guardando…';else if(S.savedAt&&Date.now()-S.savedAt<4000)txt='Cambios guardados ✓';}
   $('#status').innerHTML=`<span class="dot ${cls}"></span><span>${txt}</span>`;
 }
-let rs;function renderSaving(){renderStatus();clearTimeout(rs);rs=setTimeout(renderStatus,4200);}
 function renderPeople(){
-  $('#people').innerHTML=PEOPLE.map(p=>{const cs=contacts(p.id);const done=cs.filter(c=>c.estado!=='pendiente').length;const due=cs.filter(tocaRecordatorio).length;
-    return `<button class="person-tab" role="tab" data-p="${p.id}" aria-selected="${p.id===ui.active}">${p.name}<small>${cs.length?done+'/'+cs.length:''}${due?' · '+due+' recordar':''}</small></button>`}).join('');
+  $('#people').innerHTML=PEOPLE.map(p=>{const cs=contacts(p.id);const n=cs.filter(c=>c.enviado).length;
+    return `<button class="person-tab" role="tab" data-p="${p.id}" aria-selected="${p.id===ui.active}">${p.name}<small>${cs.length?n+'/'+cs.length:''}</small></button>`}).join('');
 }
-function renderViews(){
-  document.querySelectorAll('#views button').forEach(b=>b.setAttribute('aria-selected',b.dataset.view===ui.view));
-  ['contactos','importar','plantillas','archivos','ajustes'].forEach(v=>$('#v-'+v).hidden=v!==ui.view);
-}
-function filtered(){const q=ui.q.trim().toLowerCase();const f=(FILTERS.find(x=>x[0]===ui.filter)||FILTERS[0])[2];
-  return contacts().filter(c=>f(c)&&(!q||[c.empresa,c.nombre,c.email,c.nota].join(' ').toLowerCase().includes(q)));}
 function renderList(){
-  const name=pname(ui.active),cs=contacts(),done=cs.filter(c=>c.estado!=='pendiente').length;
-  $('#list-title').textContent='Contactos de '+name;
-  $('#count').textContent=done+'/'+cs.length;$('#bar').style.width=(cs.length?done/cs.length*100:0)+'%';
-  $('#chips').innerHTML=FILTERS.map(([k,l,f])=>{const n=cs.filter(f).length;return `<button class="chip" data-f="${k}" aria-pressed="${ui.filter===k}">${l}<span class="n">${n}</span></button>`}).join('');
-  $('#howto').hidden=cs.length>0;
-  const list=$('#list');
-  if(!cs.length){list.innerHTML=`<div class="empty"><h3>Aún no hay contactos de ${esc(name)}</h3><p>Sube tu Excel o pega las filas. A la derecha tienes un ejemplo de cómo quedará el correo.</p><button class="btn primary" data-go="importar">Subir mi lista</button></div>`;return;}
-  const rows=filtered();
-  if(!rows.length){const msg={pendientes:'¡No te queda ninguno pendiente!',recordatorio:'Nadie necesita recordatorio todavía.'}[ui.filter]||'Nada coincide con la búsqueda.';list.innerHTML=`<div class="empty"><p>${msg}</p></div>`;return;}
-  list.innerHTML=rows.map(c=>{const [pc,pl]=pillOf(c);const cls=c.estado==='respondido'||c.estado==='descartado'?'done':(c.estado!=='pendiente'?'half':'');
-    return `<button class="row ${cls}" data-c="${c.id}" aria-current="${ui.sel[ui.active]===c.id}"><span class="check">${c.estado==='pendiente'?'':'✓'}</span><span class="who"><div class="co">${esc(c.empresa||c.nombre||c.email||'Sin nombre')}</div><div class="pp">${esc([c.nombre,c.email].filter(Boolean).join(' · ')||'—')}</div></span><span class="row-meta"><span class="pill ${pc}">${pl}</span>${c.enviadoEn?`<span class="pp">${fmtDate(c.enviadoEn)}</span>`:''}</span></button>`}).join('');
+  const cs=contacts(),sent=cs.filter(c=>c.enviado).length;
+  $('#count').textContent=`${sent} de ${cs.length} enviados`;$('#bar').style.width=(cs.length?sent/cs.length*100:0)+'%';
+  $('#hide-sent').checked=ui.hideSent;
+  const q=ui.q.trim().toLowerCase();
+  const vis=cs.filter(c=>(!ui.hideSent||c.enviado!==true||c.id===ui.sel[ui.active])&&(!q||[c.nombre,c.apellidos,c.empresa,c.email,c.cargo].join(' ').toLowerCase().includes(q)));
+  if(!cs.length){$('#list').innerHTML=`<div class="empty"><h3>Aún no hay contactos de ${esc(pname(ui.active))}</h3><p>Añade uno a mano aquí abajo.</p></div>`;return;}
+  if(!vis.length){$('#list').innerHTML=`<div class="empty"><p>${q?'Nadie coincide con la búsqueda.':'¡Ya has enviado todos!'}</p></div>`;return;}
+  let html='';
+  TIERS.forEach(([t,label])=>{const g=vis.filter(c=>(c.tier||'M')===t);if(!g.length)return;const all=cs.filter(c=>(c.tier||'M')===t);
+    html+=`<div class="tier-h"><span class="tier-badge t${t}">${t==='M'?'✎':t}</span>${label}<span class="tier-n">${all.filter(c=>c.enviado).length}/${all.length}</span></div>`;
+    let lastCo=null;
+    g.forEach(c=>{const co=(c.empresa||'').trim();
+      if(co!==lastCo){html+=`<div class="co-h">${esc(co||'Sin empresa')}</div>`;lastCo=co;}
+      html+=`<div class="crow ${c.enviado?'sent':''}" aria-current="${ui.sel[ui.active]===c.id}">
+        <input type="checkbox" class="sent-cb" data-sent="${c.id}" ${c.enviado?'checked':''} aria-label="Enviado a ${esc(cap(c.nombre))}">
+        <button class="pick" data-c="${c.id}"><span class="nm">${esc(cap(c.nombre))} ${esc(c.apellidos?cap(c.apellidos):'')}</span><span class="cg">${esc(c.cargo||c.email)}</span></button>
+        ${c.n25?'<span class="flag n25" title="Compró en Navidad 2025">Navidad 25</span>':''}${c.verificar?'<span class="flag ver" title="'+esc(c.verificar)+'">Verificar</span>':''}
+      </div>`;});
+  });
+  $('#list').innerHTML=html;
 }
-function currentContact(){return contacts().find(c=>c.id===ui.sel[ui.active])||null;}
-function waLink(tel,text){const n=String(tel||'').replace(/[^\d+]/g,'').replace(/^\+/,'').replace(/^00/,'');if(n.length<9)return '';return `https://wa.me/${n.length===9?'34'+n:n}?text=${encodeURIComponent(text)}`;}
-function catalogFile(){const f=S.files[S.settings.catalogo];return f||null;}
-function renderPreview(force){
-  const box=$('#preview'),ts=myTemplates();
-  let c=currentContact();const isEx=!c;if(isEx)c=EXAMPLE;
-  if(!ts.length){box.innerHTML=`<div class="empty"><h3>${esc(pname(ui.active))} todavía no tiene plantillas</h3><p>Carga las plantillas base y adáptalas a tu manera de escribir.</p><button class="btn primary" data-act="load-defaults">Cargar plantillas base</button></div>`;return;}
-  if(!force&&!isEx&&ui.editing&&document.activeElement&&document.activeElement.matches('[data-cf]'))return;
-  const t=tplFor(c);const subj=fill(t.asunto,c),body=fill(t.cuerpo,c),need=missing(t,c);
-  const gmail=c.email&&subj?`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(c.email)}&su=${encodeURIComponent(subj)}&body=${encodeURIComponent(body)}`:'';
-  const wa=!t.asunto?waLink(c.tel,body):'';
-  const cat=catalogFile();const [pc,pl]=pillOf(c);
-  const st=c.estado;
-  const stateBtns=isEx?'':(st==='pendiente'?`<button class="btn primary" data-act="state" data-to="enviado">Marcar enviado y siguiente</button>`
-    :`${tocaRecordatorio(c)?`<button class="btn primary" data-act="state" data-to="recordado">Recordatorio enviado</button>`:''}
-      <button class="btn" data-act="state" data-to="respondido">Ha respondido</button>
-      <button class="btn" data-act="state" data-to="descartado">No le interesa</button>
-      <button class="btn ghost" data-act="state" data-to="pendiente">Volver a pendiente</button>`);
+function current(){const cs=contacts();return cs.find(c=>c.id===ui.sel[ui.active])||null;}
+function renderPreview(){
+  const box=$('#preview');const c=current();
+  if(!c){box.innerHTML=`<div class="empty"><h3>Elige un contacto de la lista</h3><p>Te aparecerá su correo listo para copiar y pegar. Cuando lo envíes, márcalo con el check.</p></div>`;box._data=null;return;}
+  const t=tplOf();const subj=fill(t.asunto,c),body=fill(t.cuerpo,c);
+  const gmail=`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(c.email)}&su=${encodeURIComponent(subj)}&body=${encodeURIComponent(body)}`;
   box.innerHTML=`
-  <div class="panel-h"><h2>${isEx?'<span class="example-flag">Ejemplo</span> ':''}${esc(c.empresa||c.nombre||'Contacto')} ${isEx?'':`<span class="pill ${pc}">${pl}</span>`}</h2>
-    <div class="field" style="flex-direction:row;align-items:center;gap:8px"><label for="pv-tpl">Plantilla</label>
-    <select id="pv-tpl" ${isEx?'disabled':''} style="width:auto">${ts.map(x=>`<option value="${x.id}" ${x.id===t.id?'selected':''}>${esc(x.nombre)}</option>`).join('')}</select></div></div>
+  <div class="panel-h"><h2>${esc(cap(c.nombre))} ${esc(c.apellidos?cap(c.apellidos):'')} <span class="muted">· ${esc(c.empresa)}</span></h2>
+    <label class="sent-big ${c.enviado?'on':''}"><input type="checkbox" data-sent="${c.id}" ${c.enviado?'checked':''}> ${c.enviado?'Enviado':'Marcar como enviado'}</label></div>
   <div class="panel-b mail">
-    ${isEx?`<p class="note warn">Así quedará el correo. Elige un contacto de tu lista para tener el tuyo.</p>`:''}
-    ${tocaRecordatorio(c)&&!isEx?`<p class="note warn">Le escribiste el ${fmtDate(c.enviadoEn)} y no ha contestado: te propongo el recordatorio en el mismo hilo.</p>`:''}
-    ${need.length&&!isEx?`<p class="note warn">Falta ${need.join(', ')}. Revisa lo marcado en amarillo antes de enviar.</p>`:''}
-    ${c.email?`<div class="mail-line"><span class="k">Para</span><span class="v">${esc(c.email)}</span><button class="btn small" data-copy="to">Copiar</button></div>`:''}
-    ${t.asunto?`<div class="mail-line"><span class="k">Asunto</span><span class="v">${mark(subj)}</span><button class="btn small" data-copy="subj">Copiar</button></div>`:''}
+    ${c.verificar?`<p class="note warn">Ojo: ${esc(c.verificar)}. Confírmalo antes de enviar.</p>`:''}
+    ${!S.web?`<p class="note warn">Falta el enlace a la web: ponlo en «Editar mi correo», abajo.</p>`:''}
+    <div class="mail-line"><span class="k">Para</span><span class="v">${esc(c.email)}</span><button class="btn small" data-copy="to">Copiar</button></div>
+    <div class="mail-line"><span class="k">Asunto</span><span class="v">${mark(subj)}</span><button class="btn small" data-copy="subj">Copiar</button></div>
     <div class="body">${mark(body)}</div>
     <div class="actions">
       <button class="btn primary" data-copy="body">Copiar texto</button>
-      ${gmail&&!isEx?`<a class="btn" href="${esc(gmail)}" target="_blank" rel="noopener">Abrir en Gmail</a>`:''}
-      ${wa&&!isEx?`<a class="btn" href="${esc(wa)}" target="_blank" rel="noopener">Abrir en WhatsApp</a>`:''}
-      ${cat&&t.asunto?`<button class="btn" data-act="dl-file" data-id="${esc(S.settings.catalogo)}">Descargar catálogo para adjuntar</button>`:''}
+      <a class="btn" href="${esc(gmail)}" target="_blank" rel="noopener">Abrir en Gmail</a>
+      ${c.tier==='M'?`<button class="btn ghost danger small" data-act="del">Quitar contacto</button>`:''}
     </div>
-    ${t.asunto&&!cat?`<p class="note">📎 Acuérdate de adjuntar el catálogo PDF. Si lo subes en Archivos y lo marcas como catálogo, lo tendrás aquí a un clic.</p>`:''}
-    ${isEx?'':`<div class="status-actions">${stateBtns}<button class="btn ghost" data-act="edit">${ui.editing?'Cerrar datos':'Editar datos y notas'}</button></div>
-    ${ui.editing?`<div class="edit-box fields two">
-      <div class="field"><label for="c-empresa">Empresa</label><input id="c-empresa" data-cf="empresa" value="${esc(c.empresa)}"></div>
-      <div class="field"><label for="c-nombre">Nombre</label><input id="c-nombre" data-cf="nombre" value="${esc(c.nombre)}"></div>
-      <div class="field"><label for="c-email">Email</label><input id="c-email" data-cf="email" type="email" value="${esc(c.email)}"></div>
-      <div class="field"><label for="c-tel">Teléfono</label><input id="c-tel" data-cf="tel" type="tel" value="${esc(c.tel)}"></div>
-      <div class="field" style="grid-column:1/-1"><label for="c-nota">Notas (solo para ti, no salen en el correo)</label><textarea id="c-nota" data-cf="nota" rows="2">${esc(c.nota)}</textarea></div>
-      <div>${ui.confirm==='delc:'+c.id?`<span class="confirm">¿Quitar de la lista? <button class="btn small danger" data-act="delc-yes">Sí, quitar</button><button class="btn small ghost" data-act="cancel">No</button></span>`:`<button class="btn small ghost danger" data-act="delc">Quitar contacto</button>`}</div>
-    </div>`:(c.nota?`<p class="note">📝 ${esc(c.nota)}</p>`:'')}`}
+    <p class="note">📎 Acuérdate de adjuntar el catálogo PDF.</p>
   </div>`;
-  box._data={subj,body,to:c.email||''};
+  box._data={to:c.email,subj,body};
 }
-function renderTemplates(){
-  const ts=myTemplates(),name=pname(ui.active);
-  $('#tpl-title').textContent='Plantillas de '+name;
-  if(!ui.tplSel[ui.active]||!S.templates[ui.tplSel[ui.active]])ui.tplSel[ui.active]=ts[0]?ts[0].id:null;
-  const cs=contacts();
-  $('#tpl-list').innerHTML=ts.length?ts.map(t=>`<button class="row" data-t="${t.id}" aria-current="${t.id===ui.tplSel[ui.active]}"><span class="who"><div class="co">${esc(t.nombre||'Sin nombre')}</div><div class="pp">${esc(t.asunto||'Sin asunto (mensaje corto)')}</div></span><span class="tag">${cs.filter(c=>(c.tipo||ts[0].id)===t.id).length} contactos</span></button>`).join('')
-    :`<div class="empty"><p>Sin plantillas todavía.</p><button class="btn primary" data-act="load-defaults">Cargar plantillas base</button></div>`;
-  renderEditor();
+function renderEditor(){
+  const t=tplOf();$('#edit-who').textContent='de '+pname(ui.active);
+  [['e-asunto',t.asunto],['e-cuerpo',t.cuerpo],['e-firma',S.people[ui.active].firma||''],['s-web',S.web]].forEach(([id,v])=>{const el=$('#'+id);if(document.activeElement!==el)el.value=v;});
+  $('#e-firma').placeholder=pname(ui.active)+'\nGravity Wave';
 }
-function baseIndex(id){const m=/-base(\d)$/.exec(id||'');return m?+m[1]-1:-1;}
-function renderEditor(force){
-  const ed=$('#tpl-editor'),id=ui.tplSel[ui.active],t=id&&S.templates[id];
-  if(!force&&ed.contains(document.activeElement)&&ed.dataset.id===id){renderEditorPreview();return;}
-  ed.dataset.id=id||'';
-  if(!t){ed.innerHTML=`<div class="empty"><h3>Elige o crea una plantilla</h3><p>Cada plantilla es un tipo de cliente. Escríbela a tu manera: los datos de cada contacto se rellenan solos.</p></div>`;return;}
-  const others=PEOPLE.filter(p=>p.id!==ui.active);const bi=baseIndex(id);
-  ed.innerHTML=`
-  <div class="panel-h"><h2>Editar plantilla</h2><div class="actions">
-    <button class="btn small" data-act="dup">Duplicar</button>
-    ${others.map(p=>`<button class="btn small" data-act="copy-to" data-to="${p.id}">Copiar a ${p.name}</button>`).join('')}
-    ${bi>=0?`<button class="btn small ghost" data-act="restore">Volver al texto base</button>`:''}
-    ${ui.confirm==='del:'+id?`<span class="confirm">¿Borrar? <button class="btn small danger" data-act="del-yes">Sí, borrar</button><button class="btn small ghost" data-act="cancel">No</button></span>`:`<button class="btn small ghost danger" data-act="del">Borrar</button>`}
-  </div></div>
-  <div class="panel-b fields">
-    <div class="field"><label for="e-nombre">Tipo de cliente (nombre de la plantilla)</label><input id="e-nombre" value="${esc(t.nombre)}"></div>
-    <div class="field"><label for="e-asunto">Asunto <span style="font-weight:500">(déjalo vacío para WhatsApp o LinkedIn)</span></label><input id="e-asunto" value="${esc(t.asunto)}"></div>
-    <div class="field"><label for="e-cuerpo">Texto</label><textarea id="e-cuerpo" rows="16">${esc(t.cuerpo)}</textarea></div>
-    <div class="field"><label>Inserta un dato (se rellena solo con cada contacto)</label><div class="vars">${VARS.map(([v,l])=>`<button class="var" data-var="${v}" title="${l}">${v}</button>`).join('')}</div></div>
-    <div><div class="eyebrow" style="margin-bottom:6px">Vista previa con un ejemplo</div><div class="body" id="e-prev"></div></div>
-  </div>`;
-  renderEditorPreview();
-}
-function renderEditorPreview(){const id=ui.tplSel[ui.active],t=S.templates[id],el=$('#e-prev');if(!t||!el)return;
-  el.innerHTML=(t.asunto?'<b>'+mark(fill(t.asunto,EXAMPLE))+'</b>\n\n':'')+mark(fill(t.cuerpo,EXAMPLE));}
-function renderImport(){
-  $('#imp-title').textContent='Subir lista de contactos de '+pname(ui.active);
-  const ts=myTemplates();$('#m-tipo').innerHTML=ts.map(t=>`<option value="${t.id}">${esc(t.nombre)}</option>`).join('');
-  renderMapping();
-  const n=contacts().length;
-  $('#danger-zone').innerHTML=n?(ui.confirm==='clear'?`<span class="confirm">¿Borrar los ${n} contactos de ${esc(pname(ui.active))}? <button class="btn small danger" data-act="clear-yes">Sí, vaciar</button><button class="btn small ghost" data-act="cancel">No</button></span>`:`Tienes ${n} contactos guardados. <button class="btn small ghost danger" data-act="clear">Vaciar mi lista</button>`):'';
-}
-const FOLDERS=()=>[{id:'comun',name:'Catálogo y material común'},...PEOPLE.map(p=>({id:p.id,name:'Archivos de '+p.name}))];
-function renderFiles(){
-  const sel=$('#up-folder');const cur=sel.value||ui.active;
-  sel.innerHTML=FOLDERS().map(f=>`<option value="${f.id}" ${f.id===cur?'selected':''}>${esc(f.name)}</option>`).join('');
-  $('#up-file').disabled=!assets;
-  $('#up-note').innerHTML=assets?'Los archivos solo los ve el equipo. Sube el catálogo PDF a la carpeta común y márcalo como catálogo para tenerlo a un clic al escribir.':(S.mode==='db'?'Para subir o borrar archivos necesitas permiso de edición en esta página. Pídeselo a quien la comparte.':'Los archivos solo se pueden guardar en la página publicada.');
-  const all=Object.entries(S.files).map(([id,f])=>({id,...f}));
-  $('#files').innerHTML=FOLDERS().map(fo=>{const fs=all.filter(f=>f.carpeta===fo.id).sort((a,b)=>String(a.nombre).localeCompare(b.nombre,'es'));
-    return `<div class="folder"><div class="folder-h"><h3><span class="ic" aria-hidden="true"></span>${esc(fo.name)}</h3><span class="pp" style="font-size:12.5px;color:var(--muted)">${fs.length} ${fs.length===1?'archivo':'archivos'}</span></div>
-      ${fs.length?fs.map(f=>{const ext=(String(f.nombre).split('.').pop()||'').slice(0,4);const isCat=S.settings.catalogo===f.id;
-        return `<div class="file"><span class="ext">${esc(ext)}</span><div style="min-width:0"><div class="fn">${esc(f.nombre)}${isCat?'<span class="star">★ Catálogo</span>':''}</div><div class="fm">${fmtSize(f.size||0)} · ${fmtDate(f.subidoEn)}${f.por?' · '+esc(pname(f.por)):''}</div></div>
-        <div class="actions">${/pdf/i.test(f.tipo||'')&&!isCat?`<button class="btn small ghost" data-act="set-cat" data-id="${f.id}">Usar como catálogo</button>`:''}
-          <button class="btn small" data-act="dl-file" data-id="${f.id}">Descargar</button>
-          ${assets?(ui.confirm==='delf:'+f.id?`<span class="confirm"><button class="btn small danger" data-act="delf-yes" data-id="${f.id}">Sí, borrar</button><button class="btn small ghost" data-act="cancel">No</button></span>`:`<button class="btn small ghost danger" data-act="delf" data-id="${f.id}">Borrar</button>`):''}</div></div>`}).join('')
-      :`<div class="empty" style="padding:16px"><p style="margin:0">Vacía</p></div>`}</div>`}).join('');
-}
-async function refreshMeter(){if(!assets)return;try{const r=await assets.list();const u=r.usage;const pct=u.maxBytes?u.bytes/u.maxBytes*100:0;
-  const used=new Set(Object.values(S.files).map(f=>f.assetId));const orphans=r.assets.filter(a=>!used.has(a.id));
-  $('#meter').innerHTML=`<span>${fmtSize(u.bytes)} de ${fmtSize(u.maxBytes)}</span><span class="bar"><i style="width:${pct.toFixed(1)}%"></i></span>${orphans.length?`<button class="btn small ghost" data-act="clean">Limpiar ${orphans.length} sin uso</button>`:''}`;
-  $('#meter')._orphans=orphans.map(a=>a.id);}catch(e){}}
-function renderSettings(){
-  const w=$('#s-web'),f=$('#s-firma'),d=$('#s-dias');
-  if(document.activeElement!==w)w.value=S.settings.web||'';
-  if(document.activeElement!==f)f.value=P().firma||'';
-  if(document.activeElement!==d)d.value=dias();
-  f.placeholder=pname(ui.active)+'\nGravity Wave\nTeléfono';
-  $('#s-firma-l').textContent='Firma de '+pname(ui.active);
-}
-function renderAll(){renderStatus();renderPeople();renderViews();
-  if(ui.view==='contactos'){renderList();renderPreview();}
-  if(ui.view==='plantillas')renderTemplates();
-  if(ui.view==='importar')renderImport();
-  if(ui.view==='archivos')renderFiles();
-  if(ui.view==='ajustes')renderSettings();
-}
+function renderAll(){renderStatus();renderPeople();renderList();renderPreview();renderEditor();}
 
 /* ---------- acciones ---------- */
-function loadDefaults(pid=ui.active){
-  const have=myTemplates(pid).map(t=>t.nombre);
-  defaults().forEach((d,i)=>{if(have.includes(d.nombre))return;const id=pid+'-base'+(i+1);S.templates[id]={...d,persona:pid,orden:i};saveTemplate(id);});
-  renderAll();toast('Plantillas base cargadas');
-}
-function selectNextPending(){const cs=contacts(),i=cs.findIndex(c=>c.id===ui.sel[ui.active]);
-  const next=cs.slice(i+1).find(c=>c.estado==='pendiente')||cs.find(c=>c.estado==='pendiente');if(next)ui.sel[ui.active]=next.id;}
-function setState(to){const c=currentContact();if(!c)return;const now=new Date().toISOString();const f={estado:to};
-  if(to==='enviado')f.enviadoEn=now;if(to==='recordado')f.recordadoEn=now;if(to==='pendiente'){f.enviadoEn=null;f.recordadoEn=null;}
-  patchContact(c.id,f);if(to==='enviado'){selectNextPending();toast('Marcado como enviado');}else toast(ESTADOS[to]);
-  saveUi();renderPeople();renderList();renderPreview();}
-async function downloadFile(id){const f=S.files[id];if(!f)return;
-  if(!downloads){toast('Las descargas no están disponibles en esta vista');return;}
-  try{const r=await fetch('/_blob/'+f.assetId);if(!r.ok)throw 0;const b=await r.blob();await downloads.save({filename:f.nombre,data:b});}
-  catch(e){if(e&&e.code==='cancelled')return;toast('No se ha podido descargar');}}
-async function exportList(){const cs=contacts();if(!cs.length){toast('Tu lista está vacía');return;}
-  if(!downloads){toast('Las descargas no están disponibles en esta vista');return;}
-  const ts=myTemplates();const q=v=>'"'+String(v??'').replace(/"/g,'""')+'"';
-  const rows=[['Empresa','Nombre','Email','Teléfono','Tipo','Estado','Enviado','Notas'],...cs.map(c=>[c.empresa,c.nombre,c.email,c.tel,(ts.find(t=>t.id===c.tipo)||{}).nombre||'',pillOf(c)[1],c.enviadoEn?new Date(c.enviadoEn).toLocaleDateString('es-ES'):'',c.nota])];
-  const csv='﻿'+rows.map(r=>r.map(q).join(';')).join('\r\n');
-  try{await downloads.save({filename:`contactos-navidad-${ui.active}.csv`,data:csv});}catch(e){if(!(e&&e.code==='cancelled'))toast('No se ha podido descargar');}}
-const TYPES={pdf:'application/pdf',png:'image/png',jpg:'image/jpeg',jpeg:'image/jpeg',webp:'image/webp',gif:'image/gif',svg:'image/svg+xml',csv:'text/csv',txt:'text/plain',md:'text/markdown',json:'application/json',mp4:'video/mp4'};
-function cleanName(n){return String(n||'archivo').normalize('NFC').replace(/[\\/:*?"<>|]+/g,'-').replace(/\s+/g,' ').trim().slice(0,120);}
-async function storeFile(blob,name,folder,silent){
-  if(!assets||!db){if(!silent)toast('No puedes subir archivos desde esta vista');return false;}
-  name=cleanName(name);const ext=(name.split('.').pop()||'').toLowerCase();const type=TYPES[ext];
-  if(!type){if(!silent)toast('Ese tipo de archivo no se puede guardar. Usa PDF, imagen, CSV o texto');return false;}
-  const prev=Object.entries(S.files).find(([,f])=>f.carpeta===folder&&String(f.nombre).toLowerCase()===name.toLowerCase());
-  try{
-    if(!silent)toast('Subiendo '+name+'…');
-    const r=await assets.upload(blob,{type});
-    const id=prev?prev[0]:uid();
-    const doc={nombre:name,carpeta:folder,assetId:r.id,size:r.sizeBytes,tipo:r.contentType,subidoEn:new Date().toISOString(),por:ui.active};
-    S.files[id]=doc;await db.collection('archivos').doc(id).set(doc);
-    if(prev&&prev[1].assetId&&prev[1].assetId!==r.id){try{await assets.delete(prev[1].assetId)}catch(e){}}
-    if(!silent)toast(prev?'Sustituido: '+name:'Guardado en '+(FOLDERS().find(f=>f.id===folder)||{}).name);
-    renderAll();refreshMeter();return true;
-  }catch(e){if(!silent)toast({too_large:'El archivo pasa de 20 MB',unsupported_type:'Ese tipo de archivo no se puede guardar',quota_or_state:'No queda espacio: borra archivos que ya no uséis',rate_limited:'Demasiadas subidas seguidas, espera un momento'}[e&&e.code]||'No se ha podido subir');return false;}
-}
-async function deleteFile(id){const f=S.files[id];if(!f)return;
-  try{await db.collection('archivos').doc(id).delete();delete S.files[id];if(S.settings.catalogo===id){S.settings.catalogo='';saveSettings();}
-    try{await assets.delete(f.assetId)}catch(e){}toast('Archivo borrado');}catch(e){toast('No se ha podido borrar')}
-  ui.confirm=null;renderAll();refreshMeter();}
-
+function setSent(id,val){const pid=ui.active;patchPerson(pid,{contactos:{[id]:{enviado:val,enviadoEn:val?new Date().toISOString():null}}});
+  if(val&&ui.sel[pid]===id){const cs=contacts(pid),i=cs.findIndex(c=>c.id===id);const nx=cs.slice(i+1).find(c=>!c.enviado);if(nx)ui.sel[pid]=nx.id;saveUi();}
+  toast(val?'Marcado como enviado':'Desmarcado');renderAll();}
 document.addEventListener('click',e=>{
-  const b=e.target.closest('button,[data-go]');if(!b)return;
-  if(b.dataset.p){ui.active=b.dataset.p;ui.confirm=null;ui.mapping=null;ui.editing=false;history.replaceState(null,'','#'+ui.active);saveUi();renderAll();return;}
-  if(b.dataset.view){ui.view=b.dataset.view;ui.confirm=null;saveUi();renderAll();if(ui.view==='archivos')refreshMeter();return;}
-  if(b.dataset.go){ui.view=b.dataset.go;saveUi();renderAll();return;}
-  if(b.dataset.f){ui.filter=b.dataset.f;saveUi();renderList();return;}
-  if(b.dataset.c){ui.sel[ui.active]=b.dataset.c;ui.confirm=null;saveUi();renderList();renderPreview();if(innerWidth<860)$('#preview').scrollIntoView({behavior:'smooth',block:'start'});return;}
-  if(b.dataset.t){ui.tplSel[ui.active]=b.dataset.t;ui.confirm=null;saveUi();renderTemplates();renderEditor(true);return;}
-  if(b.dataset.copy){const d=$('#preview')._data||{};
-    if(b.dataset.copy==='to')copy(d.to,'Email');if(b.dataset.copy==='subj')copy(d.subj,'Asunto');if(b.dataset.copy==='body')copy(d.body,'Texto');return;}
-  if(b.dataset.var){const ta=$('#e-cuerpo');if(!ta)return;const s=ta.selectionStart??ta.value.length,en=ta.selectionEnd??s;
-    ta.value=ta.value.slice(0,s)+b.dataset.var+ta.value.slice(en);ta.focus();ta.selectionStart=ta.selectionEnd=s+b.dataset.var.length;ta.dispatchEvent(new Event('input',{bubbles:true}));return;}
-  const act=b.dataset.act;if(!act)return;
-  const id=ui.tplSel[ui.active];
-  switch(act){
-    case 'load-defaults':loadDefaults();break;
-    case 'state':setState(b.dataset.to);break;
-    case 'edit':ui.editing=!ui.editing;ui.confirm=null;renderPreview(true);break;
-    case 'delc':ui.confirm='delc:'+ui.sel[ui.active];renderPreview(true);break;
-    case 'delc-yes':{const c=currentContact();if(c){patchContact(c.id,{borrado:true});ui.sel[ui.active]=null;selectNextPending();}ui.confirm=null;ui.editing=false;renderAll();toast('Contacto quitado');break;}
-    case 'dup':{const t=S.templates[id];const nid=ui.active+'-'+uid();S.templates[nid]={...t,nombre:t.nombre+' (copia)',orden:(t.orden||0)+.5};saveTemplate(nid);ui.tplSel[ui.active]=nid;renderTemplates();renderEditor(true);toast('Plantilla duplicada');break;}
-    case 'copy-to':{const t=S.templates[id],to=b.dataset.to;const nid=to+'-'+uid();S.templates[nid]={...t,persona:to,orden:myTemplates(to).length};saveTemplate(nid);toast('Copiada a '+pname(to));break;}
-    case 'restore':{const d=defaults()[baseIndex(id)];if(d){Object.assign(S.templates[id],{asunto:d.asunto,cuerpo:d.cuerpo});saveTemplate(id);renderTemplates();renderEditor(true);toast('Texto base recuperado');}break;}
-    case 'del':ui.confirm='del:'+id;renderEditor(true);break;
-    case 'del-yes':delete S.templates[id];saveTemplate(id);ui.confirm=null;ui.tplSel[ui.active]=null;renderTemplates();renderEditor(true);toast('Plantilla borrada');break;
-    case 'clear':ui.confirm='clear';renderImport();break;
-    case 'clear-yes':P().contactos={};replacePerson(ui.active);ui.confirm=null;renderAll();toast('Lista vaciada');break;
-    case 'cancel':ui.confirm=null;renderAll();renderEditor(true);break;
-    case 'import-add':case 'import-replace':doImport(act==='import-replace');break;
-    case 'import-cancel':ui.mapping=null;renderMapping();break;
-    case 'export':exportList();break;
-    case 'dl-file':downloadFile(b.dataset.id);break;
-    case 'set-cat':S.settings.catalogo=b.dataset.id;saveSettings();renderAll();toast('Marcado como catálogo');break;
-    case 'delf':ui.confirm='delf:'+b.dataset.id;renderFiles();break;
-    case 'delf-yes':deleteFile(b.dataset.id);break;
-    case 'clean':{const ids=$('#meter')._orphans||[];(async()=>{for(const a of ids){try{await assets.delete(a)}catch(e){}}toast(ids.length+' archivos sin uso borrados');refreshMeter();})();break;}
-  }
+  const b=e.target.closest('button');if(!b)return;
+  if(b.dataset.p){ui.active=b.dataset.p;history.replaceState(null,'','#'+ui.active);saveUi();renderAll();return;}
+  if(b.dataset.c){ui.sel[ui.active]=b.dataset.c;saveUi();renderList();renderPreview();if(innerWidth<860)$('#preview').scrollIntoView({behavior:'smooth',block:'start'});return;}
+  if(b.dataset.copy){const d=$('#preview')._data;if(!d)return;({to:()=>copy(d.to,'Correo'),subj:()=>copy(d.subj,'Asunto'),body:()=>copy(d.body,'Texto')})[b.dataset.copy]();return;}
+  if(b.dataset.act==='restore'){S.tpl[ui.active]={...BASE};saveTpl(ui.active);renderAll();toast('Texto base recuperado');}
+  if(b.dataset.act==='del'){const c=current();if(c&&c.tier==='M'){patchPerson(ui.active,{contactos:{[c.id]:{borrado:true}}});ui.sel[ui.active]=null;renderAll();toast('Contacto quitado');}}
 });
-$('#tpl-new').addEventListener('click',()=>{const nid=ui.active+'-'+uid();S.templates[nid]={persona:ui.active,nombre:'Nuevo tipo de cliente',asunto:'',cuerpo:'Hola {nombre}:\n\n\n\nUn abrazo,\n{firma}',orden:myTemplates().length};saveTemplate(nid);ui.tplSel[ui.active]=nid;renderTemplates();renderEditor(true);$('#e-nombre').select();});
 document.addEventListener('change',e=>{
-  if(e.target.id==='pv-tpl'){const c=currentContact();if(c){patchContact(c.id,{tipo:e.target.value});renderList();renderPreview();}}
-  if(e.target.dataset.map){ui.mapping.map[e.target.dataset.map]=e.target.value===''?-1:+e.target.value;renderMapping();}
-  if(e.target.id==='up-file'){const f=e.target.files[0];if(f)storeFile(f,f.name,$('#up-folder').value);e.target.value='';}
-});
-const timers={};const debounce=(k,fn,ms=600)=>{clearTimeout(timers[k]);timers[k]=setTimeout(fn,ms);};
-document.addEventListener('input',e=>{
   const t=e.target;
-  if(t.id==='q'){ui.q=t.value;renderList();return;}
-  if(['e-nombre','e-asunto','e-cuerpo'].includes(t.id)){const id=ui.tplSel[ui.active];const tp=S.templates[id];if(!tp)return;
-    tp[t.id.slice(2)]=t.value;renderEditorPreview();debounce('t'+id,()=>{saveTemplate(id);renderTemplates();});return;}
-  if(t.dataset.cf){const c=currentContact();if(!c)return;const k=t.dataset.cf,v=t.value,cid=c.id,pid=ui.active;
-    S.people[pid].contactos[cid][k]=v;debounce('c'+cid+k,()=>{patchContact(cid,{[k]:v},pid);renderList();});return;}
-  if(t.id==='s-web'){S.settings.web=t.value;debounce('s',saveSettings);return;}
-  if(t.id==='s-dias'){S.settings.dias=Math.max(1,Math.min(30,+t.value||7));debounce('s',saveSettings);return;}
-  if(t.id==='s-firma'){const pid=ui.active,v=t.value;S.people[pid].firma=v;debounce('f'+pid,()=>patchPerson(pid,{firma:v}));return;}
+  if(t.dataset.sent){setSent(t.dataset.sent,t.checked);return;}
+  if(t.id==='hide-sent'){ui.hideSent=t.checked;saveUi();renderList();}
 });
-document.addEventListener('focusout',e=>{if(e.target.dataset&&e.target.dataset.cf)setTimeout(()=>{if(!document.activeElement.matches('[data-cf]'))renderPreview(true);},0);});
+const timers={};const debounce=(k,fn)=>{clearTimeout(timers[k]);timers[k]=setTimeout(fn,600);};
+document.addEventListener('input',e=>{
+  const t=e.target,pid=ui.active;
+  if(t.id==='q'){ui.q=t.value;renderList();return;}
+  if(t.id==='e-asunto'||t.id==='e-cuerpo'){S.tpl[pid]=Object.assign(tplOf(pid),{[t.id==='e-asunto'?'asunto':'cuerpo']:t.value});renderPreview();debounce('t'+pid,()=>saveTpl(pid));return;}
+  if(t.id==='e-firma'){const v=t.value;S.people[pid].firma=v;renderPreview();debounce('f'+pid,()=>patchPerson(pid,{firma:v}));return;}
+  if(t.id==='s-web'){S.web=t.value;renderPreview();debounce('w',saveWeb);return;}
+});
+$('#manual').addEventListener('submit',e=>{e.preventDefault();
+  const email=$('#m-email').value.trim();
+  if(contacts().some(c=>(c.email||'').toLowerCase()===email.toLowerCase())){toast('Ese correo ya está en tu lista');return;}
+  const id='m-'+uid();const c={tier:'M',nombre:$('#m-nombre').value.trim(),apellidos:'',empresa:$('#m-empresa').value.trim(),email,cargo:'',enviado:false,orden:Date.now()};
+  patchPerson(ui.active,{contactos:{[id]:c}});e.target.reset();ui.sel[ui.active]=id;saveUi();renderAll();toast('Contacto añadido');});
 
-/* ---------- importar ---------- */
-const GUESS={empresa:/empresa|compa|cuenta|cliente|raz[oó]n|organiza|company/i,nombre:/^(nombre|contacto|persona|name|first)|nombre/i,email:/mail|correo/i,tel:/tel[eé]f|m[oó]vil|movil|phone|whatsapp/i,tipo:/tipo|segment|categor|plantilla|naturaleza|proyecto/i};
-const LABELS={empresa:'Empresa',nombre:'Nombre de la persona',email:'Email',tel:'Teléfono (opcional)',tipo:'Tipo de cliente (opcional)'};
-function startMapping(rows,fileName){
-  rows=rows.filter(r=>r&&r.some(x=>String(x??'').trim()!==''));
-  if(rows.length<2){toast('No encuentro filas: incluye la fila de títulos y al menos un contacto');return;}
-  const head=rows[0].map(x=>String(x??'').trim());const map={};
-  Object.keys(GUESS).forEach(k=>{map[k]=head.findIndex((hd,i)=>GUESS[k].test(hd)&&!Object.values(map).includes(i));});
-  if(map.email<0){const body=rows.slice(1,6);map.email=head.findIndex((_,j)=>body.some(r=>/@/.test(String(r[j]??''))));}
-  ui.mapping={head,rows:rows.slice(1),map,fileName};renderMapping();
-}
-function renderMapping(){
-  const box=$('#mapping'),m=ui.mapping;if(!m){box.innerHTML='';return;}
-  const opt=k=>`<option value="">— ninguna —</option>`+m.head.map((hd,i)=>`<option value="${i}" ${m.map[k]===i?'selected':''}>${esc(hd||'Columna '+(i+1))}</option>`).join('');
-  const get=(r,k)=>m.map[k]>=0?String(r[m.map[k]]??'').trim():'';
-  box.innerHTML=`<div class="panel" style="background:var(--bg)"><div class="panel-b fields">
-    <div class="eyebrow">${m.rows.length} filas encontradas${m.fileName?' en '+esc(m.fileName):''} · revisa qué columna es cada dato</div>
-    <div class="fields two">${Object.keys(LABELS).map(k=>`<div class="field"><label for="map-${k}">${LABELS[k]}</label><select id="map-${k}" data-map="${k}">${opt(k)}</select></div>`).join('')}</div>
-    <div class="tbl-wrap"><table><thead><tr>${Object.values(LABELS).map(l=>`<th>${esc(l.replace(' (opcional)',''))}</th>`).join('')}</tr></thead><tbody>${m.rows.slice(0,4).map(r=>`<tr>${Object.keys(LABELS).map(k=>`<td>${esc(get(r,k))}</td>`).join('')}</tr>`).join('')}</tbody></table></div>
-    <p class="note">Si la columna de tipo de cliente coincide con el nombre de una de tus plantillas, se le asigna sola. Si no, se usa la primera y la puedes cambiar contacto a contacto. Los emails repetidos no se duplican.</p>
-    <div class="actions"><button class="btn primary" data-act="import-add">Añadir a mi lista</button><button class="btn" data-act="import-replace">Sustituir mi lista</button><button class="btn ghost" data-act="import-cancel">Cancelar</button></div>
-  </div></div>`;
-}
-function matchTpl(v){v=String(v||'').toLowerCase().trim();if(!v)return '';const ts=myTemplates();
-  const t=ts.find(t=>t.nombre.toLowerCase()===v)||ts.find(t=>t.nombre.toLowerCase().includes(v)||v.includes(t.nombre.toLowerCase().split(' (')[0]));return t?t.id:'';}
-function doImport(replace){
-  const m=ui.mapping;if(!m)return;const get=(r,k)=>m.map[k]>=0?String(r[m.map[k]]??'').trim():'';const pid=ui.active;
-  const base=replace?0:contacts().reduce((x,c)=>Math.max(x,c.orden||0),0)+1;
-  const incoming=m.rows.map((r,i)=>({empresa:get(r,'empresa'),nombre:get(r,'nombre'),email:get(r,'email'),tel:get(r,'tel'),tipo:matchTpl(get(r,'tipo')),estado:'pendiente',orden:base+i})).filter(c=>c.empresa||c.nombre||c.email);
-  const seen=new Set((replace?[]:contacts()).map(c=>(c.email||'').toLowerCase()).filter(Boolean));let skipped=0;const add={};
-  incoming.forEach(c=>{const k=c.email.toLowerCase();if(k&&seen.has(k)){skipped++;return}if(k)seen.add(k);add[uid()]=c;});
-  if(replace){S.people[pid].contactos=add;replacePerson(pid);}else patchPerson(pid,{contactos:add});
-  if(assets&&m.fileName){const ts=myTemplates(pid);const q=v=>'"'+String(v??'').replace(/"/g,'""')+'"';
-    const csv='﻿'+[['Empresa','Nombre','Email','Teléfono','Tipo'],...contacts(pid).map(c=>[c.empresa,c.nombre,c.email,c.tel,(ts.find(t=>t.id===c.tipo)||{}).nombre||''])].map(r=>r.map(q).join(';')).join('\r\n');
-    storeFile(new Blob([csv],{type:'text/csv'}),`lista-contactos-${pid}.csv`,pid,true);}
-  ui.mapping=null;$('#paste').value='';ui.view='contactos';ui.filter='pendientes';
-  ui.sel[pid]=(contacts(pid).find(c=>c.estado==='pendiente')||{}).id;saveUi();renderAll();
-  toast(`${Object.keys(add).length} contactos añadidos`+(skipped?` (${skipped} repetidos)`:''));
-}
-function readFile(f){
-  if(!f)return;const r=new FileReader();
-  r.onload=()=>{try{
-    if(/\.(csv|tsv|txt)$/i.test(f.name)){startMapping(parseText(new TextDecoder().decode(r.result)),f.name);return;}
-    if(!window.XLSX){toast('No se pudo leer el Excel: pega las filas en el cuadro');return;}
-    const wb=XLSX.read(new Uint8Array(r.result),{type:'array'});const ws=wb.Sheets[wb.SheetNames[0]];
-    startMapping(XLSX.utils.sheet_to_json(ws,{header:1,defval:'',raw:false}),f.name);
-  }catch(e){toast('No se pudo leer ese archivo')}};
-  r.readAsArrayBuffer(f);
-}
-function parseText(t){const lines=t.replace(/^﻿/,'').replace(/\r/g,'').split('\n').filter(l=>l.trim());if(!lines.length)return[];
-  const sep=lines[0].includes('\t')?'\t':(lines[0].split(';').length>lines[0].split(',').length?';':',');
-  return lines.map(l=>l.split(sep).map(x=>x.replace(/^"|"$/g,'').trim()));}
-$('#file').addEventListener('change',e=>{readFile(e.target.files[0]);e.target.value='';});
-const drop=$('#drop');
-['dragenter','dragover'].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.add('over')}));
-['dragleave','drop'].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.remove('over')}));
-drop.addEventListener('drop',e=>readFile(e.dataTransfer.files[0]));
-$('#paste-go').addEventListener('click',()=>startMapping(parseText($('#paste').value),''));
-$('#manual').addEventListener('submit',e=>{e.preventDefault();const id=uid();
-  const c={empresa:$('#m-empresa').value.trim(),nombre:$('#m-nombre').value.trim(),email:$('#m-email').value.trim(),tel:$('#m-tel').value.trim(),tipo:$('#m-tipo').value,estado:'pendiente',orden:contacts().reduce((x,c)=>Math.max(x,c.orden||0),0)+1};
-  patchPerson(ui.active,{contactos:{[id]:c}});e.target.reset();ui.sel[ui.active]=id;saveUi();renderPeople();toast('Contacto añadido');});
-
-setInterval(()=>{if(ui.view==='contactos'&&!document.activeElement.closest('#preview'))renderList();},60000);
 renderAll();connect();
 })();
 </script>
