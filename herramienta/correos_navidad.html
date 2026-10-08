@@ -139,7 +139,40 @@ button,input,select,textarea{font:inherit;color:inherit}
 
 .toast{position:fixed;left:50%;bottom:calc(22px + env(safe-area-inset-bottom,0px));transform:translateX(-50%) translateY(20px);background:var(--blanco);color:var(--fondo);padding:10px 18px;border-radius:2px;font-weight:600;font-size:14px;opacity:0;pointer-events:none;transition:.2s;max-width:calc(100vw - 32px)}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-@media (max-width:520px){.logo{width:110px}.person-tab{font-size:15px;margin-right:16px;padding-right:0}.person-tab small{display:none}}
+/* reto 10 al día */
+.person-tab.rk{margin-left:auto;margin-right:0;color:var(--formentera)}
+.person-tab.rk[aria-selected="true"]{color:var(--blanco)}
+.today{display:flex;align-items:center;gap:10px;border:1px solid var(--line2);border-radius:2px;padding:6px 12px;font-size:12.5px;color:var(--txt2);cursor:pointer;background:transparent}
+.today b{font-weight:900;font-size:18px;color:var(--blanco);letter-spacing:-.01em;font-variant-numeric:tabular-nums}
+.today.done{border-color:var(--formentera)}
+.today.done b{color:var(--formentera)}
+.pips{display:flex;gap:3px}
+.pips i{width:6px;height:14px;background:var(--line)}
+.pips i.on{background:var(--formentera)}
+.rk-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:22px}
+.rk-head h2{font-weight:900;font-size:clamp(26px,4vw,40px);line-height:.96;letter-spacing:-.02em;text-transform:uppercase;margin:8px 0 0}
+.rk-head p{margin:0;color:var(--txt2);max-width:46ch;font-size:14px}
+.rk-list{display:grid;gap:14px}
+.rk-card{display:grid;grid-template-columns:64px minmax(0,1fr) auto;gap:8px 20px;align-items:center;padding:18px 20px;border:1px solid var(--line);background:var(--panel);border-radius:2px}
+.rk-card.first{border-color:var(--formentera)}
+.rk-pos{font-weight:900;font-size:48px;line-height:.9;color:var(--txt3);letter-spacing:-.03em}
+.rk-card.first .rk-pos{color:var(--formentera)}
+.rk-name{font-weight:900;font-size:22px;text-transform:uppercase;letter-spacing:-.01em;line-height:1}
+.rk-sub{font-size:12.5px;color:var(--txt2);margin-top:4px}
+.rk-total{text-align:right}
+.rk-total b{display:block;font-weight:900;font-size:34px;line-height:1;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.rk-total span{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--txt3)}
+.days{grid-column:2/-1;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px}
+.day{border:1px solid var(--line);padding:6px 4px;text-align:center;min-width:0;border-radius:2px}
+.day .d{display:block;font-weight:500;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--txt3);white-space:nowrap;overflow:hidden}
+.day .n{display:block;font-weight:900;font-size:16px;font-variant-numeric:tabular-nums;color:var(--txt2)}
+.day.ok{background:var(--formentera);border-color:var(--formentera)}
+.day.ok .d,.day.ok .n{color:var(--dark)}
+.day.hoy{border-color:var(--blanco)}
+.day.miss .n{color:var(--txt3)}
+.day.future{opacity:.45}
+@media (max-width:600px){.rk-card{grid-template-columns:44px minmax(0,1fr) auto;padding:14px}.rk-pos{font-size:34px}.days{grid-column:1/-1}.day .d{font-size:8.5px;letter-spacing:.06em}}
+@media (max-width:520px){.rk-long{display:none}.logo{width:110px}.person-tab{font-size:15px;margin-right:16px;padding-right:0}.person-tab small{display:none}}
 @media (prefers-reduced-motion: reduce){*{transition:none!important}}
 </style>
 
@@ -155,12 +188,14 @@ button,input,select,textarea{font:inherit;color:inherit}
 </header>
 
 <main class="wrap">
-  <div class="subnav">
+  <div class="subnav" id="subnav">
     <div class="progress" style="flex:1 1 240px;max-width:420px"><div class="bar"><i id="bar"></i></div><span id="count">0 de 0 enviados</span></div>
+    <button class="today" id="today" data-go-rank="1" title="Ver el ranking"></button>
     <div class="status" id="status"><span class="dot"></span><span>Conectando…</span></div>
   </div>
 
-  <div class="grid">
+  <section id="ranking" hidden></section>
+  <div class="grid" id="main-grid">
     <div class="panel">
       <div class="tools">
         <input type="search" id="q" placeholder="Buscar…" aria-label="Buscar contactos">
@@ -216,13 +251,24 @@ Si te encaja, dime más o menos cuántas unidades tenéis en mente y te preparo 
 ¡Un abrazo!
 {firma}`};
 
+/* ---------- reto 10 al día ---------- */
+const GOAL=10;
+const DAYS=['2026-10-08','2026-10-09','2026-10-12','2026-10-13','2026-10-14','2026-10-15','2026-10-16'];
+const dkey=d=>{const x=new Date(d);return x.getFullYear()+'-'+String(x.getMonth()+1).padStart(2,'0')+'-'+String(x.getDate()).padStart(2,'0');};
+const dlabel=k=>{const d=new Date(k+'T12:00:00');return d.toLocaleDateString('es-ES',{weekday:'short'}).replace('.','')+' '+d.getDate();};
+function perDay(pid){const m={};contacts(pid).forEach(c=>{if(c.enviado&&c.enviadoEn){const k=dkey(c.enviadoEn);m[k]=(m[k]||0)+1;}});return m;}
+function stats(pid){const m=perDay(pid),today=dkey(Date.now());
+  const total=DAYS.reduce((a,k)=>a+(m[k]||0),0),done=DAYS.filter(k=>(m[k]||0)>=GOAL).length;
+  let streak=0;for(const k of DAYS){if(k>today)break;if((m[k]||0)>=GOAL)streak++;else if(k<today)streak=0;}
+  return {m,today:m[today]||0,total,done,streak,inReto:DAYS.includes(today)};}
+
 /* ---------- estado ---------- */
 const S={web:'',tpl:{},people:{},mode:'connecting',readonly:false,savedAt:0};
 PEOPLE.forEach(p=>S.people[p.id]={firma:'',contactos:{}});
-const ui={active:'amaia',sel:{},q:'',hideSent:false,open:{}};
-try{const sv=JSON.parse(localStorage.getItem('gw-nav-ui2')||'{}');if(sv.active)ui.active=sv.active;if(sv.sel)ui.sel=sv.sel;ui.hideSent=!!sv.hideSent;if(sv.open)ui.open=sv.open;}catch(e){}
-const h0=location.hash.replace('#','');if(PEOPLE.some(p=>p.id===h0))ui.active=h0;
-function saveUi(){try{localStorage.setItem('gw-nav-ui2',JSON.stringify({active:ui.active,sel:ui.sel,hideSent:ui.hideSent,open:ui.open}))}catch(e){}}
+const ui={active:'amaia',sel:{},q:'',hideSent:false,open:{},view:'persona'};
+try{const sv=JSON.parse(localStorage.getItem('gw-nav-ui2')||'{}');if(sv.active)ui.active=sv.active;if(sv.sel)ui.sel=sv.sel;ui.hideSent=!!sv.hideSent;if(sv.open)ui.open=sv.open;if(sv.view)ui.view=sv.view;}catch(e){}
+const h0=location.hash.replace('#','');if(PEOPLE.some(p=>p.id===h0)){ui.active=h0;ui.view='persona';}if(h0==='ranking')ui.view='ranking';
+function saveUi(){try{localStorage.setItem('gw-nav-ui2',JSON.stringify({active:ui.active,sel:ui.sel,hideSent:ui.hideSent,open:ui.open,view:ui.view}))}catch(e){}}
 
 const $=s=>document.querySelector(s);
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -289,7 +335,8 @@ function renderStatus(){
 }
 function renderPeople(){
   $('#people').innerHTML=PEOPLE.map(p=>{const cs=contacts(p.id);const n=cs.filter(c=>c.enviado).length;
-    return `<button class="person-tab" role="tab" data-p="${p.id}" aria-selected="${p.id===ui.active}">${p.name}<small>${cs.length?n+'/'+cs.length:''}</small></button>`}).join('');
+    return `<button class="person-tab" role="tab" data-p="${p.id}" aria-selected="${ui.view==='persona'&&p.id===ui.active}">${p.name}<small>${cs.length?n+'/'+cs.length:''}</small></button>`}).join('')
+    +`<button class="person-tab rk" role="tab" data-rank="1" aria-selected="${ui.view==='ranking'}">Ranking<span class="rk-long"> · 10 al día</span></button>`;
 }
 function renderList(){
   const cs=contacts(),sent=cs.filter(c=>c.enviado).length;
@@ -348,17 +395,37 @@ function renderEditor(){
   [['e-asunto',t.asunto],['e-cuerpo',t.cuerpo],['e-firma',S.people[ui.active].firma||''],['s-web',S.web]].forEach(([id,v])=>{const el=$('#'+id);if(document.activeElement!==el)el.value=v;});
   $('#e-firma').placeholder=pname(ui.active)+'\nGravity Wave';
 }
-function renderAll(){renderStatus();renderPeople();renderList();renderPreview();renderEditor();}
+function renderToday(){const st=stats(ui.active),el=$('#today');const n=Math.min(st.today,GOAL);
+  el.className='today'+(st.today>=GOAL?' done':'');
+  el.innerHTML=st.inReto?`<span>Hoy</span><b>${st.today}/${GOAL}</b><span class="pips">${Array.from({length:GOAL},(_,i)=>`<i class="${i<n?'on':''}"></i>`).join('')}</span>`:`<span>Reto 10 al día · ${st.total} enviados</span>`;}
+function renderRanking(){
+  const today=dkey(Date.now());
+  const rows=PEOPLE.map(p=>({...p,...stats(p.id)})).sort((a,b)=>b.total-a.total||b.done-a.done||b.today-a.today);
+  const left=DAYS.filter(k=>k>=today).length;
+  $('#ranking').innerHTML=`<div class="rk-head"><div><p class="eyebrow">Reto · del 8 al 16 de octubre</p><h2>10 correos al día</h2></div>
+    <p>Cada día laborable, 10 correos enviados y marcados con el check. Gana quien más envíe hasta el viernes 16. ${left?`Quedan ${left} ${left===1?'día':'días'}, ${left*GOAL} correos por cabeza.`:'Reto terminado.'}</p></div>
+  <div class="rk-list">${rows.map((r,i)=>`<div class="rk-card ${i===0&&r.total>0?'first':''}">
+    <div class="rk-pos">${i+1}</div>
+    <div><div class="rk-name">${r.name}</div><div class="rk-sub">${r.done} ${r.done===1?'día cumplido':'días cumplidos'} de ${DAYS.length}${r.streak>1?` · racha de ${r.streak}`:''}${r.inReto?` · hoy ${r.today}/${GOAL}${r.today>=GOAL?' ✓':''}`:''}</div></div>
+    <div class="rk-total"><b>${r.total}</b><span>de ${DAYS.length*GOAL}</span></div>
+    <div class="days">${DAYS.map(k=>{const n=r.m[k]||0;const cls=n>=GOAL?'ok':(k>today?'future':(k<today?'miss':''));
+      return `<div class="day ${cls} ${k===today?'hoy':''}" title="${n} enviados"><span class="d">${dlabel(k)}</span><span class="n">${k>today?'·':n}</span></div>`}).join('')}</div>
+  </div>`).join('')}</div>`;}
+function renderAll(){renderStatus();renderPeople();renderToday();
+  const rk=ui.view==='ranking';$('#ranking').hidden=!rk;$('#main-grid').hidden=rk;$('#subnav').hidden=rk;
+  if(rk){renderRanking();return;}
+  renderList();renderPreview();renderEditor();}
 
 /* ---------- acciones ---------- */
 function setSent(id,val){const pid=ui.active;patchPerson(pid,{contactos:{[id]:{enviado:val,enviadoEn:val?new Date().toISOString():null}}});
   if(val&&ui.sel[pid]===id){const cs=contacts(pid),i=cs.findIndex(c=>c.id===id);const nx=cs.slice(i+1).find(c=>!c.enviado);if(nx)ui.sel[pid]=nx.id;saveUi();}
-  toast(val?'Marcado como enviado':'Desmarcado');renderAll();}
+  const st=stats(pid);toast(val?(st.inReto&&st.today===GOAL?'¡Reto de hoy cumplido! 10 de 10':(st.inReto&&st.today<GOAL?`Enviado · llevas ${st.today}/${GOAL} hoy`:'Marcado como enviado')):'Desmarcado');renderAll();}
 document.addEventListener('click',e=>{
   const b=e.target.closest('button');if(!b)return;
   if(b.dataset.tier){const t=b.dataset.tier;const op=ui.open[ui.active]||(ui.open[ui.active]={});op[t]=b.getAttribute('aria-expanded')!=='true';saveUi();renderList();return;}
   if(b.dataset.act==='open-all'||b.dataset.act==='close-all'){const v=b.dataset.act==='open-all';ui.open[ui.active]=Object.fromEntries(TIERS.map(t=>[t[0],v]));saveUi();renderList();return;}
-  if(b.dataset.p){ui.active=b.dataset.p;history.replaceState(null,'','#'+ui.active);saveUi();renderAll();return;}
+  if(b.dataset.rank||b.dataset.goRank){ui.view='ranking';history.replaceState(null,'','#ranking');saveUi();renderAll();return;}
+  if(b.dataset.p){ui.active=b.dataset.p;ui.view='persona';history.replaceState(null,'','#'+ui.active);saveUi();renderAll();return;}
   if(b.dataset.c){ui.sel[ui.active]=b.dataset.c;saveUi();renderList();renderPreview();if(innerWidth<860)$('#preview').scrollIntoView({behavior:'smooth',block:'start'});return;}
   if(b.dataset.copy){const d=$('#preview')._data;if(!d)return;({to:()=>copy(d.to,'Correo'),subj:()=>copy(d.subj,'Asunto'),body:()=>copy(d.body,'Texto')})[b.dataset.copy]();return;}
   if(b.dataset.act==='restore'){S.tpl[ui.active]={...BASE};saveTpl(ui.active);renderAll();toast('Texto base recuperado');}
