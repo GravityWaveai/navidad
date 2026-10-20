@@ -1,0 +1,566 @@
+{
+ "campaign": {
+  "name_es": "Regalos corporativos Navidad 2026 · Acabado Marsella",
+  "name_en": "Corporate Christmas gifts 2026 · Marsella finish",
+  "brand": "Gravitec® by Gravity Wave",
+  "material_es": "Gravitec®, fabricado con redes de pesca recuperadas del Mediterráneo",
+  "material_en": "Gravitec®, made from fishing nets recovered from the Mediterranean",
+  "finish": "Marsella",
+  "order_deadline": "2026-11-06",
+  "order_deadline_es": "6 de noviembre de 2026",
+  "order_deadline_en": "6 November 2026",
+  "prices_note_es": "Precios sin IVA ni gastos de envío",
+  "prices_note_en": "Prices exclude VAT and shipping",
+  "currency": "EUR",
+  "max_units_online": 1000,
+  "contact_email": "info@thegravitywave.com",
+  "contact_place": "Gravity Wave · Calpe, Alicante",
+  "website": "https://thegravitywave.com",
+  "customisation_es": "Impresión del packaging kraft personalizado en tinta negra e impresión UVI con tu logo en blanco en cada pieza.",
+  "customisation_en": "Customised kraft packaging printed in black ink and UV print of your logo in white on each piece."
+ },
+ "levels": [
+  {
+   "key": "std",
+   "name_es": "Estándar",
+   "name_en": "Standard"
+  },
+  {
+   "key": "pack",
+   "name_es": "Packaging personalizado",
+   "name_en": "Customised packaging"
+  },
+  {
+   "key": "full",
+   "name_es": "Packaging + producto personalizado",
+   "name_en": "Customised packaging + product"
+  }
+ ],
+ "products": [
+  {
+   "id": "arbol",
+   "order": 1,
+   "christmas_edition": true,
+   "name_es": "Árboles de Navidad",
+   "name_en": "Christmas Tree",
+   "short_es": "Árboles",
+   "short_en": "Trees",
+   "unit_es": "ud",
+   "unit_en": "unit",
+   "units_label_es": "uds",
+   "units_label_en": "units",
+   "moq": 80,
+   "logo_max_size_mm": "30 × 30 mm",
+   "pitch_es": "Un árbol de sobremesa formado por dos piezas que se encajan sin herramientas. Se monta en segundos, se guarda plano y preside la mesa o la recepción cada Navidad.",
+   "pitch_en": "A tabletop tree made of two panels that slot together, no tools needed. It assembles in seconds, stores flat and takes pride of place on the desk or at reception every Christmas.",
+   "spec_es": [
+    {
+     "label": "Contenido",
+     "value": "1 árbol (2 piezas encajables)"
+    },
+    {
+     "label": "Peso",
+     "value": "500 g"
+    },
+    {
+     "label": "Dimensiones",
+     "value": "250 × 150 × 10 mm"
+    },
+    {
+     "label": "Acabado",
+     "value": "Marsella"
+    }
+   ],
+   "spec_en": [
+    {
+     "label": "Contents",
+     "value": "1 tree (2 interlocking panels)"
+    },
+    {
+     "label": "Weight",
+     "value": "500 g"
+    },
+    {
+     "label": "Dimensions",
+     "value": "250 × 150 × 10 mm"
+    },
+    {
+     "label": "Finish",
+     "value": "Marsella"
+    }
+   ],
+   "price_tiers": [
+    {
+     "min": 80,
+     "max": 200,
+     "prices": {
+      "std": 26.4,
+      "pack": 27.0,
+      "full": 28.0
+     }
+    },
+    {
+     "min": 201,
+     "max": 500,
+     "prices": {
+      "std": 22.6,
+      "pack": 22.9,
+      "full": 23.3
+     }
+    },
+    {
+     "min": 501,
+     "max": 1000,
+     "prices": {
+      "std": 20.7,
+      "pack": 21.0,
+      "full": 21.4
+     }
+    }
+   ],
+   "main_image": "img/productos/arbol/arbol-navidad-marsella-montado-tu-logo.webp",
+   "views": {
+    "std": {
+     "image": "img/productos/arbol/arbol-navidad-pack-estandar.webp",
+     "alt_es": "Árbol plano con la faja kraft estándar de Gravity Wave",
+     "alt_en": "Flat tree panel with the standard Gravity Wave kraft band"
+    },
+    "pack": {
+     "image": "img/productos/arbol/arbol-navidad-pack-personalizado.webp",
+     "alt_es": "Árbol plano con la faja kraft personalizada con tu logo",
+     "alt_en": "Flat tree panel with the kraft band customised with your logo"
+    },
+    "full": {
+     "image": "img/productos/arbol/arbol-navidad-pack-mas-producto-personalizado.webp",
+     "alt_es": "Árbol con faja kraft personalizada y tu logo impreso en blanco en la pieza",
+     "alt_en": "Customised kraft band and assembled tree with your logo printed in white"
+    },
+    "real": {
+     "image": "img/productos/arbol/arbol-navidad-marsella-montado-tu-logo.webp",
+     "alt_es": "Árbol de Navidad en acabado Marsella montado, fotografía real",
+     "alt_en": "Assembled Christmas tree in Marsella finish"
+    }
+   }
+  },
+  {
+   "id": "estrellas",
+   "order": 2,
+   "christmas_edition": true,
+   "name_es": "Estrellas de Navidad (Pack 2)",
+   "name_en": "Christmas Stars (Pack of 2)",
+   "short_es": "Estrellas",
+   "short_en": "Stars",
+   "unit_es": "pack",
+   "unit_en": "pack",
+   "units_label_es": "packs",
+   "units_label_en": "packs",
+   "moq": 80,
+   "logo_max_size_mm": "30 × 30 mm",
+   "pitch_es": "Dos estrellas para colgar, con cordel, en packaging kraft. El adorno que vuelve al árbol cada diciembre, con tu logo en el centro.",
+   "pitch_en": "Two hanging stars with cord, in kraft packaging. The ornament that goes back on the tree every December, with your logo at its centre.",
+   "spec_es": [
+    {
+     "label": "Contenido",
+     "value": "Pack de 2 estrellas"
+    },
+    {
+     "label": "Peso del pack",
+     "value": "150 g"
+    },
+    {
+     "label": "Dimensiones del pack",
+     "value": "110 × 105 × 10 mm"
+    },
+    {
+     "label": "Acabado",
+     "value": "Marsella"
+    }
+   ],
+   "spec_en": [
+    {
+     "label": "Contents",
+     "value": "Pack of 2 stars"
+    },
+    {
+     "label": "Pack weight",
+     "value": "150 g"
+    },
+    {
+     "label": "Pack dimensions",
+     "value": "110 × 105 × 10 mm"
+    },
+    {
+     "label": "Finish",
+     "value": "Marsella"
+    }
+   ],
+   "price_tiers": [
+    {
+     "min": 80,
+     "max": 200,
+     "prices": {
+      "std": 15.6,
+      "pack": 17.0,
+      "full": 18.5
+     }
+    },
+    {
+     "min": 201,
+     "max": 500,
+     "prices": {
+      "std": 14.8,
+      "pack": 15.5,
+      "full": 16.3
+     }
+    },
+    {
+     "min": 501,
+     "max": 1000,
+     "prices": {
+      "std": 14.4,
+      "pack": 14.9,
+      "full": 15.9
+     }
+    }
+   ],
+   "main_image": "img/productos/estrellas/estrellas-navidad-marsella-tu-logo.webp",
+   "views": {
+    "std": {
+     "image": "img/productos/estrellas/estrellas-navidad-pack-estandar.webp",
+     "alt_es": "Pack de estrellas con el packaging kraft estándar de Gravity Wave",
+     "alt_en": "Pack of stars in the standard Gravity Wave kraft sleeve"
+    },
+    "pack": {
+     "image": "img/productos/estrellas/estrellas-navidad-pack-personalizado.webp",
+     "alt_es": "Pack de estrellas con packaging kraft personalizado con tu logo",
+     "alt_en": "Pack of stars in the kraft sleeve customised with your logo"
+    },
+    "full": {
+     "image": "img/productos/estrellas/estrellas-navidad-pack-mas-producto-personalizado.webp",
+     "alt_es": "Pack de estrellas con packaging personalizado y estrella con tu logo impreso en blanco",
+     "alt_en": "Customised sleeve and star with your logo printed in white"
+    },
+    "real": {
+     "image": "img/productos/estrellas/estrellas-navidad-marsella-tu-logo.webp",
+     "alt_es": "Estrella de Navidad en acabado Marsella, fotografía real",
+     "alt_en": "Christmas star in Marsella finish"
+    }
+   }
+  },
+  {
+   "id": "bolas",
+   "order": 3,
+   "christmas_edition": true,
+   "name_es": "Bola de Navidad (Pack 2)",
+   "name_en": "Christmas Bauble (Pack of 2)",
+   "short_es": "Bolas",
+   "short_en": "Baubles",
+   "unit_es": "pack",
+   "unit_en": "pack",
+   "units_label_es": "packs",
+   "units_label_en": "packs",
+   "moq": 80,
+   "logo_max_size_mm": "30 × 30 mm",
+   "pitch_es": "Dos bolas planas para colgar, con tu logo en el centro. Ligeras, sencillas y muy visibles: el formato más directo para llevar tu marca al árbol.",
+   "pitch_en": "Two flat hanging baubles with your logo in the centre. Light, simple and highly visible: the most direct way to put your brand on the tree.",
+   "spec_es": [
+    {
+     "label": "Contenido",
+     "value": "Pack de 2 bolas"
+    },
+    {
+     "label": "Peso del pack",
+     "value": "120 g"
+    },
+    {
+     "label": "Dimensiones del pack",
+     "value": "110 × 90 × 10 mm"
+    },
+    {
+     "label": "Acabado",
+     "value": "Marsella"
+    }
+   ],
+   "spec_en": [
+    {
+     "label": "Contents",
+     "value": "Pack of 2 baubles"
+    },
+    {
+     "label": "Pack weight",
+     "value": "120 g"
+    },
+    {
+     "label": "Pack dimensions",
+     "value": "110 × 90 × 10 mm"
+    },
+    {
+     "label": "Finish",
+     "value": "Marsella"
+    }
+   ],
+   "price_tiers": [
+    {
+     "min": 80,
+     "max": 200,
+     "prices": {
+      "std": 15.6,
+      "pack": 17.0,
+      "full": 18.5
+     }
+    },
+    {
+     "min": 201,
+     "max": 500,
+     "prices": {
+      "std": 14.8,
+      "pack": 15.5,
+      "full": 16.3
+     }
+    },
+    {
+     "min": 501,
+     "max": 1000,
+     "prices": {
+      "std": 14.4,
+      "pack": 14.9,
+      "full": 15.9
+     }
+    }
+   ],
+   "main_image": "img/productos/bolas/bolas-navidad-marsella-tu-logo.webp",
+   "views": {
+    "std": {
+     "image": "img/productos/bolas/bolas-navidad-pack-estandar.webp",
+     "alt_es": "Pack de dos bolas con la faja kraft en cruz estándar de Gravity Wave",
+     "alt_en": "Pack of two baubles with the standard Gravity Wave kraft cross band"
+    },
+    "pack": {
+     "image": "img/productos/bolas/bolas-navidad-pack-personalizado.webp",
+     "alt_es": "Pack de dos bolas con la faja kraft en cruz personalizada con tu logo",
+     "alt_en": "Pack of two baubles with the kraft cross band customised with your logo"
+    },
+    "full": {
+     "image": "img/productos/bolas/bolas-navidad-pack-mas-producto-personalizado.webp",
+     "alt_es": "Pack de bolas con faja personalizada y bola con tu logo impreso en blanco",
+     "alt_en": "Customised band and bauble with your logo printed in white"
+    },
+    "real": {
+     "image": "img/productos/bolas/bolas-navidad-marsella-tu-logo.webp",
+     "alt_es": "Dos bolas de Navidad en acabado Marsella con el texto Tu logo aquí impreso en blanco",
+     "alt_en": "Two Christmas baubles in Marsella finish with the text Your logo here"
+    }
+   }
+  },
+  {
+   "id": "portamovil",
+   "order": 4,
+   "christmas_edition": false,
+   "name_es": "Portamóviles",
+   "name_en": "Phone Stands",
+   "short_es": "Portamóviles",
+   "short_en": "Phone stands",
+   "unit_es": "ud",
+   "unit_en": "unit",
+   "units_label_es": "uds",
+   "units_label_en": "units",
+   "moq": 150,
+   "logo_max_size_mm": "30 × 30 mm",
+   "pitch_es": "Un soporte de sobremesa para el móvil, macizo y estable, que se queda en la mesa de trabajo a la vista todo el año. Con etiqueta kraft y cordel, listo para entregar.",
+   "pitch_en": "A solid, stable desktop stand for your phone that stays on the desk in plain sight all year round. With kraft tag and cord, ready to hand over.",
+   "spec_es": [
+    {
+     "label": "Contenido",
+     "value": "1 portamóvil"
+    },
+    {
+     "label": "Peso",
+     "value": "300 g"
+    },
+    {
+     "label": "Dimensiones",
+     "value": "130 × 80 × 18 mm"
+    },
+    {
+     "label": "Acabado",
+     "value": "Marsella"
+    }
+   ],
+   "spec_en": [
+    {
+     "label": "Contents",
+     "value": "1 phone stand"
+    },
+    {
+     "label": "Weight",
+     "value": "300 g"
+    },
+    {
+     "label": "Dimensions",
+     "value": "130 × 80 × 18 mm"
+    },
+    {
+     "label": "Finish",
+     "value": "Marsella"
+    }
+   ],
+   "price_tiers": [
+    {
+     "min": 150,
+     "max": 200,
+     "prices": {
+      "std": 12.6,
+      "pack": 13.0,
+      "full": 13.6
+     }
+    },
+    {
+     "min": 201,
+     "max": 500,
+     "prices": {
+      "std": 10.3,
+      "pack": 10.6,
+      "full": 11.1
+     }
+    },
+    {
+     "min": 501,
+     "max": 1000,
+     "prices": {
+      "std": 9.3,
+      "pack": 9.6,
+      "full": 10.0
+     }
+    }
+   ],
+   "main_image": "img/productos/portamovil/portamovil-marsella-3d.webp",
+   "views": {
+    "std": {
+     "image": "img/productos/portamovil/portamovil-pack-estandar.webp",
+     "alt_es": "Portamóvil con la etiqueta kraft estándar de Gravity Wave",
+     "alt_en": "Phone stand with the standard Gravity Wave kraft tag"
+    },
+    "pack": {
+     "image": "img/productos/portamovil/portamovil-pack-personalizado.webp",
+     "alt_es": "Portamóvil con la etiqueta kraft personalizada con tu logo",
+     "alt_en": "Phone stand with the kraft tag customised with your logo"
+    },
+    "full": {
+     "image": "img/productos/portamovil/portamovil-pack-mas-producto-personalizado.webp",
+     "alt_es": "Portamóvil con etiqueta kraft personalizada y tu logo impreso en la pieza",
+     "alt_en": "Customised kraft tag and phone stand with your logo printed on the piece"
+    },
+    "real": {
+     "image": "img/productos/portamovil/portamovil-marsella-3d.webp",
+     "alt_es": "Portamóvil en acabado Marsella, render 3D",
+     "alt_en": "Phone stand in Marsella finish, 3D render"
+    }
+   }
+  },
+  {
+   "id": "posavasos",
+   "order": 5,
+   "christmas_edition": false,
+   "name_es": "Posavasos (Pack 4)",
+   "name_en": "Coasters (Pack of 4)",
+   "short_es": "Posavasos",
+   "short_en": "Coasters",
+   "unit_es": "pack",
+   "unit_en": "pack",
+   "units_label_es": "packs",
+   "units_label_en": "packs",
+   "moq": 80,
+   "logo_max_size_mm": "40 × 40 mm",
+   "pitch_es": "Cuatro posavasos de Gravitec® en acabado Marsella, presentados en packaging kraft. El clásico de mesa que se usa cada día, en casa y en la oficina, y que recuerda quién lo regaló.",
+   "pitch_en": "Four Gravitec® coasters in Marsella finish, presented in kraft packaging. The desk classic that gets used every day, at home and at the office, and reminds people who gave it.",
+   "spec_es": [
+    {
+     "label": "Contenido",
+     "value": "Pack de 4 posavasos"
+    },
+    {
+     "label": "Peso del pack",
+     "value": "240 g"
+    },
+    {
+     "label": "Dimensiones del pack",
+     "value": "90 × 90 × 20 mm"
+    },
+    {
+     "label": "Acabado",
+     "value": "Marsella"
+    }
+   ],
+   "spec_en": [
+    {
+     "label": "Contents",
+     "value": "Pack of 4 coasters"
+    },
+    {
+     "label": "Pack weight",
+     "value": "240 g"
+    },
+    {
+     "label": "Pack dimensions",
+     "value": "90 × 90 × 20 mm"
+    },
+    {
+     "label": "Finish",
+     "value": "Marsella"
+    }
+   ],
+   "price_tiers": [
+    {
+     "min": 80,
+     "max": 200,
+     "prices": {
+      "std": 18.2,
+      "pack": 19.5,
+      "full": 21.5
+     }
+    },
+    {
+     "min": 201,
+     "max": 500,
+     "prices": {
+      "std": 13.1,
+      "pack": 14.0,
+      "full": 14.9
+     }
+    },
+    {
+     "min": 501,
+     "max": 1000,
+     "prices": {
+      "std": 12.5,
+      "pack": 13.5,
+      "full": 14.4
+     }
+    }
+   ],
+   "main_image": "img/productos/posavasos/posavasos-marsella-tu-logo.webp",
+   "views": {
+    "std": {
+     "image": "img/productos/posavasos/posavasos-pack-estandar.webp",
+     "alt_es": "Pack de posavasos con la faja kraft estándar de Gravity Wave",
+     "alt_en": "Pack of coasters with the standard Gravity Wave kraft band"
+    },
+    "pack": {
+     "image": "img/productos/posavasos/posavasos-pack-personalizado.webp",
+     "alt_es": "Pack de posavasos con la faja kraft personalizada con tu logo",
+     "alt_en": "Pack of coasters with the kraft band customised with your logo"
+    },
+    "full": {
+     "image": "img/productos/posavasos/posavasos-pack-mas-producto-personalizado.webp",
+     "alt_es": "Pack de posavasos con faja kraft personalizada y tu logo impreso en cada posavasos",
+     "alt_en": "Customised kraft band and your logo printed on each coaster"
+    },
+    "real": {
+     "image": "img/productos/posavasos/posavasos-marsella-tu-logo.webp",
+     "alt_es": "Fotografía real de un posavasos en acabado Marsella",
+     "alt_en": "Coasters in Marsella finish with the text Your logo here"
+    }
+   }
+  }
+ ]
+}

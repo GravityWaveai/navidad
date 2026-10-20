@@ -1,0 +1,29 @@
+# Imágenes del paquete (ruta · uso en la página)
+
+- `img/acabado/acabado-marsella-muestra.jpg` · Muestra del acabado Marsella (primer plano del material).
+- `img/fondos/barco-gravity-wave-plastic-free-oceans.jpg` · Foto de fondo de la cita (barco de Gravity Wave, Plastic Free Oceans). Va con velo arena por encima.
+- `img/fondos/red-de-pesca-textura.jpg` · Foto de fondo de la sección El proceso (red de pesca), opacidad baja.
+- `img/marca/logo-gravitec-by-gravity-wave-azul.png` · Logo Gravitec by Gravity Wave en azul marino (cita del barco). Sobre fondos claros.
+- `img/marca/logo-gravitec-by-gravity-wave-blanco.png` · Logo Gravitec en blanco (cabecera/hero). Sobre fondos oscuros o con contraste.
+- `img/proceso/granza-gravitec-reciclada.webp` · Paso 2 del proceso: granza Gravitec.
+- `img/proceso/redes-de-pesca-recuperadas.webp` · Paso 1 del proceso: redes recuperadas.
+- `img/productos/arbol/arbol-navidad-marsella-montado-tu-logo.webp` · Pieza suelta: hero (estrellas), selector de producto, fila de piezas, paso 3 del proceso (árbol) y vista «pieza» de la ficha.
+- `img/productos/arbol/arbol-navidad-pack-estandar.webp` · Nivel 1 · Estándar: imagen grande de la ficha y miniatura del selector de nivel. También tarjeta 1 de Personalización (estrellas).
+- `img/productos/arbol/arbol-navidad-pack-mas-producto-personalizado.webp` · Nivel 3 · Packaging + producto personalizado: imagen grande y miniatura. También tarjeta 3 de Personalización (estrellas).
+- `img/productos/arbol/arbol-navidad-pack-personalizado.webp` · Nivel 2 · Packaging personalizado: imagen grande y miniatura. También tarjeta 2 de Personalización (estrellas).
+- `img/productos/bolas/bolas-navidad-marsella-tu-logo.webp` · Pieza suelta: hero (estrellas), selector de producto, fila de piezas, paso 3 del proceso (árbol) y vista «pieza» de la ficha.
+- `img/productos/bolas/bolas-navidad-pack-estandar.webp` · Nivel 1 · Estándar: imagen grande de la ficha y miniatura del selector de nivel. También tarjeta 1 de Personalización (estrellas).
+- `img/productos/bolas/bolas-navidad-pack-mas-producto-personalizado.webp` · Nivel 3 · Packaging + producto personalizado: imagen grande y miniatura. También tarjeta 3 de Personalización (estrellas).
+- `img/productos/bolas/bolas-navidad-pack-personalizado.webp` · Nivel 2 · Packaging personalizado: imagen grande y miniatura. También tarjeta 2 de Personalización (estrellas).
+- `img/productos/estrellas/estrellas-navidad-marsella-tu-logo.webp` · Pieza suelta: hero (estrellas), selector de producto, fila de piezas, paso 3 del proceso (árbol) y vista «pieza» de la ficha.
+- `img/productos/estrellas/estrellas-navidad-pack-estandar.webp` · Nivel 1 · Estándar: imagen grande de la ficha y miniatura del selector de nivel. También tarjeta 1 de Personalización (estrellas).
+- `img/productos/estrellas/estrellas-navidad-pack-mas-producto-personalizado.webp` · Nivel 3 · Packaging + producto personalizado: imagen grande y miniatura. También tarjeta 3 de Personalización (estrellas).
+- `img/productos/estrellas/estrellas-navidad-pack-personalizado.webp` · Nivel 2 · Packaging personalizado: imagen grande y miniatura. También tarjeta 2 de Personalización (estrellas).
+- `img/productos/portamovil/portamovil-marsella-3d.webp` · Pieza suelta: hero (estrellas), selector de producto, fila de piezas, paso 3 del proceso (árbol) y vista «pieza» de la ficha.
+- `img/productos/portamovil/portamovil-pack-estandar.webp` · Nivel 1 · Estándar: imagen grande de la ficha y miniatura del selector de nivel. También tarjeta 1 de Personalización (estrellas).
+- `img/productos/portamovil/portamovil-pack-mas-producto-personalizado.webp` · Nivel 3 · Packaging + producto personalizado: imagen grande y miniatura. También tarjeta 3 de Personalización (estrellas).
+- `img/productos/portamovil/portamovil-pack-personalizado.webp` · Nivel 2 · Packaging personalizado: imagen grande y miniatura. También tarjeta 2 de Personalización (estrellas).
+- `img/productos/posavasos/posavasos-marsella-tu-logo.webp` · Pieza suelta: hero (estrellas), selector de producto, fila de piezas, paso 3 del proceso (árbol) y vista «pieza» de la ficha.
+- `img/productos/posavasos/posavasos-pack-estandar.webp` · Nivel 1 · Estándar: imagen grande de la ficha y miniatura del selector de nivel. También tarjeta 1 de Personalización (estrellas).
+- `img/productos/posavasos/posavasos-pack-mas-producto-personalizado.webp` · Nivel 3 · Packaging + producto personalizado: imagen grande y miniatura. También tarjeta 3 de Personalización (estrellas).
+- `img/productos/posavasos/posavasos-pack-personalizado.webp` · Nivel 2 · Packaging personalizado: imagen grande y miniatura. También tarjeta 2 de Personalización (estrellas).

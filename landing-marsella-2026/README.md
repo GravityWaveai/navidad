@@ -25,3 +25,10 @@ vectorizado (svg/ai o png sin fondo, mín. 300 px / 80 mm), monocolor (negro pac
 degradados ni fondos, sin textos ni piezas < 1 mm, elementos con separación suficiente (la UVI añade un contorno
 de 0,05 mm) y diseños simples porque la colocación es manual. Si el logo no es apto, pedir al cliente una versión
 simplificada. Estos puntos aparecen resumidos en la sección Personalización de la landing.
+
+## Paquete para integrar en la web (`web/`)
+`web/` es la versión preparada para instalar dentro de thegravitywave.com (sin menú ni footer): `navidad-2026.html`
+autónomo, `fragmento-navidad-2026.html` para pegar en la plantilla, `css/` acotado bajo `#gw-navidad-2026`, `js/` sin
+dependencias, `img/` con nombres descriptivos, `fonts/`, `data/productos.json` (ES/EN), `CONTENIDO-ES-EN.md` con todos
+los textos traducidos y `README.md` con las instrucciones de integración y SEO. Se regenera con `python3 src/build_package.py`
+(lee `src/page.html`, `src/build_html.py`, `src/assets/`, `src/fonts/` y `src/pkg_docs/`). El zip está en `exports/navidad-2026-web.zip`.
