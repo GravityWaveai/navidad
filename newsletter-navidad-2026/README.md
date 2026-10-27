@@ -6,8 +6,8 @@ Email creado en HubSpot como borrador, listo para programar.
 |---|---|
 | Nombre interno | NEWSLETTER - Navidad 2026 · Regalos Corporativos Marsella |
 | Editar en HubSpot | https://app-eu1.hubspot.com/email/26243090/edit/500819753155 |
-| Asunto | Tus regalos de Navidad antes eran redes de pesca 🎄🌊 |
-| Texto de previsualización | Árboles, estrellas, bolas, posavasos y portamóviles en acabado Marsella, con tu logo. Pedidos hasta el 6 de noviembre. |
+| Asunto | Nuestra nueva colección de Navidad viene del mar 🎄🌊 |
+| Texto de previsualización | Árbol, estrellas, bolas, posavasos y portamóvil hechos con redes de pesca, en acabado Marsella. Pedidos personalizados hasta el 6 de noviembre. |
 | Remitente | Gravity Wave |
 | Responder a | info@thegravitywave.com |
 | Tipo de suscripción | Newsletter |
@@ -17,16 +17,16 @@ Email creado en HubSpot como borrador, listo para programar.
 
 HubSpot deduplica automáticamente: un contacto que esté en varias de las listas incluidas recibe el correo una sola vez.
 
-## Estructura del email
+## Estructura del email (v2)
 
 1. Logo GRAVITEC by Gravity Wave (fondo arena).
-2. Hero: la familia Marsella (estrella, árbol, portamóvil y posavasos) sobre turquesa.
-3. Titular + intro + CTA «Quiero mi propuesta» (mailto a info@ con asunto y plantilla rellenada).
-4. Banda turquesa: «¿Por qué funciona como regalo de empresa?» (historia real, se usa todo el año, dato de kilos retirados).
-5. La colección: 5 fichas (árbol, estrellas, bolas, posavasos, portamóvil) + ficha del acabado Marsella. Precio «desde» del tramo 501-1000 con asterisco y enlace al catálogo. CTA «Calcula tu pedido en la web».
-6. El proceso (recolectamos, trituramos, transformamos) con enlace a la web.
-7. Banner «Pedidos antes del 6 de noviembre» + CTA «Reservar mi pedido» (mailto) + enlaces a web y catálogo.
-8. Cierre, redes sociales y pie legal con baja.
+2. Hero: la familia Marsella (estrella, árbol, portamóvil y posavasos) sobre turquesa, 1200 px.
+3. Presentación de la novedad + aviso claro: pedido antes del 6 de noviembre para recibirlo antes de Navidad, sobre todo los personalizados. CTA «Hacer pedido» (mailto a info@ con plantilla).
+4. La colección: 5 fichas (árbol, estrellas, bolas, posavasos, portamóvil) + cajón «Cómo se pide». Precio «desde» con asterisco y enlace al catálogo.
+5. CTA «Hacer pedido» + enlaces a calculadora de la web y catálogo.
+6. Cajón independiente «El proceso»: foto de redes y escama, 3 pasos y explicación del acabado Marsella.
+7. Banda turquesa «¿Y si no eres empresa?»: empresa / trabajas en una (propón el regalo) / particular (pedido pequeño).
+8. Recordatorio del 6 de noviembre, CTA final, cierre, redes y pie legal.
 
 ## Enlaces usados
 
@@ -49,7 +49,7 @@ Fuente: catálogo Canva «Marsella 2026 - Catálogo Regalos Corporativos» (fech
 
 ## Imágenes
 
-Las imágenes del email están en `assets/newsletter-navidad-2026/` y se sirven desde este repositorio público
+Las imágenes del email (hero 1200 px, fichas 810 px, proceso 1200 px, reconstruidas desde los originales de Canva) están en `assets/newsletter-navidad-2026/` y se sirven desde este repositorio público
 (`raw.githubusercontent.com/GravityWaveai/navidad/claude/tender-ride-8poo7q/...`). Si se borra o renombra la rama,
 las imágenes dejan de verse: lo ideal es subirlas al gestor de archivos de HubSpot y sustituir las URL antes de enviar.
 Son recortes de las creatividades Marsella de Canva (diseño DAHZMvONdL8).
